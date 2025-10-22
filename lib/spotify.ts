@@ -53,6 +53,8 @@ export const calculateMusicTasteScore = async (
   timeRange: 'short_term' | 'medium_term' | 'long_term' = 'medium_term'
 ): Promise<MusicTasteScore> => {
   try {
+    console.log('Starting music taste score calculation...');
+    
     // Use fetch API instead of SpotifyWebApi for server-side compatibility
     const baseUrl = 'https://api.spotify.com/v1';
     
@@ -67,37 +69,68 @@ export const calculateMusicTasteScore = async (
       fetch(`${baseUrl}/me/top/artists?limit=50&time_range=${timeRange}`, { headers })
     ]);
 
-    if (!tracksResponse.ok || !artistsResponse.ok) {
-      throw new Error('Failed to fetch user data from Spotify');
+    if (!tracksResponse.ok) {
+      console.error('Tracks response:', tracksResponse.status, await tracksResponse.text());
+      throw new Error(`Failed to fetch top tracks: ${tracksResponse.status}`);
+    }
+    
+    if (!artistsResponse.ok) {
+      console.error('Artists response:', artistsResponse.status, await artistsResponse.text());
+      throw new Error(`Failed to fetch top artists: ${artistsResponse.status}`);
     }
 
     const topTracks = await tracksResponse.json();
     const topArtists = await artistsResponse.json();
+    
+    console.log(`Found ${topTracks.items.length} tracks and ${topArtists.items.length} artists`);
 
     // Get audio features for top tracks
-    const trackIds = topTracks.items.map((track: any) => track.id).join(',');
-    const audioFeaturesResponse = await fetch(`${baseUrl}/audio-features?ids=${trackIds}`, { headers });
+    const trackIds = topTracks.items.map((track: any) => track.id);
+    console.log(`Fetching audio features for ${trackIds.length} tracks`);
     
-    if (!audioFeaturesResponse.ok) {
-      throw new Error('Failed to fetch audio features from Spotify');
+    // Spotify API has a limit of 100 track IDs per request
+    const audioFeaturesPromises = [];
+    for (let i = 0; i < trackIds.length; i += 100) {
+      const batch = trackIds.slice(i, i + 100);
+      const batchIds = batch.join(',');
+      console.log(`Fetching audio features batch ${Math.floor(i/100) + 1} with ${batch.length} tracks`);
+      audioFeaturesPromises.push(
+        fetch(`${baseUrl}/audio-features?ids=${batchIds}`, { headers })
+      );
     }
     
-    const audioFeatures = await audioFeaturesResponse.json();
+    const audioFeaturesResponses = await Promise.all(audioFeaturesPromises);
+    
+    // Check if any response failed
+    const failedResponses = audioFeaturesResponses.filter(response => !response.ok);
+    let audioFeatures = { audio_features: [] };
+    
+    if (failedResponses.length > 0) {
+      console.error('Some audio features requests failed:', failedResponses.map(r => r.status));
+      console.log('Continuing without audio features...');
+    } else {
+      // Combine all audio features
+      const audioFeaturesResults = await Promise.all(
+        audioFeaturesResponses.map(response => response.json())
+      );
+      
+      audioFeatures = {
+        audio_features: audioFeaturesResults.flatMap(result => result.audio_features)
+      };
+    }
 
     // Calculate scores based on audio features
     const features = audioFeatures.audio_features.filter((f: any) => f !== null);
+    console.log(`Found ${features.length} audio features`);
     
-    if (features.length === 0) {
-      throw new Error('No audio features available');
-    }
-    
-    const avgEnergy = features.reduce((sum: number, f: any) => sum + f.energy, 0) / features.length;
-    const avgValence = features.reduce((sum: number, f: any) => sum + f.valence, 0) / features.length;
-    const avgDanceability = features.reduce((sum: number, f: any) => sum + f.danceability, 0) / features.length;
-    const avgAcousticness = features.reduce((sum: number, f: any) => sum + f.acousticness, 0) / features.length;
-    const avgInstrumentalness = features.reduce((sum: number, f: any) => sum + f.instrumentalness, 0) / features.length;
-    const avgLiveness = features.reduce((sum: number, f: any) => sum + f.liveness, 0) / features.length;
-    const avgSpeechiness = features.reduce((sum: number, f: any) => sum + f.speechiness, 0) / features.length;
+    // Calculate audio features with fallback values if no features available
+    const avgEnergy = features.length > 0 ? features.reduce((sum: number, f: any) => sum + f.energy, 0) / features.length : 0.5;
+    const avgValence = features.length > 0 ? features.reduce((sum: number, f: any) => sum + f.valence, 0) / features.length : 0.5;
+    const avgDanceability = features.length > 0 ? features.reduce((sum: number, f: any) => sum + f.danceability, 0) / features.length : 0.5;
+    const avgAcousticness = features.length > 0 ? features.reduce((sum: number, f: any) => sum + f.acousticness, 0) / features.length : 0.5;
+    const avgInstrumentalness = features.length > 0 ? features.reduce((sum: number, f: any) => sum + f.instrumentalness, 0) / features.length : 0.5;
+    const avgLiveness = features.length > 0 ? features.reduce((sum: number, f: any) => sum + f.liveness, 0) / features.length : 0.5;
+    const avgSpeechiness = features.length > 0 ? features.reduce((sum: number, f: any) => sum + f.speechiness, 0) / features.length : 0.5;
 
     // Calculate diversity score based on genre variety
     const allGenres = topArtists.items.flatMap((artist: any) => artist.genres);
