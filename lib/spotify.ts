@@ -1,11 +1,4 @@
-import SpotifyWebApi from 'spotify-web-api-js';
-
-// Create a function to get a new instance of SpotifyWebApi
-export const createSpotifyApi = (accessToken: string) => {
-  const spotifyApi = new SpotifyWebApi();
-  spotifyApi.setAccessToken(accessToken);
-  return spotifyApi;
-};
+// Server-side Spotify API functions using fetch
 
 export interface SpotifyUser {
   id: string;

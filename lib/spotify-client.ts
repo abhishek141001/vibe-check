@@ -1,30 +1,42 @@
 'use client';
 
-import SpotifyWebApi from 'spotify-web-api-js';
-
-// Client-side Spotify API wrapper
+// Client-side Spotify API functions using fetch
 export class SpotifyClient {
-  private spotifyApi: SpotifyWebApi;
+  private accessToken: string;
 
   constructor(accessToken: string) {
-    this.spotifyApi = new SpotifyWebApi();
-    this.spotifyApi.setAccessToken(accessToken);
+    this.accessToken = accessToken;
+  }
+
+  private async makeRequest(endpoint: string) {
+    const response = await fetch(`https://api.spotify.com/v1${endpoint}`, {
+      headers: {
+        'Authorization': `Bearer ${this.accessToken}`,
+        'Content-Type': 'application/json',
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Spotify API error: ${response.status}`);
+    }
+
+    return response.json();
   }
 
   async getCurrentUser() {
-    return await this.spotifyApi.getMe();
+    return await this.makeRequest('/me');
   }
 
   async getTopTracks(timeRange: 'short_term' | 'medium_term' | 'long_term' = 'medium_term', limit: number = 50) {
-    return await this.spotifyApi.getMyTopTracks({ limit, time_range: timeRange });
+    return await this.makeRequest(`/me/top/tracks?limit=${limit}&time_range=${timeRange}`);
   }
 
   async getTopArtists(timeRange: 'short_term' | 'medium_term' | 'long_term' = 'medium_term', limit: number = 50) {
-    return await this.spotifyApi.getMyTopArtists({ limit, time_range: timeRange });
+    return await this.makeRequest(`/me/top/artists?limit=${limit}&time_range=${timeRange}`);
   }
 
   async getAudioFeatures(trackIds: string[]) {
-    return await this.spotifyApi.getAudioFeaturesForTracks(trackIds);
+    return await this.makeRequest(`/audio-features?ids=${trackIds.join(',')}`);
   }
 }
 

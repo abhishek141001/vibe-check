@@ -17,9 +17,6 @@ importers:
       '@radix-ui/react-slot':
         specifier: ^1.2.3
         version: 1.2.3(@types/react@19.2.2)(react@19.2.0)
-      '@types/spotify-web-api-js':
-        specifier: ^0.21.0
-        version: 0.21.0
       class-variance-authority:
         specifier: ^0.7.1
         version: 0.7.1
@@ -41,9 +38,6 @@ importers:
       react-dom:
         specifier: 19.2.0
         version: 19.2.0(react@19.2.0)
-      spotify-web-api-js:
-        specifier: ^1.5.2
-        version: 1.5.2
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.3.1
@@ -640,10 +634,6 @@ packages:
 
   '@types/react@19.2.2':
     resolution: {integrity: sha512-6mDvHUFSjyT2B2yeNx2nUgMxh9LtOWvkhIU3uePn2I2oyNymUAX1NIsdgviM4CH+JSrp2D2hsMvJOkxY+0wNRA==}
-
-  '@types/spotify-web-api-js@0.21.0':
-    resolution: {integrity: sha512-erdS6yjnUsAVKMj/YKBbpvs5gFTFnc06Lrk2qgNgJ8Ta1W+hudtRjORnBRqdAso205u1Z2FKbTWrUI3wwM+BRw==}
-    deprecated: This is a stub types definition for spotify-web-api-js (https://github.com/JMPerez/spotify-web-api-js). spotify-web-api-js provides its own type definitions, so you don't need @types/spotify-web-api-js installed!
 
   '@typescript-eslint/eslint-plugin@8.46.2':
     resolution: {integrity: sha512-ZGBMToy857/NIPaaCucIUQgqueOiq7HeAKkhlvqVV4lm089zUFW6ikRySx2v+cAhKeUCPuWVHeimyk6Dw1iY3w==}
@@ -1918,9 +1908,6 @@ packages:
     resolution: {integrity: sha512-UXWMKhLOwVKb728IUtQPXxfYU+usdybtUrK/8uGE8CQMvrhOpwvzDBwj0QhSL7MQc7vIsISBG8VQ8+IDQxpfQA==}
     engines: {node: '>=0.10.0'}
 
-  spotify-web-api-js@1.5.2:
-    resolution: {integrity: sha512-ie1gbg1wCabfobIkXTIBLUMyULS/hMCpF44Cdx2pAO0/+FrjhNSDjlDzcwCEDy+ZIo3Fscs+Gkg/GTeQ/ijo+Q==}
-
   stable-hash@0.0.5:
     resolution: {integrity: sha512-+L3ccpzibovGXFK+Ap/f8LOS0ahMrHTf3xu7mMLSpEGU0EO9ucaysSylKo9eRDFNhWve/y275iPmIZ4z39a9iA==}
 
@@ -2621,10 +2608,6 @@ snapshots:
   '@types/react@19.2.2':
     dependencies:
       csstype: 3.1.3
-
-  '@types/spotify-web-api-js@0.21.0':
-    dependencies:
-      spotify-web-api-js: 1.5.2
 
   '@typescript-eslint/eslint-plugin@8.46.2(@typescript-eslint/parser@8.46.2(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3))(eslint@9.38.0(jiti@2.6.1))(typescript@5.9.3)':
     dependencies:
@@ -4100,8 +4083,6 @@ snapshots:
       side-channel-weakmap: 1.0.2
 
   source-map-js@1.2.1: {}
-
-  spotify-web-api-js@1.5.2: {}
 
   stable-hash@0.0.5: {}
 
