@@ -7,9 +7,36 @@ import { Users, Share2, Copy, Mail, MessageCircle } from 'lucide-react';
 
 export function InviteFriends() {
   const [copied, setCopied] = useState(false);
-  const [inviteLink] = useState(`${typeof window !== 'undefined' ? window.location.origin : 'http://localhost:3000'}/invite/${Math.random().toString(36).substr(2, 9)}`);
+  const [inviteLink, setInviteLink] = useState<string>('');
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+
+  const createInvite = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch('/api/invite/create', {
+        method: 'POST',
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.error || 'Failed to create invite');
+      }
+
+      const data = await response.json();
+      setInviteLink(data.inviteUrl);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to create invite');
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const copyToClipboard = async () => {
+    if (!inviteLink) return;
+    
     try {
       await navigator.clipboard.writeText(inviteLink);
       setCopied(true);
@@ -46,26 +73,43 @@ export function InviteFriends() {
             </p>
           </div>
 
-          {/* Invite Link */}
-          <div className="space-y-2">
-            <label className="text-sm font-medium">Your Invite Link</label>
-            <div className="flex space-x-2">
-              <input
-                type="text"
-                value={inviteLink}
-                readOnly
-                className="flex-1 px-3 py-2 border border-input rounded-md bg-muted text-sm"
-              />
-              <Button
-                onClick={copyToClipboard}
-                variant="outline"
-                size="sm"
-              >
-                <Copy className="mr-1 h-4 w-4" />
-                {copied ? 'Copied!' : 'Copy'}
+          {/* Create Invite Button */}
+          {!inviteLink && (
+            <div className="text-center space-y-4">
+              <p className="text-muted-foreground">
+                Create a unique invite link to challenge your friends!
+              </p>
+              <Button onClick={createInvite} disabled={loading}>
+                {loading ? 'Creating...' : 'Create Invite Link'}
               </Button>
+              {error && (
+                <p className="text-destructive text-sm">{error}</p>
+              )}
             </div>
-          </div>
+          )}
+
+          {/* Invite Link */}
+          {inviteLink && (
+            <div className="space-y-2">
+              <label className="text-sm font-medium">Your Invite Link</label>
+              <div className="flex space-x-2">
+                <input
+                  type="text"
+                  value={inviteLink}
+                  readOnly
+                  className="flex-1 px-3 py-2 border border-input rounded-md bg-muted text-sm"
+                />
+                <Button
+                  onClick={copyToClipboard}
+                  variant="outline"
+                  size="sm"
+                >
+                  <Copy className="mr-1 h-4 w-4" />
+                  {copied ? 'Copied!' : 'Copy'}
+                </Button>
+              </div>
+            </div>
+          )}
 
           {/* Share Options */}
           <div className="space-y-4">
