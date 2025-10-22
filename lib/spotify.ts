@@ -1,6 +1,11 @@
 import SpotifyWebApi from 'spotify-web-api-js';
 
-export const spotifyApi = new SpotifyWebApi();
+// Create a function to get a new instance of SpotifyWebApi
+export const createSpotifyApi = (accessToken: string) => {
+  const spotifyApi = new SpotifyWebApi();
+  spotifyApi.setAccessToken(accessToken);
+  return spotifyApi;
+};
 
 export interface SpotifyUser {
   id: string;
@@ -54,37 +59,60 @@ export const calculateMusicTasteScore = async (
   accessToken: string,
   timeRange: 'short_term' | 'medium_term' | 'long_term' = 'medium_term'
 ): Promise<MusicTasteScore> => {
-  spotifyApi.setAccessToken(accessToken);
-
   try {
+    // Use fetch API instead of SpotifyWebApi for server-side compatibility
+    const baseUrl = 'https://api.spotify.com/v1';
+    
+    const headers = {
+      'Authorization': `Bearer ${accessToken}`,
+      'Content-Type': 'application/json',
+    };
+
     // Get user's top tracks and artists
-    const [topTracks, topArtists] = await Promise.all([
-      spotifyApi.getMyTopTracks({ limit: 50, time_range: timeRange }),
-      spotifyApi.getMyTopArtists({ limit: 50, time_range: timeRange })
+    const [tracksResponse, artistsResponse] = await Promise.all([
+      fetch(`${baseUrl}/me/top/tracks?limit=50&time_range=${timeRange}`, { headers }),
+      fetch(`${baseUrl}/me/top/artists?limit=50&time_range=${timeRange}`, { headers })
     ]);
 
+    if (!tracksResponse.ok || !artistsResponse.ok) {
+      throw new Error('Failed to fetch user data from Spotify');
+    }
+
+    const topTracks = await tracksResponse.json();
+    const topArtists = await artistsResponse.json();
+
     // Get audio features for top tracks
-    const trackIds = topTracks.items.map(track => track.id);
-    const audioFeatures = await spotifyApi.getAudioFeaturesForTracks(trackIds);
+    const trackIds = topTracks.items.map((track: any) => track.id).join(',');
+    const audioFeaturesResponse = await fetch(`${baseUrl}/audio-features?ids=${trackIds}`, { headers });
+    
+    if (!audioFeaturesResponse.ok) {
+      throw new Error('Failed to fetch audio features from Spotify');
+    }
+    
+    const audioFeatures = await audioFeaturesResponse.json();
 
     // Calculate scores based on audio features
-    const features = audioFeatures.audio_features.filter(f => f !== null);
+    const features = audioFeatures.audio_features.filter((f: any) => f !== null);
     
-    const avgEnergy = features.reduce((sum, f) => sum + f.energy, 0) / features.length;
-    const avgValence = features.reduce((sum, f) => sum + f.valence, 0) / features.length;
-    const avgDanceability = features.reduce((sum, f) => sum + f.danceability, 0) / features.length;
-    const avgAcousticness = features.reduce((sum, f) => sum + f.acousticness, 0) / features.length;
-    const avgInstrumentalness = features.reduce((sum, f) => sum + f.instrumentalness, 0) / features.length;
-    const avgLiveness = features.reduce((sum, f) => sum + f.liveness, 0) / features.length;
-    const avgSpeechiness = features.reduce((sum, f) => sum + f.speechiness, 0) / features.length;
+    if (features.length === 0) {
+      throw new Error('No audio features available');
+    }
+    
+    const avgEnergy = features.reduce((sum: number, f: any) => sum + f.energy, 0) / features.length;
+    const avgValence = features.reduce((sum: number, f: any) => sum + f.valence, 0) / features.length;
+    const avgDanceability = features.reduce((sum: number, f: any) => sum + f.danceability, 0) / features.length;
+    const avgAcousticness = features.reduce((sum: number, f: any) => sum + f.acousticness, 0) / features.length;
+    const avgInstrumentalness = features.reduce((sum: number, f: any) => sum + f.instrumentalness, 0) / features.length;
+    const avgLiveness = features.reduce((sum: number, f: any) => sum + f.liveness, 0) / features.length;
+    const avgSpeechiness = features.reduce((sum: number, f: any) => sum + f.speechiness, 0) / features.length;
 
     // Calculate diversity score based on genre variety
-    const allGenres = topArtists.items.flatMap(artist => artist.genres);
+    const allGenres = topArtists.items.flatMap((artist: any) => artist.genres);
     const uniqueGenres = new Set(allGenres);
     const diversity = Math.min(uniqueGenres.size / 10, 1) * 100; // Normalize to 0-100
 
     // Calculate mainstream score based on popularity
-    const avgPopularity = topTracks.items.reduce((sum, track) => sum + track.popularity, 0) / topTracks.items.length;
+    const avgPopularity = topTracks.items.reduce((sum: number, track: any) => sum + track.popularity, 0) / topTracks.items.length;
     const mainstream = avgPopularity;
 
     // Calculate discovery score (inverse of mainstream)
