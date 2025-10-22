@@ -8,6 +8,7 @@ import { UserProfile } from '@/components/user-profile';
 import { MusicTasteDisplay } from '@/components/music-taste-display';
 import { MusicComparison } from '@/components/music-comparison';
 import { InviteFriends } from '@/components/invite-friends';
+import { SpotifyDataDisplay } from '@/components/spotify-data-display';
 import { MusicTasteScore } from '@/lib/spotify';
 import { Music, Trophy, Users } from 'lucide-react';
 
@@ -23,7 +24,7 @@ function VibeCheckApp() {
   const { data: session, status } = useSession();
   const [userScore, setUserScore] = useState<MusicTasteScore | null>(null);
   const [friendScore, setFriendScore] = useState<MusicTasteScore | null>(null);
-  const [activeTab, setActiveTab] = useState<'profile' | 'taste' | 'compare' | 'invite'>('profile');
+  const [activeTab, setActiveTab] = useState<'profile' | 'taste' | 'compare' | 'invite' | 'data'>('profile');
 
   if (status === 'loading') {
     return (
@@ -105,6 +106,16 @@ function VibeCheckApp() {
             >
               Invite
             </button>
+            <button
+              onClick={() => setActiveTab('data')}
+              className={`px-4 py-2 rounded-md text-sm font-medium transition-colors ${
+                activeTab === 'data' 
+                  ? 'bg-background text-foreground shadow-sm' 
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+            >
+              Raw Data
+            </button>
           </div>
         </div>
 
@@ -122,6 +133,7 @@ function VibeCheckApp() {
             />
           )}
           {activeTab === 'invite' && <InviteFriends />}
+          {activeTab === 'data' && <SpotifyDataDisplay />}
         </div>
       </div>
     </div>
