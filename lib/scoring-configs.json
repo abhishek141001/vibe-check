@@ -1,0 +1,335 @@
+{
+  "programming-language": {
+    "rules": [
+      {
+        "questionId": "q1",
+        "answerValue": "frontend",
+        "results": {
+          "javascript": 5,
+          "swift": 3,
+          "python": 1
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "backend",
+        "results": {
+          "go": 4,
+          "java": 4,
+          "csharp": 4,
+          "python": 2,
+          "rust": 1
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "algorithm",
+        "results": {
+          "rust": 5,
+          "cpp": 4,
+          "python": 1,
+          "go": 1
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "data",
+        "results": {
+          "python": 4,
+          "go": 2,
+          "java": 2
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "startup",
+        "results": {
+          "javascript": 3,
+          "python": 2,
+          "swift": 2
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "enterprise",
+        "results": {
+          "java": 4,
+          "csharp": 4,
+          "go": 3,
+          "javascript": 1
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "freelance",
+        "results": {
+          "python": 3,
+          "javascript": 2,
+          "swift": 2
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "research",
+        "results": {
+          "python": 3,
+          "rust": 3,
+          "cpp": 2
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "compatibility",
+        "results": {
+          "javascript": 3,
+          "java": 2,
+          "csharp": 2
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "performance",
+        "results": {
+          "go": 3,
+          "rust": 3,
+          "cpp": 3,
+          "java": 1
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "loops",
+        "results": {
+          "rust": 3,
+          "cpp": 3,
+          "python": 1
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "syntax",
+        "results": {
+          "python": 3,
+          "swift": 3,
+          "javascript": 1
+        }
+      }
+    ],
+    "defaultResult": "python"
+  },
+  "dev-superpower": {
+    "rules": [
+      {
+        "questionId": "q1",
+        "answerValue": "analytical",
+        "results": {
+          "bug-slayer": 3,
+          "debugging-detective": 3,
+          "clean-coder": 2,
+          "security-guardian": 2
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "debugger",
+        "results": {
+          "bug-slayer": 2,
+          "debugging-detective": 3,
+          "code-optimizer": 2,
+          "security-guardian": 1
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "researcher",
+        "results": {
+          "clean-coder": 3,
+          "architecture-master": 2,
+          "team-mentor": 1,
+          "innovation-pioneer": 2
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "refactorer",
+        "results": {
+          "clean-coder": 2,
+          "architecture-master": 3,
+          "team-mentor": 2,
+          "innovation-pioneer": 1
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "thorough",
+        "results": {
+          "bug-slayer": 2,
+          "clean-coder": 2,
+          "security-guardian": 2,
+          "debugging-detective": 1
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "efficient",
+        "results": {
+          "code-optimizer": 3,
+          "architecture-master": 1,
+          "innovation-pioneer": 1
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "best-practices",
+        "results": {
+          "clean-coder": 3,
+          "architecture-master": 2,
+          "team-mentor": 1,
+          "security-guardian": 1
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "supportive",
+        "results": {
+          "team-mentor": 3,
+          "innovation-pioneer": 1
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "edge-cases",
+        "results": {
+          "bug-slayer": 3,
+          "debugging-detective": 2,
+          "security-guardian": 2
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "optimization",
+        "results": {
+          "code-optimizer": 3,
+          "architecture-master": 1
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "clean-code",
+        "results": {
+          "clean-coder": 3,
+          "architecture-master": 2
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "mentoring",
+        "results": {
+          "team-mentor": 3,
+          "innovation-pioneer": 1
+        }
+      }
+    ],
+    "defaultResult": "clean-coder"
+  },
+  "anime-character": {
+    "rules": [
+      {
+        "questionId": "q1",
+        "answerValue": "physical",
+        "results": {
+          "naruto": 3,
+          "goku": 2
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "mental",
+        "results": {
+          "goku": 3,
+          "ichigo": 1
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "elemental",
+        "results": {
+          "luffy": 3
+        }
+      },
+      {
+        "questionId": "q1",
+        "answerValue": "support",
+        "results": {
+          "ichigo": 3,
+          "naruto": 1
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "leader",
+        "results": {
+          "naruto": 2,
+          "goku": 2
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "supporter",
+        "results": {
+          "ichigo": 2,
+          "naruto": 1
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "lone-wolf",
+        "results": {
+          "luffy": 2,
+          "goku": 1
+        }
+      },
+      {
+        "questionId": "q2",
+        "answerValue": "strategist",
+        "results": {
+          "goku": 2,
+          "ichigo": 1
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "loss",
+        "results": {
+          "naruto": 2,
+          "ichigo": 1
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "weakness",
+        "results": {
+          "goku": 2,
+          "luffy": 1
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "loneliness",
+        "results": {
+          "luffy": 2,
+          "ichigo": 1
+        }
+      },
+      {
+        "questionId": "q3",
+        "answerValue": "choice",
+        "results": {
+          "goku": 2,
+          "ichigo": 1
+        }
+      }
+    ],
+    "defaultResult": "naruto"
+  }
+}

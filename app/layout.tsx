@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Providers } from "@/components/providers/session-provider";
+import ThemeInitializer from "@/components/theme/ThemeInitializer";
+import { Analytics } from '@vercel/analytics/react';
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +16,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Vibe Check - Music Taste Comparison",
-  description: "Discover your unique music taste and compare it with friends. See who has the most diverse, underground, or energetic music style!",
+  title: "Fun Quiz Games - Discover Your Personality",
+  description: "Discover your personality, superpowers, and hidden talents through our collection of viral quiz games! Share your results and challenge your friends.",
 };
 
 export default function RootLayout({
@@ -28,9 +30,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Providers>
-          {children}
-        </Providers>
+        <ThemeInitializer>
+          <Providers>
+            {children}
+          </Providers>
+        </ThemeInitializer>
+        <Analytics />
       </body>
     </html>
   );
