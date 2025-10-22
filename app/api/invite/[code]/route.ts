@@ -9,11 +9,15 @@ export async function GET(
 ) {
   const { code } = await params;
   try {
+    console.log(`Looking for invite with code: ${code}`);
     const invite = await db.getInviteByCode(code);
     
     if (!invite) {
+      console.log(`Invite not found for code: ${code}`);
       return NextResponse.json({ error: 'Invite not found' }, { status: 404 });
     }
+    
+    console.log(`Found invite:`, { id: invite.id, status: invite.status, expiresAt: invite.expiresAt });
 
     if (invite.status !== 'pending') {
       return NextResponse.json({ error: 'Invite already used' }, { status: 400 });

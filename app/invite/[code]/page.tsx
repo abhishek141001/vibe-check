@@ -123,7 +123,10 @@ export default function InvitePage() {
             <p className="text-muted-foreground">
               You need to sign in with Spotify to accept this music taste challenge!
             </p>
-            <Button onClick={() => window.location.href = '/api/auth/signin'}>
+            <Button onClick={() => {
+              const currentUrl = window.location.href;
+              window.location.href = `/auth/signin?callbackUrl=${encodeURIComponent(currentUrl)}`;
+            }}>
               Sign In with Spotify
             </Button>
           </CardContent>

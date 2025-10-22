@@ -1,48 +1,81 @@
 import { User, Invite, Comparison, MusicTasteScore } from './types';
+import { writeFile, readFile, mkdir } from 'fs/promises';
+import { existsSync } from 'fs';
+import path from 'path';
 
-// In-memory database (replace with real database in production)
+// Simple file-based database (replace with real database in production)
 class Database {
-  private users: Map<string, User> = new Map();
-  private invites: Map<string, Invite> = new Map();
-  private comparisons: Map<string, Comparison> = new Map();
+  private dataDir = path.join(process.cwd(), 'data');
+  private usersFile = path.join(this.dataDir, 'users.json');
+  private invitesFile = path.join(this.dataDir, 'invites.json');
+  private comparisonsFile = path.join(this.dataDir, 'comparisons.json');
+
+  private async ensureDataDir() {
+    if (!existsSync(this.dataDir)) {
+      await mkdir(this.dataDir, { recursive: true });
+    }
+  }
+
+  private async loadData<T>(filePath: string, defaultValue: T[]): Promise<T[]> {
+    try {
+      if (!existsSync(filePath)) {
+        return defaultValue;
+      }
+      const data = await readFile(filePath, 'utf-8');
+      return JSON.parse(data);
+    } catch (error) {
+      console.error(`Error loading data from ${filePath}:`, error);
+      return defaultValue;
+    }
+  }
+
+  private async saveData<T>(filePath: string, data: T[]): Promise<void> {
+    try {
+      await this.ensureDataDir();
+      await writeFile(filePath, JSON.stringify(data, null, 2));
+    } catch (error) {
+      console.error(`Error saving data to ${filePath}:`, error);
+    }
+  }
 
   // User operations
   async createUser(user: Omit<User, 'id' | 'createdAt'>): Promise<User> {
+    const users = await this.loadData<User>(this.usersFile, []);
     const id = Math.random().toString(36).substr(2, 9);
     const newUser: User = {
       ...user,
       id,
       createdAt: new Date(),
     };
-    this.users.set(id, newUser);
+    users.push(newUser);
+    await this.saveData(this.usersFile, users);
     return newUser;
   }
 
   async getUserById(id: string): Promise<User | null> {
-    return this.users.get(id) || null;
+    const users = await this.loadData<User>(this.usersFile, []);
+    return users.find(user => user.id === id) || null;
   }
 
   async getUserBySpotifyId(spotifyId: string): Promise<User | null> {
-    for (const user of this.users.values()) {
-      if (user.spotifyId === spotifyId) {
-        return user;
-      }
-    }
-    return null;
+    const users = await this.loadData<User>(this.usersFile, []);
+    return users.find(user => user.spotifyId === spotifyId) || null;
   }
 
   async updateUserScore(userId: string, score: MusicTasteScore): Promise<User | null> {
-    const user = this.users.get(userId);
-    if (user) {
-      user.musicTasteScore = score;
-      this.users.set(userId, user);
-      return user;
+    const users = await this.loadData<User>(this.usersFile, []);
+    const userIndex = users.findIndex(user => user.id === userId);
+    if (userIndex !== -1) {
+      users[userIndex].musicTasteScore = score;
+      await this.saveData(this.usersFile, users);
+      return users[userIndex];
     }
     return null;
   }
 
   // Invite operations
   async createInvite(inviterId: string, inviterName: string, inviterScore?: MusicTasteScore): Promise<Invite> {
+    const invites = await this.loadData<Invite>(this.invitesFile, []);
     const inviteCode = Math.random().toString(36).substr(2, 9);
     const invite: Invite = {
       id: Math.random().toString(36).substr(2, 9),
@@ -54,26 +87,24 @@ class Database {
       createdAt: new Date(),
       expiresAt: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000), // 7 days
     };
-    this.invites.set(invite.id, invite);
+    invites.push(invite);
+    await this.saveData(this.invitesFile, invites);
     return invite;
   }
 
   async getInviteByCode(inviteCode: string): Promise<Invite | null> {
-    for (const invite of this.invites.values()) {
-      if (invite.inviteCode === inviteCode) {
-        return invite;
-      }
-    }
-    return null;
+    const invites = await this.loadData<Invite>(this.invitesFile, []);
+    return invites.find(invite => invite.inviteCode === inviteCode) || null;
   }
 
   async acceptInvite(inviteId: string, inviteeId: string): Promise<Invite | null> {
-    const invite = this.invites.get(inviteId);
-    if (invite && invite.status === 'pending') {
-      invite.inviteeId = inviteeId;
-      invite.status = 'accepted';
-      this.invites.set(inviteId, invite);
-      return invite;
+    const invites = await this.loadData<Invite>(this.invitesFile, []);
+    const inviteIndex = invites.findIndex(invite => invite.id === inviteId);
+    if (inviteIndex !== -1 && invites[inviteIndex].status === 'pending') {
+      invites[inviteIndex].inviteeId = inviteeId;
+      invites[inviteIndex].status = 'accepted';
+      await this.saveData(this.invitesFile, invites);
+      return invites[inviteIndex];
     }
     return null;
   }
@@ -85,6 +116,7 @@ class Database {
     user1Score: MusicTasteScore,
     user2Score: MusicTasteScore
   ): Promise<Comparison> {
+    const comparisons = await this.loadData<Comparison>(this.comparisonsFile, []);
     const comparison: Comparison = {
       id: Math.random().toString(36).substr(2, 9),
       user1Id,
@@ -95,22 +127,21 @@ class Database {
               user2Score.overall > user1Score.overall ? 'user2' : 'tie',
       createdAt: new Date(),
     };
-    this.comparisons.set(comparison.id, comparison);
+    comparisons.push(comparison);
+    await this.saveData(this.comparisonsFile, comparisons);
     return comparison;
   }
 
   async getComparison(id: string): Promise<Comparison | null> {
-    return this.comparisons.get(id) || null;
+    const comparisons = await this.loadData<Comparison>(this.comparisonsFile, []);
+    return comparisons.find(comparison => comparison.id === id) || null;
   }
 
   async getUserComparisons(userId: string): Promise<Comparison[]> {
-    const userComparisons: Comparison[] = [];
-    for (const comparison of this.comparisons.values()) {
-      if (comparison.user1Id === userId || comparison.user2Id === userId) {
-        userComparisons.push(comparison);
-      }
-    }
-    return userComparisons;
+    const comparisons = await this.loadData<Comparison>(this.comparisonsFile, []);
+    return comparisons.filter(comparison => 
+      comparison.user1Id === userId || comparison.user2Id === userId
+    );
   }
 }
 

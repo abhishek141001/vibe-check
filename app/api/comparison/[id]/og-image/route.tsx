@@ -1,6 +1,5 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
-import { db } from '@/lib/database';
 
 export const runtime = 'edge';
 
@@ -10,11 +9,15 @@ export async function GET(
 ) {
   const { id } = await params;
   try {
-    const comparison = await db.getComparison(id);
+    // Fetch comparison data from the regular API
+    const baseUrl = process.env.NEXTAUTH_URL || 'http://localhost:3000';
+    const response = await fetch(`${baseUrl}/api/comparison/${id}/image`);
     
-    if (!comparison) {
+    if (!response.ok) {
       return new Response('Comparison not found', { status: 404 });
     }
+    
+    const comparison = await response.json();
 
     const { user1Score, user2Score, winner } = comparison;
     
