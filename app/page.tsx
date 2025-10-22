@@ -117,7 +117,7 @@ function VibeCheckApp() {
           {activeTab === 'compare' && (
             <MusicComparison 
               userScore={userScore!} 
-              friendScore={friendScore}
+              friendScore={friendScore || undefined}
               friendName="Alex"
             />
           )}
