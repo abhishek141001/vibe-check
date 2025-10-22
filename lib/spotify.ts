@@ -103,7 +103,7 @@ export const calculateMusicTasteScore = async (
     
     // Check if any response failed
     const failedResponses = audioFeaturesResponses.filter(response => !response.ok);
-    let audioFeatures = { audio_features: [] };
+    let audioFeatures: { audio_features: any[] } = { audio_features: [] };
     
     if (failedResponses.length > 0) {
       console.error('Some audio features requests failed:', failedResponses.map(r => r.status));
@@ -115,7 +115,7 @@ export const calculateMusicTasteScore = async (
       );
       
       audioFeatures = {
-        audio_features: audioFeaturesResults.flatMap(result => result.audio_features)
+        audio_features: audioFeaturesResults.flatMap((result: any) => result.audio_features)
       };
     }
 
