@@ -1,36 +1,119 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Vibe Check - Music Taste Comparison App
+
+A beautiful Next.js application that analyzes your Spotify music taste and allows you to compare it with friends. Discover who has the most diverse, underground, or energetic music style!
+
+## Features
+
+- 🎵 **Spotify Integration**: Connect your Spotify account to analyze your music taste
+- 📊 **Music Taste Scoring**: Get detailed scores for diversity, discovery, energy, valence, and more
+- 👥 **Friend Comparisons**: Invite friends and compare your music tastes
+- 🎨 **Beautiful UI**: Modern, responsive design with shadcn/ui components
+- 📱 **Mobile Friendly**: Works perfectly on all devices
+
+## Tech Stack
+
+- **Next.js 16** - React framework
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Styling
+- **shadcn/ui** - UI components
+- **NextAuth.js** - Authentication
+- **Spotify Web API** - Music data
+- **Lucide React** - Icons
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
+
+- Node.js 18+ 
+- pnpm (recommended) or npm
+- Spotify Developer Account
+
+### 1. Clone and Install
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd my-next-app
+pnpm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Spotify Setup
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Go to [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/applications)
+2. Create a new app
+3. Add `http://localhost:3000/api/auth/callback/spotify` to Redirect URIs
+4. Copy your Client ID and Client Secret
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 3. Environment Variables
 
-## Learn More
+Copy the environment template and fill in your values:
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+cp env.template .env.local
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Edit `.env.local` with your Spotify credentials:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```env
+SPOTIFY_CLIENT_ID=your_spotify_client_id_here
+SPOTIFY_CLIENT_SECRET=your_spotify_client_secret_here
+NEXTAUTH_SECRET=your_nextauth_secret_here
+NEXTAUTH_URL=http://localhost:3000
+```
 
-## Deploy on Vercel
+Generate a NextAuth secret:
+```bash
+openssl rand -base64 32
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### 4. Run the Development Server
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+pnpm dev
+```
+
+Open [http://localhost:3000](http://localhost:3000) to see the app.
+
+## How It Works
+
+1. **Connect Spotify**: Sign in with your Spotify account
+2. **Calculate Score**: The app analyzes your top tracks and artists to create a unique music taste profile
+3. **Compare**: Invite friends to compare your music tastes
+4. **Discover**: See who has the most unique, diverse, or energetic music style!
+
+## Music Taste Scoring
+
+The app calculates several scores based on your Spotify data:
+
+- **Overall Score**: Combined score of all factors
+- **Diversity**: Genre variety in your music
+- **Discovery**: How underground/unique your taste is
+- **Energy**: High-energy vs low-energy music preference
+- **Valence**: Positive vs negative mood in your music
+- **Audio Features**: Danceability, acousticness, speechiness, etc.
+
+## Deployment
+
+### Vercel (Recommended)
+
+1. Push your code to GitHub
+2. Connect your repository to Vercel
+3. Add environment variables in Vercel dashboard
+4. Deploy!
+
+### Other Platforms
+
+The app can be deployed to any platform that supports Next.js:
+- Netlify
+- Railway
+- DigitalOcean App Platform
+- AWS Amplify
+
+## Contributing
+
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Submit a pull request
+
+## License
+
+MIT License - feel free to use this project for your own music taste comparisons!
