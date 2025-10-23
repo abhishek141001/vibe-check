@@ -3648,6 +3648,898 @@ export const quizzes: Quiz[] = [
         personalizedMessage: 'You\'re the coffee equivalent of a phantom. You can avoid coffee breaks like the plague, and your invisibility skills are so advanced, your colleagues are convinced you don\'t drink coffee. You\'ve never met a coffee break that couldn\'t be ghosted, and your presence is so ethereal, people question if you were ever caffeinated.'
       }
     ]
+  },
+  {
+    id: 'friendship-style',
+    title: 'What\'s Your Friendship Style?',
+    description: 'Discover your unique approach to friendships!',
+    emoji: '👫',
+    category: 'personality',
+    tags: ['friendship', 'relationships', 'social', 'personality'],
+    isViral: true,
+    isFeatured: true,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal friend group size is:
+        { questionId: 'q1', answerValue: 'small', results: { 'intimate-friend': 5, 'loyal-friend': 3 } },
+        { questionId: 'q1', answerValue: 'medium', results: { 'loyal-friend': 5, 'social-butterfly': 3 } },
+        { questionId: 'q1', answerValue: 'large', results: { 'social-butterfly': 5, 'party-animal': 3 } },
+        { questionId: 'q1', answerValue: 'huge', results: { 'party-animal': 5, 'social-butterfly': 2 } },
+        
+        // Question 2: Your friendship approach is:
+        { questionId: 'q2', answerValue: 'deep-connections', results: { 'intimate-friend': 5, 'loyal-friend': 3 } },
+        { questionId: 'q2', answerValue: 'loyal-support', results: { 'loyal-friend': 5, 'intimate-friend': 3 } },
+        { questionId: 'q2', answerValue: 'fun-adventures', results: { 'social-butterfly': 5, 'party-animal': 3 } },
+        { questionId: 'q2', answerValue: 'party-time', results: { 'party-animal': 5, 'social-butterfly': 2 } },
+        
+        // Question 3: Your friend support style is:
+        { questionId: 'q3', answerValue: 'emotional-support', results: { 'intimate-friend': 5, 'loyal-friend': 3 } },
+        { questionId: 'q3', answerValue: 'practical-help', results: { 'loyal-friend': 5, 'intimate-friend': 3 } },
+        { questionId: 'q3', answerValue: 'fun-distractions', results: { 'social-butterfly': 5, 'party-animal': 3 } },
+        { questionId: 'q3', answerValue: 'party-therapy', results: { 'party-animal': 5, 'social-butterfly': 2 } }
+      ],
+      defaultResult: 'loyal-friend'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 5000,
+      completions: 4000,
+      shares: 1000,
+      avgRating: 4.9,
+      trendingScore: 99
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal friend group size is:',
+        options: [
+          { id: 'a1', text: '2-3 close friends', value: 'small' },
+          { id: 'a2', text: '5-10 good friends', value: 'medium' },
+          { id: 'a3', text: '20+ friends', value: 'large' },
+          { id: 'a4', text: 'Everyone is my friend!', value: 'huge' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your friendship approach is:',
+        options: [
+          { id: 'b1', text: 'Deep, meaningful connections', value: 'deep-connections' },
+          { id: 'b2', text: 'Loyal and supportive', value: 'loyal-support' },
+          { id: 'b3', text: 'Fun and adventurous', value: 'fun-adventures' },
+          { id: 'b4', text: 'Party and celebrate', value: 'party-time' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'When a friend needs support, you:',
+        options: [
+          { id: 'c1', text: 'Provide emotional support', value: 'emotional-support' },
+          { id: 'c2', text: 'Offer practical help', value: 'practical-help' },
+          { id: 'c3', text: 'Plan fun activities', value: 'fun-distractions' },
+          { id: 'c4', text: 'Throw a party', value: 'party-therapy' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'intimate-friend', 
+        name: 'Intimate Friend', 
+        emoji: '💕', 
+        description: 'You value deep, meaningful connections! Your emotional intelligence is legendary!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re the friendship equivalent of a therapist. You can create deep connections with anyone, and your emotional support skills are so advanced, you could probably solve world peace through friendship. You\'ve never met a person who couldn\'t become a lifelong friend with your intimate approach.'
+      },
+      { 
+        id: 'loyal-friend', 
+        name: 'Loyal Friend', 
+        emoji: '🛡️', 
+        description: 'You\'re the most loyal friend anyone could ask for! Your dedication is unmatched!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the friendship equivalent of a knight in shining armor. You can be loyal to your friends through thick and thin, and your loyalty skills are so advanced, you could probably write a book about friendship loyalty. You\'ve never met a friend who couldn\'t count on your unwavering support.'
+      },
+      { 
+        id: 'social-butterfly', 
+        name: 'Social Butterfly', 
+        emoji: '🦋', 
+        description: 'You make friends everywhere you go! Your social skills are legendary!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the friendship equivalent of a social media influencer. You can make friends with anyone, anywhere, and your social skills are so advanced, you could probably befriend a rock. You\'ve never met a social situation that couldn\'t be improved with your butterfly charm.'
+      },
+      { 
+        id: 'party-animal', 
+        name: 'Party Animal', 
+        emoji: '🎉', 
+        description: 'You\'re the life of every party! Your energy is infectious!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the friendship equivalent of a party planner. You can turn any gathering into an epic celebration, and your party skills are so advanced, you could probably make a funeral fun. You\'ve never met a party that couldn\'t be improved with your animal energy.'
+      }
+    ]
+  },
+  {
+    id: 'relationship-style',
+    title: 'What\'s Your Relationship Style?',
+    description: 'Discover your unique approach to romantic relationships!',
+    emoji: '💕',
+    category: 'personality',
+    tags: ['relationship', 'love', 'romance', 'personality'],
+    isViral: true,
+    isFeatured: true,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal date is:
+        { questionId: 'q1', answerValue: 'romantic-dinner', results: { 'hopeless-romantic': 5, 'love-guru': 3 } },
+        { questionId: 'q1', answerValue: 'adventure', results: { 'adventure-seeker': 5, 'love-guru': 3 } },
+        { questionId: 'q1', answerValue: 'casual-hangout', results: { 'chill-partner': 5, 'adventure-seeker': 3 } },
+        { questionId: 'q1', answerValue: 'grand-gesture', results: { 'love-guru': 5, 'hopeless-romantic': 3 } },
+        
+        // Question 2: Your love language is:
+        { questionId: 'q2', answerValue: 'words-affirmation', results: { 'hopeless-romantic': 5, 'love-guru': 3 } },
+        { questionId: 'q2', answerValue: 'quality-time', results: { 'chill-partner': 5, 'hopeless-romantic': 3 } },
+        { questionId: 'q2', answerValue: 'physical-touch', results: { 'love-guru': 5, 'adventure-seeker': 3 } },
+        { questionId: 'q2', answerValue: 'acts-service', results: { 'adventure-seeker': 5, 'chill-partner': 3 } },
+        
+        // Question 3: Your relationship approach is:
+        { questionId: 'q3', answerValue: 'all-in', results: { 'hopeless-romantic': 5, 'love-guru': 3 } },
+        { questionId: 'q3', answerValue: 'take-it-slow', results: { 'chill-partner': 5, 'hopeless-romantic': 3 } },
+        { questionId: 'q3', answerValue: 'spontaneous', results: { 'adventure-seeker': 5, 'chill-partner': 3 } },
+        { questionId: 'q3', answerValue: 'passionate', results: { 'love-guru': 5, 'adventure-seeker': 3 } }
+      ],
+      defaultResult: 'chill-partner'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 6000,
+      completions: 4800,
+      shares: 1200,
+      avgRating: 4.9,
+      trendingScore: 99
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal date is:',
+        options: [
+          { id: 'a1', text: 'Romantic candlelit dinner', value: 'romantic-dinner' },
+          { id: 'a2', text: 'Adventure and exploration', value: 'adventure' },
+          { id: 'a3', text: 'Casual coffee and conversation', value: 'casual-hangout' },
+          { id: 'a4', text: 'Grand romantic gesture', value: 'grand-gesture' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your love language is:',
+        options: [
+          { id: 'b1', text: 'Words of affirmation', value: 'words-affirmation' },
+          { id: 'b2', text: 'Quality time together', value: 'quality-time' },
+          { id: 'b3', text: 'Physical touch and affection', value: 'physical-touch' },
+          { id: 'b4', text: 'Acts of service', value: 'acts-service' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your relationship approach is:',
+        options: [
+          { id: 'c1', text: 'All in, 100% committed', value: 'all-in' },
+          { id: 'c2', text: 'Take it slow and steady', value: 'take-it-slow' },
+          { id: 'c3', text: 'Spontaneous and exciting', value: 'spontaneous' },
+          { id: 'c4', text: 'Passionate and intense', value: 'passionate' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'hopeless-romantic', 
+        name: 'Hopeless Romantic', 
+        emoji: '🌹', 
+        description: 'You believe in true love and grand gestures! Your romanticism is legendary!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the relationship equivalent of a fairy tale character. You can turn any moment into a romantic scene, and your love skills are so advanced, you could probably make a grocery store trip feel like a date. You\'ve never met a relationship that couldn\'t be improved with your hopeless romantic charm.'
+      },
+      { 
+        id: 'adventure-seeker', 
+        name: 'Adventure Seeker', 
+        emoji: '🗻', 
+        description: 'You love exciting and spontaneous relationships! Your adventurous spirit is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the relationship equivalent of an explorer. You can turn any relationship into an adventure, and your spontaneity skills are so advanced, you could probably make a trip to the grocery store feel like a safari. You\'ve never met a relationship that couldn\'t be improved with your adventurous spirit.'
+      },
+      { 
+        id: 'chill-partner', 
+        name: 'Chill Partner', 
+        emoji: '😌', 
+        description: 'You prefer relaxed and comfortable relationships! Your calmness is legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the relationship equivalent of a zen master. You can make any relationship feel comfortable and relaxed, and your chill skills are so advanced, you could probably make a roller coaster feel like a gentle breeze. You\'ve never met a relationship that couldn\'t be improved with your chill vibes.'
+      },
+      { 
+        id: 'love-guru', 
+        name: 'Love Guru', 
+        emoji: '🧘', 
+        description: 'You understand love deeply and help others! Your wisdom is unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the relationship equivalent of a love therapist. You can solve any relationship problem with your wisdom, and your love knowledge is so vast, you could probably write a book about the meaning of love. You\'ve never met a relationship that couldn\'t be improved with your guru wisdom.'
+      }
+    ]
+  },
+  {
+    id: 'girly-personality',
+    title: 'What\'s Your Girly Personality?',
+    description: 'Discover your unique girly side!',
+    emoji: '💖',
+    category: 'personality',
+    tags: ['girly', 'feminine', 'style', 'personality', 'fun'],
+    isViral: true,
+    isFeatured: true,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal weekend is:
+        { questionId: 'q1', answerValue: 'spa-day', results: { 'princess': 5, 'girly-girl': 3 } },
+        { questionId: 'q1', answerValue: 'shopping', results: { 'girly-girl': 5, 'fashionista': 3 } },
+        { questionId: 'q1', answerValue: 'brunch', results: { 'fashionista': 5, 'social-butterfly': 3 } },
+        { questionId: 'q1', answerValue: 'party', results: { 'social-butterfly': 5, 'fashionista': 2 } },
+        
+        // Question 2: Your style is:
+        { questionId: 'q2', answerValue: 'elegant', results: { 'princess': 5, 'girly-girl': 3 } },
+        { questionId: 'q2', answerValue: 'trendy', results: { 'fashionista': 5, 'girly-girl': 3 } },
+        { questionId: 'q2', answerValue: 'casual-cute', results: { 'girly-girl': 5, 'social-butterfly': 3 } },
+        { questionId: 'q2', answerValue: 'bold', results: { 'social-butterfly': 5, 'fashionista': 2 } },
+        
+        // Question 3: Your favorite activity is:
+        { questionId: 'q3', answerValue: 'self-care', results: { 'princess': 5, 'girly-girl': 3 } },
+        { questionId: 'q3', answerValue: 'fashion', results: { 'fashionista': 5, 'girly-girl': 3 } },
+        { questionId: 'q3', answerValue: 'socializing', results: { 'social-butterfly': 5, 'fashionista': 3 } },
+        { questionId: 'q3', answerValue: 'partying', results: { 'social-butterfly': 5, 'fashionista': 2 } }
+      ],
+      defaultResult: 'girly-girl'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 7000,
+      completions: 5600,
+      shares: 1400,
+      avgRating: 4.9,
+      trendingScore: 99
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal weekend is:',
+        options: [
+          { id: 'a1', text: 'Spa day and pampering', value: 'spa-day' },
+          { id: 'a2', text: 'Shopping and fashion', value: 'shopping' },
+          { id: 'a3', text: 'Brunch with friends', value: 'brunch' },
+          { id: 'a4', text: 'Party and dancing', value: 'party' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your style is:',
+        options: [
+          { id: 'b1', text: 'Elegant and sophisticated', value: 'elegant' },
+          { id: 'b2', text: 'Trendy and fashionable', value: 'trendy' },
+          { id: 'b3', text: 'Casual and cute', value: 'casual-cute' },
+          { id: 'b4', text: 'Bold and statement-making', value: 'bold' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your favorite activity is:',
+        options: [
+          { id: 'c1', text: 'Self-care and wellness', value: 'self-care' },
+          { id: 'c2', text: 'Fashion and styling', value: 'fashion' },
+          { id: 'c3', text: 'Socializing and networking', value: 'socializing' },
+          { id: 'c4', text: 'Partying and having fun', value: 'partying' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'princess', 
+        name: 'Princess', 
+        emoji: '👑', 
+        description: 'You\'re a true princess! Your elegance and grace are legendary!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re the girly equivalent of royalty. You can make any situation feel elegant and sophisticated, and your princess skills are so advanced, you could probably make a grocery store feel like a palace. You\'ve never met a moment that couldn\'t be improved with your royal grace.'
+      },
+      { 
+        id: 'girly-girl', 
+        name: 'Girly Girl', 
+        emoji: '💖', 
+        description: 'You embrace your girly side completely! Your femininity is unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the girly equivalent of a unicorn. You can make anything feel cute and feminine, and your girly skills are so advanced, you could probably make a construction site feel like a fairy tale. You\'ve never met a situation that couldn\'t be improved with your girly charm.'
+      },
+      { 
+        id: 'fashionista', 
+        name: 'Fashionista', 
+        emoji: '👗', 
+        description: 'You\'re a fashion icon! Your style sense is legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the girly equivalent of a fashion designer. You can make any outfit look amazing, and your style skills are so advanced, you could probably make a potato sack look like haute couture. You\'ve never met a wardrobe that couldn\'t be improved with your fashionista touch.'
+      },
+      { 
+        id: 'social-butterfly', 
+        name: 'Social Butterfly', 
+        emoji: '🦋', 
+        description: 'You\'re the life of every social gathering! Your charisma is unmatched!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the girly equivalent of a social media influencer. You can make any gathering feel fun and exciting, and your social skills are so advanced, you could probably make a library feel like a party. You\'ve never met a social situation that couldn\'t be improved with your butterfly charm.'
+      }
+    ]
+  },
+  {
+    id: 'favorite-car-personality',
+    title: 'What\'s Your Dream Car Personality?',
+    description: 'Discover what your dream car says about you!',
+    emoji: '🚗',
+    category: 'personality',
+    tags: ['cars', 'automotive', 'lifestyle', 'personality', 'dreams'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'default',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your dream car is:
+        { questionId: 'q1', answerValue: 'luxury-sedan', results: { 'executive': 5, 'sophisticate': 3 } },
+        { questionId: 'q1', answerValue: 'sports-car', results: { 'speed-demon': 5, 'adrenaline-junkie': 3 } },
+        { questionId: 'q1', answerValue: 'suv', results: { 'adventure-seeker': 5, 'family-person': 3 } },
+        { questionId: 'q1', answerValue: 'electric', results: { 'eco-warrior': 5, 'tech-enthusiast': 3 } },
+        
+        // Question 2: Your driving style is:
+        { questionId: 'q2', answerValue: 'smooth-cruise', results: { 'executive': 5, 'sophisticate': 3 } },
+        { questionId: 'q2', answerValue: 'fast-aggressive', results: { 'speed-demon': 5, 'adrenaline-junkie': 3 } },
+        { questionId: 'q2', answerValue: 'off-road', results: { 'adventure-seeker': 5, 'family-person': 3 } },
+        { questionId: 'q2', answerValue: 'efficient', results: { 'eco-warrior': 5, 'tech-enthusiast': 3 } },
+        
+        // Question 3: Your car features are:
+        { questionId: 'q3', answerValue: 'luxury', results: { 'sophisticate': 5, 'executive': 3 } },
+        { questionId: 'q3', answerValue: 'performance', results: { 'adrenaline-junkie': 5, 'speed-demon': 3 } },
+        { questionId: 'q3', answerValue: 'practical', results: { 'family-person': 5, 'adventure-seeker': 3 } },
+        { questionId: 'q3', answerValue: 'tech', results: { 'tech-enthusiast': 5, 'eco-warrior': 3 } }
+      ],
+      defaultResult: 'sophisticate'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 8000,
+      completions: 6400,
+      shares: 1600,
+      avgRating: 4.9,
+      trendingScore: 99
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your dream car is:',
+        options: [
+          { id: 'a1', text: 'Luxury sedan (BMW, Mercedes)', value: 'luxury-sedan' },
+          { id: 'a2', text: 'Sports car (Ferrari, Lamborghini)', value: 'sports-car' },
+          { id: 'a3', text: 'SUV (Range Rover, Land Cruiser)', value: 'suv' },
+          { id: 'a4', text: 'Electric car (Tesla, Rivian)', value: 'electric' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your driving style is:',
+        options: [
+          { id: 'b1', text: 'Smooth and comfortable', value: 'smooth-cruise' },
+          { id: 'b2', text: 'Fast and aggressive', value: 'fast-aggressive' },
+          { id: 'b3', text: 'Off-road adventures', value: 'off-road' },
+          { id: 'b4', text: 'Efficient and eco-friendly', value: 'efficient' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your car must have:',
+        options: [
+          { id: 'c1', text: 'Luxury features', value: 'luxury' },
+          { id: 'c2', text: 'High performance', value: 'performance' },
+          { id: 'c3', text: 'Practical utility', value: 'practical' },
+          { id: 'c4', text: 'Latest technology', value: 'tech' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'executive', 
+        name: 'Executive', 
+        emoji: '👔', 
+        description: 'You prefer luxury and sophistication! Your taste is impeccable!', 
+        color: 'bg-silver-500',
+        personalizedMessage: 'You\'re the car equivalent of a CEO. You can appreciate the finer things in life, and your luxury skills are so advanced, you could probably make a bicycle feel like a Rolls Royce. You\'ve never met a vehicle that couldn\'t be improved with your executive touch.'
+      },
+      { 
+        id: 'speed-demon', 
+        name: 'Speed Demon', 
+        emoji: '⚡', 
+        description: 'You live for speed and adrenaline! Your need for speed is legendary!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the car equivalent of a Formula 1 driver. You can make any journey feel like a race, and your speed skills are so advanced, you could probably make a shopping cart feel like a race car. You\'ve never met a road that couldn\'t be conquered with your speed demon energy.'
+      },
+      { 
+        id: 'adventure-seeker', 
+        name: 'Adventure Seeker', 
+        emoji: '🗻', 
+        description: 'You love off-road adventures! Your adventurous spirit is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the car equivalent of an explorer. You can turn any road into an adventure, and your exploration skills are so advanced, you could probably make a parking lot feel like a mountain trail. You\'ve never met a destination that couldn\'t be reached with your adventure spirit.'
+      },
+      { 
+        id: 'eco-warrior', 
+        name: 'Eco Warrior', 
+        emoji: '🌱', 
+        description: 'You care about the environment! Your green consciousness is legendary!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the car equivalent of an environmentalist. You can make any journey eco-friendly, and your green skills are so advanced, you could probably make a gas guzzler feel like a hybrid. You\'ve never met a trip that couldn\'t be improved with your eco consciousness.'
+      },
+      { 
+        id: 'sophisticate', 
+        name: 'Sophisticate', 
+        emoji: '🍷', 
+        description: 'You appreciate elegance and refinement! Your sophistication is unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the car equivalent of a sommelier. You can appreciate the subtle differences in automotive excellence, and your sophistication skills are so advanced, you could probably make a bicycle feel like a Bentley. You\'ve never met a vehicle that couldn\'t be improved with your sophisticated taste.'
+      },
+      { 
+        id: 'adrenaline-junkie', 
+        name: 'Adrenaline Junkie', 
+        emoji: '🏎️', 
+        description: 'You crave excitement and thrills! Your adrenaline addiction is legendary!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the car equivalent of a stunt driver. You can make any drive feel like a movie chase scene, and your adrenaline skills are so advanced, you could probably make a traffic jam feel like a high-speed pursuit. You\'ve never met a road that couldn\'t be turned into an adrenaline rush.'
+      },
+      { 
+        id: 'family-person', 
+        name: 'Family Person', 
+        emoji: '👨‍👩‍👧‍👦', 
+        description: 'You prioritize safety and practicality! Your family values are unmatched!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the car equivalent of a family therapist. You can make any vehicle feel safe and comfortable for everyone, and your family skills are so advanced, you could probably make a race car feel like a minivan. You\'ve never met a family that couldn\'t be accommodated with your practical approach.'
+      },
+      { 
+        id: 'tech-enthusiast', 
+        name: 'Tech Enthusiast', 
+        emoji: '🤖', 
+        description: 'You love cutting-edge technology! Your tech knowledge is legendary!', 
+        color: 'bg-cyan-500',
+        personalizedMessage: 'You\'re the car equivalent of a tech guru. You can make any vehicle feel like a spaceship, and your tech skills are so advanced, you could probably make a horse feel like a Tesla. You\'ve never met a car that couldn\'t be improved with your technological expertise.'
+      }
+    ]
+  },
+  {
+    id: 'food-personality',
+    title: 'What\'s Your Food Personality?',
+    description: 'Discover your unique relationship with food!',
+    emoji: '🍕',
+    category: 'personality',
+    tags: ['food', 'eating', 'lifestyle', 'personality', 'cuisine'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal meal is:
+        { questionId: 'q1', answerValue: 'fine-dining', results: { 'foodie': 5, 'gourmet': 3 } },
+        { questionId: 'q1', answerValue: 'comfort-food', results: { 'comfort-seeker': 5, 'foodie': 3 } },
+        { questionId: 'q1', answerValue: 'street-food', results: { 'adventurer': 5, 'comfort-seeker': 3 } },
+        { questionId: 'q1', answerValue: 'healthy', results: { 'health-nut': 5, 'gourmet': 3 } },
+        
+        // Question 2: Your cooking style is:
+        { questionId: 'q2', answerValue: 'experimental', results: { 'gourmet': 5, 'foodie': 3 } },
+        { questionId: 'q2', answerValue: 'traditional', results: { 'comfort-seeker': 5, 'foodie': 3 } },
+        { questionId: 'q2', answerValue: 'quick-easy', results: { 'adventurer': 5, 'comfort-seeker': 3 } },
+        { questionId: 'q2', answerValue: 'nutritious', results: { 'health-nut': 5, 'gourmet': 3 } },
+        
+        // Question 3: Your food philosophy is:
+        { questionId: 'q3', answerValue: 'quality', results: { 'gourmet': 5, 'foodie': 3 } },
+        { questionId: 'q3', answerValue: 'comfort', results: { 'comfort-seeker': 5, 'foodie': 3 } },
+        { questionId: 'q3', answerValue: 'adventure', results: { 'adventurer': 5, 'comfort-seeker': 3 } },
+        { questionId: 'q3', answerValue: 'health', results: { 'health-nut': 5, 'gourmet': 3 } }
+      ],
+      defaultResult: 'foodie'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 9000,
+      completions: 7200,
+      shares: 1800,
+      avgRating: 4.9,
+      trendingScore: 99
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal meal is:',
+        options: [
+          { id: 'a1', text: 'Fine dining experience', value: 'fine-dining' },
+          { id: 'a2', text: 'Comfort food at home', value: 'comfort-food' },
+          { id: 'a3', text: 'Street food adventure', value: 'street-food' },
+          { id: 'a4', text: 'Healthy and nutritious', value: 'healthy' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your cooking style is:',
+        options: [
+          { id: 'b1', text: 'Experimental and creative', value: 'experimental' },
+          { id: 'b2', text: 'Traditional and classic', value: 'traditional' },
+          { id: 'b3', text: 'Quick and easy', value: 'quick-easy' },
+          { id: 'b4', text: 'Nutritious and balanced', value: 'nutritious' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your food philosophy is:',
+        options: [
+          { id: 'c1', text: 'Quality over quantity', value: 'quality' },
+          { id: 'c2', text: 'Comfort and satisfaction', value: 'comfort' },
+          { id: 'c3', text: 'Adventure and exploration', value: 'adventure' },
+          { id: 'c4', text: 'Health and wellness', value: 'health' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'foodie', 
+        name: 'Foodie', 
+        emoji: '🍽️', 
+        description: 'You\'re a true food lover! Your culinary passion is legendary!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the food equivalent of a culinary artist. You can appreciate every flavor and texture, and your food knowledge is so vast, you could probably write a cookbook about the meaning of taste. You\'ve never met a meal that couldn\'t be improved with your foodie expertise.'
+      },
+      { 
+        id: 'gourmet', 
+        name: 'Gourmet', 
+        emoji: '👨‍🍳', 
+        description: 'You appreciate fine dining and quality! Your sophisticated palate is unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the food equivalent of a sommelier. You can distinguish between different flavors and ingredients, and your gourmet skills are so advanced, you could probably make a sandwich feel like a Michelin-starred meal. You\'ve never met a dish that couldn\'t be improved with your gourmet touch.'
+      },
+      { 
+        id: 'comfort-seeker', 
+        name: 'Comfort Seeker', 
+        emoji: '🍜', 
+        description: 'You love comfort food and home cooking! Your warmth is legendary!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the food equivalent of a hug. You can make any meal feel comforting and satisfying, and your comfort skills are so advanced, you could probably make a salad feel like a warm blanket. You\'ve never met a person who couldn\'t be comforted with your food approach.'
+      },
+      { 
+        id: 'adventurer', 
+        name: 'Food Adventurer', 
+        emoji: '🗺️', 
+        description: 'You love trying new and exotic foods! Your adventurous spirit is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the food equivalent of an explorer. You can turn any meal into an adventure, and your exploration skills are so advanced, you could probably make a sandwich feel like a world tour. You\'ve never met a cuisine that couldn\'t be explored with your adventurous spirit.'
+      },
+      { 
+        id: 'health-nut', 
+        name: 'Health Nut', 
+        emoji: '🥗', 
+        description: 'You prioritize health and nutrition! Your wellness focus is legendary!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the food equivalent of a nutritionist. You can make any meal healthy and nutritious, and your wellness skills are so advanced, you could probably make a donut feel like a superfood. You\'ve never met a meal that couldn\'t be improved with your health-conscious approach.'
+      }
+    ]
+  },
+  {
+    id: 'travel-personality',
+    title: 'What\'s Your Travel Personality?',
+    description: 'Discover your unique approach to travel and adventure!',
+    emoji: '✈️',
+    category: 'personality',
+    tags: ['travel', 'adventure', 'lifestyle', 'personality', 'exploration'],
+    isViral: true,
+    isFeatured: true,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal vacation is:
+        { questionId: 'q1', answerValue: 'luxury-resort', results: { 'luxury-traveler': 5, 'comfort-seeker': 3 } },
+        { questionId: 'q1', answerValue: 'backpacking', results: { 'adventure-seeker': 5, 'explorer': 3 } },
+        { questionId: 'q1', answerValue: 'city-tour', results: { 'culture-lover': 5, 'adventure-seeker': 3 } },
+        { questionId: 'q1', answerValue: 'beach-relax', results: { 'comfort-seeker': 5, 'luxury-traveler': 3 } },
+        
+        // Question 2: Your travel style is:
+        { questionId: 'q2', answerValue: 'planned', results: { 'luxury-traveler': 5, 'culture-lover': 3 } },
+        { questionId: 'q2', answerValue: 'spontaneous', results: { 'adventure-seeker': 5, 'explorer': 3 } },
+        { questionId: 'q2', answerValue: 'cultural', results: { 'culture-lover': 5, 'luxury-traveler': 3 } },
+        { questionId: 'q2', answerValue: 'relaxed', results: { 'comfort-seeker': 5, 'luxury-traveler': 3 } },
+        
+        // Question 3: Your travel priority is:
+        { questionId: 'q3', answerValue: 'comfort', results: { 'luxury-traveler': 5, 'comfort-seeker': 3 } },
+        { questionId: 'q3', answerValue: 'adventure', results: { 'adventure-seeker': 5, 'explorer': 3 } },
+        { questionId: 'q3', answerValue: 'culture', results: { 'culture-lover': 5, 'adventure-seeker': 3 } },
+        { questionId: 'q3', answerValue: 'relaxation', results: { 'comfort-seeker': 5, 'luxury-traveler': 3 } }
+      ],
+      defaultResult: 'culture-lover'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 10000,
+      completions: 8000,
+      shares: 2000,
+      avgRating: 4.9,
+      trendingScore: 99
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal vacation is:',
+        options: [
+          { id: 'a1', text: 'Luxury resort with all amenities', value: 'luxury-resort' },
+          { id: 'a2', text: 'Backpacking through mountains', value: 'backpacking' },
+          { id: 'a3', text: 'City tour with museums and culture', value: 'city-tour' },
+          { id: 'a4', text: 'Beach relaxation and sunbathing', value: 'beach-relax' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your travel style is:',
+        options: [
+          { id: 'b1', text: 'Well-planned and organized', value: 'planned' },
+          { id: 'b2', text: 'Spontaneous and adventurous', value: 'spontaneous' },
+          { id: 'b3', text: 'Cultural and educational', value: 'cultural' },
+          { id: 'b4', text: 'Relaxed and leisurely', value: 'relaxed' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your travel priority is:',
+        options: [
+          { id: 'c1', text: 'Comfort and luxury', value: 'comfort' },
+          { id: 'c2', text: 'Adventure and excitement', value: 'adventure' },
+          { id: 'c3', text: 'Culture and learning', value: 'culture' },
+          { id: 'c4', text: 'Relaxation and peace', value: 'relaxation' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'luxury-traveler', 
+        name: 'Luxury Traveler', 
+        emoji: '🏖️', 
+        description: 'You prefer the finest in travel! Your taste for luxury is legendary!', 
+        color: 'bg-gold-500',
+        personalizedMessage: 'You\'re the travel equivalent of royalty. You can make any destination feel luxurious, and your luxury skills are so advanced, you could probably make a camping trip feel like a five-star resort. You\'ve never met a journey that couldn\'t be improved with your luxury touch.'
+      },
+      { 
+        id: 'adventure-seeker', 
+        name: 'Adventure Seeker', 
+        emoji: '🗻', 
+        description: 'You live for thrilling adventures! Your adventurous spirit is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the travel equivalent of an explorer. You can turn any trip into an adventure, and your exploration skills are so advanced, you could probably make a walk to the grocery store feel like a mountain expedition. You\'ve never met a destination that couldn\'t be conquered with your adventure spirit.'
+      },
+      { 
+        id: 'culture-lover', 
+        name: 'Culture Lover', 
+        emoji: '🏛️', 
+        description: 'You immerse yourself in local culture! Your cultural curiosity is legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the travel equivalent of a cultural anthropologist. You can appreciate every aspect of local culture, and your cultural skills are so advanced, you could probably make a trip to the mall feel like a cultural exchange. You\'ve never met a place that couldn\'t be understood with your cultural approach.'
+      },
+      { 
+        id: 'comfort-seeker', 
+        name: 'Comfort Seeker', 
+        emoji: '🏨', 
+        description: 'You prioritize comfort and relaxation! Your chill vibes are unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the travel equivalent of a spa therapist. You can make any destination feel comfortable and relaxing, and your comfort skills are so advanced, you could probably make a busy airport feel like a zen garden. You\'ve never met a trip that couldn\'t be improved with your comfort approach.'
+      },
+      { 
+        id: 'explorer', 
+        name: 'Explorer', 
+        emoji: '🗺️', 
+        description: 'You love discovering new places! Your exploration skills are legendary!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the travel equivalent of a cartographer. You can map out any journey with precision, and your exploration skills are so advanced, you could probably discover new continents in your backyard. You\'ve never met a destination that couldn\'t be explored with your explorer spirit.'
+      }
+    ]
+  },
+  {
+    id: 'music-personality',
+    title: 'What\'s Your Music Personality?',
+    description: 'Discover your unique musical taste and personality!',
+    emoji: '🎵',
+    category: 'personality',
+    tags: ['music', 'entertainment', 'lifestyle', 'personality', 'taste'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'dark',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your favorite music genre is:
+        { questionId: 'q1', answerValue: 'pop', results: { 'pop-lover': 5, 'mainstream': 3 } },
+        { questionId: 'q1', answerValue: 'rock', results: { 'rock-star': 5, 'rebel': 3 } },
+        { questionId: 'q1', answerValue: 'classical', results: { 'sophisticate': 5, 'intellectual': 3 } },
+        { questionId: 'q1', answerValue: 'electronic', results: { 'techno-head': 5, 'futurist': 3 } },
+        
+        // Question 2: Your listening style is:
+        { questionId: 'q2', answerValue: 'background', results: { 'mainstream': 5, 'pop-lover': 3 } },
+        { questionId: 'q2', answerValue: 'focused', results: { 'intellectual': 5, 'sophisticate': 3 } },
+        { questionId: 'q2', answerValue: 'dancing', results: { 'techno-head': 5, 'pop-lover': 3 } },
+        { questionId: 'q2', answerValue: 'headbanging', results: { 'rebel': 5, 'rock-star': 3 } },
+        
+        // Question 3: Your music discovery is:
+        { questionId: 'q3', answerValue: 'mainstream', results: { 'mainstream': 5, 'pop-lover': 3 } },
+        { questionId: 'q3', answerValue: 'underground', results: { 'rebel': 5, 'rock-star': 3 } },
+        { questionId: 'q3', answerValue: 'classical', results: { 'intellectual': 5, 'sophisticate': 3 } },
+        { questionId: 'q3', answerValue: 'experimental', results: { 'futurist': 5, 'techno-head': 3 } }
+      ],
+      defaultResult: 'mainstream'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 11000,
+      completions: 8800,
+      shares: 2200,
+      avgRating: 4.9,
+      trendingScore: 99
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your favorite music genre is:',
+        options: [
+          { id: 'a1', text: 'Pop and mainstream', value: 'pop' },
+          { id: 'a2', text: 'Rock and alternative', value: 'rock' },
+          { id: 'a3', text: 'Classical and orchestral', value: 'classical' },
+          { id: 'a4', text: 'Electronic and techno', value: 'electronic' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your listening style is:',
+        options: [
+          { id: 'b1', text: 'Background music while working', value: 'background' },
+          { id: 'b2', text: 'Focused listening and analysis', value: 'focused' },
+          { id: 'b3', text: 'Dancing and moving', value: 'dancing' },
+          { id: 'b4', text: 'Headbanging and rocking out', value: 'headbanging' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your music discovery is:',
+        options: [
+          { id: 'c1', text: 'Mainstream and popular', value: 'mainstream' },
+          { id: 'c2', text: 'Underground and indie', value: 'underground' },
+          { id: 'c3', text: 'Classical and traditional', value: 'classical' },
+          { id: 'c4', text: 'Experimental and avant-garde', value: 'experimental' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'pop-lover', 
+        name: 'Pop Lover', 
+        emoji: '🎤', 
+        description: 'You love catchy pop tunes! Your mainstream taste is legendary!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re the music equivalent of a pop star. You can make any song feel like a hit, and your pop skills are so advanced, you could probably make a lullaby feel like a chart-topper. You\'ve never met a melody that couldn\'t be improved with your pop touch.'
+      },
+      { 
+        id: 'rock-star', 
+        name: 'Rock Star', 
+        emoji: '🎸', 
+        description: 'You\'re a true rock enthusiast! Your rebellious spirit is unmatched!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the music equivalent of a rock legend. You can make any song feel like a rock anthem, and your rock skills are so advanced, you could probably make a nursery rhyme feel like a heavy metal masterpiece. You\'ve never met a chord that couldn\'t be rocked out.'
+      },
+      { 
+        id: 'sophisticate', 
+        name: 'Sophisticate', 
+        emoji: '🎼', 
+        description: 'You appreciate classical and refined music! Your sophistication is legendary!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the music equivalent of a conductor. You can appreciate every note and harmony, and your classical skills are so advanced, you could probably make a pop song feel like a symphony. You\'ve never met a composition that couldn\'t be improved with your sophisticated ear.'
+      },
+      { 
+        id: 'techno-head', 
+        name: 'Techno Head', 
+        emoji: '🎧', 
+        description: 'You love electronic and futuristic sounds! Your tech taste is unmatched!', 
+        color: 'bg-cyan-500',
+        personalizedMessage: 'You\'re the music equivalent of a DJ. You can make any beat feel like a dance floor anthem, and your electronic skills are so advanced, you could probably make a metronome feel like a techno masterpiece. You\'ve never met a rhythm that couldn\'t be electrified.'
+      },
+      { 
+        id: 'mainstream', 
+        name: 'Mainstream', 
+        emoji: '📻', 
+        description: 'You enjoy popular and accessible music! Your broad taste is legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the music equivalent of a radio DJ. You can appreciate music from all genres, and your mainstream skills are so advanced, you could probably make any song feel like a hit. You\'ve never met a tune that couldn\'t be enjoyed with your mainstream approach.'
+      },
+      { 
+        id: 'rebel', 
+        name: 'Rebel', 
+        emoji: '🤘', 
+        description: 'You love underground and alternative music! Your rebellious taste is unmatched!', 
+        color: 'bg-black-500',
+        personalizedMessage: 'You\'re the music equivalent of a punk rocker. You can find beauty in the most unconventional sounds, and your rebel skills are so advanced, you could probably make a commercial jingle feel like an underground anthem. You\'ve never met a sound that couldn\'t be rebelled against.'
+      },
+      { 
+        id: 'intellectual', 
+        name: 'Intellectual', 
+        emoji: '🧠', 
+        description: 'You appreciate complex and thought-provoking music! Your analytical mind is legendary!', 
+        color: 'bg-indigo-500',
+        personalizedMessage: 'You\'re the music equivalent of a musicologist. You can analyze every aspect of a composition, and your intellectual skills are so advanced, you could probably write a thesis about a simple melody. You\'ve never met a piece that couldn\'t be understood with your intellectual approach.'
+      },
+      { 
+        id: 'futurist', 
+        name: 'Futurist', 
+        emoji: '🚀', 
+        description: 'You love experimental and cutting-edge music! Your forward-thinking taste is unmatched!', 
+        color: 'bg-silver-500',
+        personalizedMessage: 'You\'re the music equivalent of a time traveler. You can appreciate music from the future, and your futurist skills are so advanced, you could probably make a typewriter sound like a synthesizer. You\'ve never met a sound that couldn\'t be futurized.'
+      }
+    ]
   }
 ];
 
