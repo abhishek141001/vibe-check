@@ -1,5 +1,7 @@
 import { notFound } from 'next/navigation';
-import { getQuizById, isValidQuizId, getQuizForSEO } from '@/lib/quiz-data';
+import { getQuizById, getQuizForSEO } from '@/lib/quiz-data';
+import connectDB from '@/lib/mongodb';
+import QuizModel from '@/lib/models/Quiz';
 import QuizPage from '@/components/quiz/QuizPage';
 
 interface QuizPageProps {
@@ -11,21 +13,18 @@ interface QuizPageProps {
 export default async function DynamicQuizPage({ params }: QuizPageProps) {
   const { id } = await params;
   
-  // Check if quiz exists
-  if (!isValidQuizId(id)) {
-    notFound();
-  }
+  // Check DB first; fallback to local
+  await connectDB();
+  const existsInDb = await QuizModel.exists({ id });
+  if (!existsInDb && !getQuizById(id)) notFound();
   
   return <QuizPage quizId={id} />;
 }
 
 // Generate static params for all quizzes at build time
 export async function generateStaticParams() {
-  const { getAllQuizIds } = await import('@/lib/quiz-data');
-  
-  return getAllQuizIds().map((id) => ({
-    id,
-  }));
+  // No longer prebuild all quiz IDs (DB is dynamic). Return empty to use fallback
+  return [] as { id: string }[];
 }
 
 // Generate metadata for SEO

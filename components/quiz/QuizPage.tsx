@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useEffect, useRef } from 'react';
-import { getQuizById, getQuizWithCustomization, calculateQuizResult, QuizResult } from '@/lib/quiz-data';
+import { getQuizWithCustomization, QuizResult, enrichQuiz } from '@/lib/quiz-data';
 import QuizForm from './QuizForm';
 import ResultCard from './ResultCard';
 import QuizNavigation from './QuizNavigation';
@@ -36,6 +36,24 @@ function QuizPageContent({ quizId }: QuizPageProps) {
   const { language } = useLanguage();
   const { currentTheme, customization, useThemeClasses, setTheme } = useTheme();
   const themeClasses = useThemeClasses();
+
+  // Fetch quiz from API (DB-first), then enrich with customization defaults
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`/api/quiz/${encodeURIComponent(quizId)}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data?.quiz && !cancelled) {
+          setQuiz(enrichQuiz(data.quiz));
+        }
+      } catch {
+        // ignore network errors; fallback already set
+      }
+    })();
+    return () => { cancelled = true; };
+  }, [quizId]);
 
   // Apply quiz's default theme and language when quiz loads (only once)
   useEffect(() => {

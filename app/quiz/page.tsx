@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { quizzesWithMetadata } from '@/lib/quiz-data';
 import Link from 'next/link';
 import { ArrowRight, Sparkles, TrendingUp, Flame, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
@@ -13,7 +12,8 @@ import QuizShareButton from '@/components/quiz/QuizShareButton';
 
 function QuizHomeContent() {
   const [activeTab, setActiveTab] = useState('all');
-  const [filteredQuizzes, setFilteredQuizzes] = useState(quizzesWithMetadata);
+  const [filteredQuizzes, setFilteredQuizzes] = useState<any[]>([]);
+  const [featuredQuiz, setFeaturedQuiz] = useState<any | null>(null);
   const { currentTheme } = useTheme();
 
   const tabs = [
@@ -23,24 +23,36 @@ function QuizHomeContent() {
     { id: 'featured', label: 'Featured', icon: Star }
   ];
 
+  // Load featured quiz once
   useEffect(() => {
-    let filtered = quizzesWithMetadata;
-    
-    switch (activeTab) {
-      case 'trending':
-        filtered = quizzesWithMetadata.filter(q => (q.metadata?.trendingScore || 0) > 80).sort((a, b) => (b.metadata?.trendingScore || 0) - (a.metadata?.trendingScore || 0));
-        break;
-      case 'viral':
-        filtered = quizzesWithMetadata.filter(q => q.isViral).sort((a, b) => (b.metadata?.shares || 0) - (a.metadata?.shares || 0));
-        break;
-      case 'featured':
-        filtered = quizzesWithMetadata.filter(q => q.isFeatured);
-        break;
-      default:
-        filtered = quizzesWithMetadata;
-    }
-    
-    setFilteredQuizzes(filtered);
+    (async () => {
+      try {
+        const res = await fetch('/api/quiz?featured=true');
+        if (!res.ok) return;
+        const data = await res.json();
+        if (Array.isArray(data?.quizzes) && data.quizzes.length > 0) {
+          setFeaturedQuiz(data.quizzes[0]);
+        }
+      } catch {}
+    })();
+  }, []);
+
+  // Load quizzes for active tab from API
+  useEffect(() => {
+    (async () => {
+      try {
+        let url = '/api/quiz';
+        if (activeTab === 'trending') url = '/api/quiz?trending=true';
+        else if (activeTab === 'viral') url = '/api/quiz?viral=true';
+        else if (activeTab === 'featured') url = '/api/quiz?featured=true';
+        const res = await fetch(url);
+        if (!res.ok) return setFilteredQuizzes([]);
+        const data = await res.json();
+        setFilteredQuizzes(Array.isArray(data?.quizzes) ? data.quizzes : []);
+      } catch {
+        setFilteredQuizzes([]);
+      }
+    })();
   }, [activeTab]);
 
   return (
@@ -78,41 +90,34 @@ function QuizHomeContent() {
           </div>
         </motion.div>
 
-        {/* Featured Quiz - Dynamic */}
-        {quizzesWithMetadata.find(quiz => quiz.isFeatured) && (
+        {/* Featured Quiz - Dynamic (from DB) */}
+        {featuredQuiz && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.6, delay: 0.2 }}
             className="mb-8 sm:mb-12"
           >
-            {(() => {
-              const featuredQuiz = quizzesWithMetadata.find(quiz => quiz.isFeatured);
-              if (!featuredQuiz) return null;
-              
-              return (
-                <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white text-center max-w-4xl mx-auto shadow-2xl">
-                  <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">{featuredQuiz.emoji}</div>
-                  <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 px-2">{featuredQuiz.title}</h2>
-                  {featuredQuiz.titleHindi && (
-                    <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 px-2">{featuredQuiz.titleHindi}</h2>
-                  )}
-                  <p className="text-base sm:text-lg mb-4 sm:mb-6 opacity-90 px-2">
-                    {featuredQuiz.description}
-                  </p>
-                  {featuredQuiz.descriptionHindi && (
-                    <p className="text-base sm:text-lg mb-4 sm:mb-6 opacity-90 px-2">
-                      {featuredQuiz.descriptionHindi}
-                    </p>
-                  )}
-                  <Link href={`/quiz/${featuredQuiz.id}`}>
-                    <Button className="bg-white text-purple-600 hover:bg-gray-100 px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg font-semibold w-full sm:w-auto">
-                      Take Quiz Now
-                    </Button>
-                  </Link>
-                </div>
-              );
-            })()}
+            <div className="bg-gradient-to-r from-purple-500 to-pink-500 rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-white text-center max-w-4xl mx-auto shadow-2xl">
+              <div className="text-4xl sm:text-6xl mb-3 sm:mb-4">{featuredQuiz.emoji}</div>
+              <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 px-2">{featuredQuiz.title}</h2>
+              {featuredQuiz.titleHindi && (
+                <h2 className="text-xl sm:text-2xl font-bold mb-3 sm:mb-4 px-2">{featuredQuiz.titleHindi}</h2>
+              )}
+              <p className="text-base sm:text-lg mb-4 sm:mb-6 opacity-90 px-2">
+                {featuredQuiz.description}
+              </p>
+              {featuredQuiz.descriptionHindi && (
+                <p className="text-base sm:text-lg mb-4 sm:mb-6 opacity-90 px-2">
+                  {featuredQuiz.descriptionHindi}
+                </p>
+              )}
+              <Link href={`/quiz/${featuredQuiz.id}`}>
+                <Button className="bg-white text-purple-600 hover:bg-gray-100 px-6 sm:px-8 py-2 sm:py-3 text-base sm:text-lg font-semibold w-full sm:w-auto">
+                  Take Quiz Now
+                </Button>
+              </Link>
+            </div>
           </motion.div>
         )}
 

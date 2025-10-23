@@ -348,7 +348,7 @@ export const themes: Theme[] = [
       easing: 'cubic-bezier(0.4, 0, 0.2, 1)',
       framerEasing: 'easeInOut'
     }
-  }
+  },
 ];
 
 export const quizzes: Quiz[] = [
@@ -4867,6 +4867,37 @@ export function getQuizWithCustomization(quizId: string, customization?: Partial
   
   return {
     ...quiz,
+    customization: finalCustomization,
+    theme
+  };
+}
+
+// Enrich a raw quiz (e.g., loaded from DB) with customization defaults and theme
+export function enrichQuiz(rawQuiz: Quiz): Quiz {
+  // Start with global defaults
+  const globalDefaultCustomization: QuizCustomization = {
+    themeId: 'default',
+    defaultLanguage: 'en',
+    showProgress: true,
+    showTimer: false,
+    allowRetake: true,
+    showShareButtons: true,
+    enablePersonalization: true,
+    personalizationFields: ['name']
+  };
+
+  const quizDefaultCustomization: QuizCustomization = {
+    ...globalDefaultCustomization,
+    themeId: rawQuiz.defaultTheme || globalDefaultCustomization.themeId,
+    defaultLanguage: rawQuiz.defaultLanguage || globalDefaultCustomization.defaultLanguage,
+    ...rawQuiz.defaultCustomization
+  };
+
+  const finalCustomization = { ...quizDefaultCustomization, ...rawQuiz.customization } as QuizCustomization;
+  const theme = getThemeById(finalCustomization.themeId) || getDefaultTheme();
+
+  return {
+    ...rawQuiz,
     customization: finalCustomization,
     theme
   };

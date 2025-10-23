@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { quizzesWithMetadata } from '@/lib/quiz-data';
+import connectDB from '@/lib/mongodb';
+import QuizModel from '@/lib/models/Quiz';
 
 export async function GET(request: NextRequest) {
   try {
@@ -9,36 +10,32 @@ export async function GET(request: NextRequest) {
     const viral = searchParams.get('viral');
     const featured = searchParams.get('featured');
 
-    let filteredQuizzes = quizzesWithMetadata;
+    console.log('🔍 API: Category:', category);
 
-    // Filter by category
-    if (category) {
-      filteredQuizzes = filteredQuizzes.filter(quiz => quiz.category === category);
-    }
+    await connectDB();
 
-    // Filter by trending
+    const query: Record<string, any> = {};
+    if (category) query.category = category;
+    if (viral === 'true') query.isViral = true;
+    if (featured === 'true') query.isFeatured = true;
+    if (trending === 'true') query['metadata.trendingScore'] = { $gt: 80 };
+
+    const docs = await QuizModel.find(query).lean();
+
+    // Client-side-like sorting to mirror previous behavior
+    let quizzes = docs as any[];
     if (trending === 'true') {
-      filteredQuizzes = filteredQuizzes
-        .filter(quiz => (quiz.metadata?.trendingScore || 0) > 80)
-        .sort((a, b) => (b.metadata?.trendingScore || 0) - (a.metadata?.trendingScore || 0));
+      quizzes = quizzes.sort((a, b) => (b?.metadata?.trendingScore || 0) - (a?.metadata?.trendingScore || 0));
+    } else if (viral === 'true') {
+      quizzes = quizzes.sort((a, b) => (b?.metadata?.shares || 0) - (a?.metadata?.shares || 0));
     }
 
-    // Filter by viral
-    if (viral === 'true') {
-      filteredQuizzes = filteredQuizzes
-        .filter(quiz => quiz.isViral)
-        .sort((a, b) => (b.metadata?.shares || 0) - (a.metadata?.shares || 0));
-    }
-
-    // Filter by featured
-    if (featured === 'true') {
-      filteredQuizzes = filteredQuizzes.filter(quiz => quiz.isFeatured);
-    }
+    console.log('🔍 API: Quizzes:', quizzes);
 
     return NextResponse.json({
       success: true,
-      quizzes: filteredQuizzes,
-      total: filteredQuizzes.length
+      quizzes,
+      total: quizzes.length
     });
 
   } catch (error) {
@@ -57,27 +54,37 @@ export async function POST(request: NextRequest) {
 
     switch (action) {
       case 'update_metrics':
-        // Update quiz metrics (views, shares, etc.)
-        const quiz = quizzesWithMetadata.find(q => q.id === quizId);
-        if (quiz && data) {
-          quiz.metadata = { ...quiz.metadata, ...data };
-          quiz.updatedAt = new Date();
+        // Update quiz metrics (views, shares, etc.) in DB
+        await connectDB();
+        if (quizId && data) {
+          await QuizModel.updateOne(
+            { id: quizId },
+            { $set: { ...Object.fromEntries(Object.entries(data).map(([k,v]) => ([`metadata.${k}`, v]))), updatedAt: new Date() } }
+          );
         }
         break;
 
       case 'toggle_featured':
-        const featuredQuiz = quizzesWithMetadata.find(q => q.id === quizId);
-        if (featuredQuiz) {
-          featuredQuiz.isFeatured = !featuredQuiz.isFeatured;
-          featuredQuiz.updatedAt = new Date();
+        await connectDB();
+        if (quizId) {
+          const doc = await QuizModel.findOne({ id: quizId });
+          if (doc) {
+            doc.isFeatured = !doc.isFeatured;
+            doc.updatedAt = new Date();
+            await doc.save();
+          }
         }
         break;
 
       case 'toggle_viral':
-        const viralQuiz = quizzesWithMetadata.find(q => q.id === quizId);
-        if (viralQuiz) {
-          viralQuiz.isViral = !viralQuiz.isViral;
-          viralQuiz.updatedAt = new Date();
+        await connectDB();
+        if (quizId) {
+          const docV = await QuizModel.findOne({ id: quizId });
+          if (docV) {
+            docV.isViral = !docV.isViral;
+            docV.updatedAt = new Date();
+            await docV.save();
+          }
         }
         break;
 

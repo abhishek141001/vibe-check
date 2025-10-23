@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Quiz, QuizQuestion, QuizResult, ScoringConfig } from '@/lib/quiz-data';
+import connectDB from '@/lib/mongodb';
+import QuizModel, { IQuiz } from '@/lib/models/Quiz';
+import { Quiz } from '@/lib/quiz-data';
 
 export async function POST(request: NextRequest) {
   try {
@@ -74,9 +76,12 @@ export async function POST(request: NextRequest) {
       }
     }
 
-    // Check if quiz ID already exists
-    const existingQuiz = await checkQuizExists(quizData.id);
-    if (existingQuiz) {
+    // Connect DB
+    await connectDB();
+
+    // Check if quiz ID already exists in DB
+    const existingInDb = await QuizModel.findOne({ id: quizData.id }).lean();
+    if (existingInDb) {
       return NextResponse.json(
         { error: `Quiz with ID '${quizData.id}' already exists` },
         { status: 409 }
@@ -136,13 +141,13 @@ export async function POST(request: NextRequest) {
       }
     };
 
-    // Save the quiz (in a real implementation, this would save to database)
-    const savedQuiz = await saveQuiz(newQuiz);
+    // Save the quiz in MongoDB
+    const savedQuizDoc = await QuizModel.create(newQuiz as unknown as IQuiz);
 
     return NextResponse.json({
       success: true,
       message: 'Quiz created successfully',
-      quiz: savedQuiz
+      quiz: savedQuizDoc
     });
 
   } catch (error) {
@@ -154,32 +159,4 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// Helper function to check if quiz exists
-async function checkQuizExists(quizId: string): Promise<boolean> {
-  try {
-    // In a real implementation, this would check the database
-    // For now, we'll simulate by checking if the ID is already in use
-    const response = await fetch(`${process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'}/api/quiz/${quizId}`);
-    return response.ok;
-  } catch (error) {
-    return false;
-  }
-}
-
-// Helper function to save quiz
-async function saveQuiz(quiz: Quiz): Promise<Quiz> {
-  try {
-    // In a real implementation, this would save to database
-    // For now, we'll just return the quiz as-is
-    console.log('Saving quiz:', quiz.id);
-    
-    // You could implement actual database saving here
-    // For example:
-    // await db.quizzes.insert(quiz);
-    
-    return quiz;
-  } catch (error) {
-    console.error('Error saving quiz:', error);
-    throw error;
-  }
-}
+// no helper functions needed; DB is used directly above

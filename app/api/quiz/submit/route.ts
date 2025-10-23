@@ -1,7 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import connectDB from '@/lib/mongodb';
 import QuizResult from '@/lib/models/QuizResult';
-import { getQuizById, getQuizWithCustomization, calculateQuizResult } from '@/lib/quiz-data';
+import QuizModel from '@/lib/models/Quiz';
+import { getQuizWithCustomization, calculateQuizResult, enrichQuiz } from '@/lib/quiz-data';
 import { generateQuizDescription } from '@/lib/gemini';
 
 export async function POST(request: NextRequest) {
@@ -17,8 +18,14 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Get quiz data with customization
-    const quiz = getQuizWithCustomization(quizId);
+    // Get quiz data with customization (DB first, fallback to in-memory)
+    let quiz = null as any;
+    const doc = await QuizModel.findOne({ id: quizId }).lean();
+    if (doc) {
+      quiz = enrichQuiz(doc as any);
+    } else {
+      quiz = getQuizWithCustomization(quizId);
+    }
     if (!quiz) {
       return NextResponse.json(
         { error: 'Quiz not found' },
