@@ -196,3 +196,4 @@ export default function RecommendedQuizzes({ currentQuizId, limit = 3 }: Recomme
     </motion.div>
   );
 }
+

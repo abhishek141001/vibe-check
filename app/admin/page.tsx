@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 import { quizzesWithMetadata } from '@/lib/quiz-data';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
-import { Star, Flame, TrendingUp, Eye, Share, ThumbsUp } from 'lucide-react';
+import { Star, Flame, TrendingUp, Eye, Share, ThumbsUp, Plus, Code } from 'lucide-react';
+import Link from 'next/link';
 
 export default function AdminDashboard() {
   const [quizData, setQuizData] = useState(quizzesWithMetadata);
@@ -61,8 +62,26 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-gray-50 py-4 sm:py-8">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-6 sm:mb-8">
-          <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Quiz Admin Dashboard</h1>
-          <p className="text-sm sm:text-base text-gray-600">Manage your viral quiz collection</p>
+          <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+            <div>
+              <h1 className="text-2xl sm:text-3xl font-bold text-gray-800 mb-2">Quiz Admin Dashboard</h1>
+              <p className="text-sm sm:text-base text-gray-600">Manage your viral quiz collection</p>
+            </div>
+            <div className="flex flex-col sm:flex-row gap-2">
+              <Link href="/admin/create">
+                <Button className="w-full sm:w-auto bg-purple-500 hover:bg-purple-600">
+                  <Plus className="w-4 h-4 mr-2" />
+                  Create Quiz
+                </Button>
+              </Link>
+              <Link href="/admin/json-quiz">
+                <Button variant="outline" className="w-full sm:w-auto">
+                  <Code className="w-4 h-4 mr-2" />
+                  JSON Creator
+                </Button>
+              </Link>
+            </div>
+          </div>
         </div>
 
         {/* Stats Overview */}

@@ -151,3 +151,4 @@ if (dataIssues === 0 && seoIssues === 0) {
 } else {
   console.log('\n❌ Some issues found. Please check the output above.');
 }
+
