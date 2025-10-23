@@ -11,6 +11,7 @@ import { useLanguage } from './LanguageToggle';
 import { useTheme } from '../theme/ThemeProvider';
 import { QuizCustomization } from '@/lib/quiz-data';
 import html2canvas from 'html2canvas';
+import RecommendedQuizzes from './RecommendedQuizzes';
 
 interface UserInfo {
   name: string;
@@ -567,6 +568,9 @@ export default function ResultCard({ result, quizId, onRetake, aiDescription, us
           </p>
         </motion.div>
       )}
+
+      {/* Recommended Quizzes */}
+      <RecommendedQuizzes currentQuizId={quizId} limit={3} />
     </div>
   );
 }

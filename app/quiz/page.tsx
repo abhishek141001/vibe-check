@@ -8,6 +8,8 @@ import { ArrowRight, Sparkles, TrendingUp, Flame, Star } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { ThemeProvider, useTheme } from '@/components/theme/ThemeProvider';
+import { LanguageProvider } from '@/components/quiz/LanguageToggle';
+import QuizShareButton from '@/components/quiz/QuizShareButton';
 
 function QuizHomeContent() {
   const [activeTab, setActiveTab] = useState('all');
@@ -157,7 +159,7 @@ function QuizHomeContent() {
               <Link href={`/quiz/${quiz.id}`}>
                 <Card className="p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group-hover:border-blue-200 relative overflow-hidden h-full">
                   {/* Badges */}
-                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3 flex flex-col sm:flex-row gap-1">
+                  <div className="absolute top-2 left-2 sm:top-3 sm:left-3 flex flex-col gap-1">
                     {quiz.isFeatured && (
                       <span className="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full flex items-center gap-1">
                         <Star className="w-3 h-3" />
@@ -170,6 +172,17 @@ function QuizHomeContent() {
                         <span className="hidden sm:inline">Viral</span>
                       </span>
                     )}
+                  </div>
+
+                  {/* Share Button */}
+                  <div className="absolute top-2 right-2 sm:top-3 sm:right-3">
+                    <QuizShareButton 
+                      quizId={quiz.id}
+                      quizTitle={quiz.title}
+                      quizEmoji={quiz.emoji}
+                      quizDescription={quiz.description}
+                      className="scale-75 sm:scale-100"
+                    />
                   </div>
 
                   <div className="text-center">
@@ -258,7 +271,9 @@ function QuizHomeContent() {
 export default function QuizHome() {
   return (
     <ThemeProvider>
-      <QuizHomeContent />
+      <LanguageProvider initialLanguage="en">
+        <QuizHomeContent />
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

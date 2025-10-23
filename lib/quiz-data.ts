@@ -234,7 +234,7 @@ export const themes: Theme[] = [
     animations: {
       duration: '500ms',
       easing: 'cubic-bezier(0.68, -0.55, 0.265, 1.55)',
-      framerEasing: 'easeOutBack'
+      framerEasing: 'easeOut'
     }
   },
   {
@@ -684,6 +684,7 @@ export const quizzes: Quiz[] = [
       { id: 'debugging-detective', name: 'Debugging Detective', emoji: '🔍', description: 'You solve the most complex mysteries in code!', color: 'bg-yellow-600', personalizedMessage: 'Your detective skills in debugging are unmatched. You approach every bug as a mystery to be solved, using logic, patience, and creativity to crack the case.' }
     ]
   },
+  
   {
     id: 'anime-character',
     title: 'Which Anime Character Are You?',
@@ -1367,6 +1368,1326 @@ export const quizzes: Quiz[] = [
       'focused-chunker-learner': 'innovation-leader',
       'creative-pressure-leader': 'mentor-coach'
     }
+  },
+  {
+    id: 'startup-culture',
+    title: 'Which Startup Stereotype Are You?',
+    description: 'Find your startup alter ego!',
+    emoji: '🚀',
+    category: 'lifestyle',
+    tags: ['startup', 'culture', 'tech', 'personality'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'neon',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal office setup is:
+        { questionId: 'q1', answerValue: 'open-plan', results: { 'hustle-bro': 5, 'pivot-master': 3 } },
+        { questionId: 'q1', answerValue: 'remote-first', results: { 'digital-nomad': 5, 'unicorn-hunter': 3 } },
+        { questionId: 'q1', answerValue: 'co-working', results: { 'networking-ninja': 5, 'hustle-bro': 2 } },
+        { questionId: 'q1', answerValue: 'corner-office', results: { 'unicorn-hunter': 5, 'pivot-master': 2 } },
+        
+        // Question 2: Your favorite startup phrase is:
+        { questionId: 'q2', answerValue: 'disrupt', results: { 'hustle-bro': 5, 'pivot-master': 3 } },
+        { questionId: 'q2', answerValue: 'scale', results: { 'unicorn-hunter': 5, 'networking-ninja': 3 } },
+        { questionId: 'q2', answerValue: 'synergy', results: { 'networking-ninja': 5, 'digital-nomad': 2 } },
+        { questionId: 'q2', answerValue: 'iterate', results: { 'pivot-master': 5, 'hustle-bro': 2 } },
+        
+        // Question 3: Your ideal workday starts with:
+        { questionId: 'q3', answerValue: 'standup', results: { 'hustle-bro': 5, 'pivot-master': 3 } },
+        { questionId: 'q3', answerValue: 'coffee-run', results: { 'networking-ninja': 5, 'digital-nomad': 3 } },
+        { questionId: 'q3', answerValue: 'slack-check', results: { 'digital-nomad': 5, 'unicorn-hunter': 2 } },
+        { questionId: 'q3', answerValue: 'pitch-prep', results: { 'unicorn-hunter': 5, 'hustle-bro': 2 } }
+      ],
+      defaultResult: 'hustle-bro'
+    },
+    createdAt: new Date('2024-10-15'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 1500,
+      completions: 1200,
+      shares: 250,
+      avgRating: 4.7,
+      trendingScore: 88
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal office setup is:',
+        options: [
+          { id: 'a1', text: 'Open-plan with ping pong table', value: 'open-plan' },
+          { id: 'a2', text: 'Remote from a beach in Bali', value: 'remote-first' },
+          { id: 'a3', text: 'Co-working space with free coffee', value: 'co-working' },
+          { id: 'a4', text: 'Corner office with city views', value: 'corner-office' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your favorite startup phrase is:',
+        options: [
+          { id: 'b1', text: 'We\'re disrupting the industry!', value: 'disrupt' },
+          { id: 'b2', text: 'We need to scale this fast!', value: 'scale' },
+          { id: 'b3', text: 'Let\'s create synergy here', value: 'synergy' },
+          { id: 'b4', text: 'We need to iterate on this', value: 'iterate' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your ideal workday starts with:',
+        options: [
+          { id: 'c1', text: 'Daily standup meeting', value: 'standup' },
+          { id: 'c2', text: 'Coffee run to the local roastery', value: 'coffee-run' },
+          { id: 'c3', text: 'Checking Slack notifications', value: 'slack-check' },
+          { id: 'c4', text: 'Preparing investor pitch deck', value: 'pitch-prep' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'hustle-bro', 
+        name: 'Hustle Bro', 
+        emoji: '💪', 
+        description: 'You live and breathe the hustle! 5 AM workouts, cold showers, and "disrupting" everything in sight!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the embodiment of startup culture - always hustling, never sleeping, and convinced that your app will change the world. Your LinkedIn is 90% motivational quotes and your calendar is booked solid with "synergy sessions."'
+      },
+      { 
+        id: 'pivot-master', 
+        name: 'Pivot Master', 
+        emoji: '🔄', 
+        description: 'You pivot so fast, you\'re basically a human fidget spinner! Every setback is just a "learning opportunity"!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'ve pivoted your startup idea 47 times this month alone. From "Uber for cats" to "AI-powered pet rock therapy," you\'re convinced the next pivot will be THE ONE. Your investors are getting whiplash.'
+      },
+      { 
+        id: 'digital-nomad', 
+        name: 'Digital Nomad', 
+        emoji: '🌴', 
+        description: 'You work from beaches, mountains, and coffee shops with questionable WiFi. Location independence is your superpower!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'ve mastered the art of working from anywhere with a laptop and a dream. Your Instagram is 90% sunset photos with your laptop, and you\'ve convinced yourself that slow WiFi builds character.'
+      },
+      { 
+        id: 'networking-ninja', 
+        name: 'Networking Ninja', 
+        emoji: '🤝', 
+        description: 'You know everyone, everywhere, all the time. Your LinkedIn connections could populate a small country!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You attend every networking event, collect business cards like Pokémon, and have mastered the art of the elevator pitch. You could probably get a meeting with Elon Musk through your network of connections.'
+      },
+      { 
+        id: 'unicorn-hunter', 
+        name: 'Unicorn Hunter', 
+        emoji: '🦄', 
+        description: 'You\'re on a quest for the mythical billion-dollar valuation! Your pitch deck is longer than a Tolstoy novel!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re convinced your startup is the next unicorn, even though you\'re still figuring out how to monetize. Your pitch deck has 200 slides and includes a section on "world domination strategy."'
+      }
+    ]
+  },
+  {
+    id: 'corporate-culture',
+    title: 'Which Corporate Stereotype Are You?',
+    description: 'Find your corporate alter ego!',
+    emoji: '🏢',
+    category: 'lifestyle',
+    tags: ['corporate', 'culture', 'office', 'personality'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'minimal',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal meeting is:
+        { questionId: 'q1', answerValue: 'powerpoint', results: { 'meeting-master': 5, 'synergy-specialist': 3 } },
+        { questionId: 'q1', answerValue: 'brainstorm', results: { 'innovation-champion': 5, 'synergy-specialist': 2 } },
+        { questionId: 'q1', answerValue: 'status-update', results: { 'process-perfectionist': 5, 'meeting-master': 3 } },
+        { questionId: 'q1', answerValue: 'team-building', results: { 'synergy-specialist': 5, 'innovation-champion': 2 } },
+        
+        // Question 2: Your favorite corporate phrase is:
+        { questionId: 'q2', answerValue: 'synergy', results: { 'synergy-specialist': 5, 'meeting-master': 3 } },
+        { questionId: 'q2', answerValue: 'leverage', results: { 'meeting-master': 5, 'process-perfectionist': 3 } },
+        { questionId: 'q2', answerValue: 'paradigm', results: { 'innovation-champion': 5, 'synergy-specialist': 2 } },
+        { questionId: 'q2', answerValue: 'optimize', results: { 'process-perfectionist': 5, 'meeting-master': 2 } },
+        
+        // Question 3: Your ideal workday ends with:
+        { questionId: 'q3', answerValue: 'email-catchup', results: { 'process-perfectionist': 5, 'meeting-master': 3 } },
+        { questionId: 'q3', answerValue: 'team-huddle', results: { 'synergy-specialist': 5, 'innovation-champion': 2 } },
+        { questionId: 'q3', answerValue: 'innovation-session', results: { 'innovation-champion': 5, 'synergy-specialist': 2 } },
+        { questionId: 'q3', answerValue: 'powerpoint-polish', results: { 'meeting-master': 5, 'process-perfectionist': 2 } }
+      ],
+      defaultResult: 'meeting-master'
+    },
+    createdAt: new Date('2024-10-15'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 1800,
+      completions: 1450,
+      shares: 320,
+      avgRating: 4.6,
+      trendingScore: 85
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal meeting is:',
+        options: [
+          { id: 'a1', text: 'PowerPoint presentation with 50 slides', value: 'powerpoint' },
+          { id: 'a2', text: 'Brainstorming session with sticky notes', value: 'brainstorm' },
+          { id: 'a3', text: 'Status update with detailed metrics', value: 'status-update' },
+          { id: 'a4', text: 'Team building with trust falls', value: 'team-building' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your favorite corporate phrase is:',
+        options: [
+          { id: 'b1', text: 'Let\'s create synergy here', value: 'synergy' },
+          { id: 'b2', text: 'We need to leverage our assets', value: 'leverage' },
+          { id: 'b3', text: 'This is a paradigm shift', value: 'paradigm' },
+          { id: 'b4', text: 'We should optimize this process', value: 'optimize' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your ideal workday ends with:',
+        options: [
+          { id: 'c1', text: 'Catching up on 200 unread emails', value: 'email-catchup' },
+          { id: 'c2', text: 'Team huddle with motivational quotes', value: 'team-huddle' },
+          { id: 'c3', text: 'Innovation session with whiteboards', value: 'innovation-session' },
+          { id: 'c4', text: 'Polishing PowerPoint presentations', value: 'powerpoint-polish' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'meeting-master', 
+        name: 'Meeting Master', 
+        emoji: '📊', 
+        description: 'You could schedule a meeting to discuss scheduling meetings! Your calendar is a work of art!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'ve perfected the art of corporate meetings. You can make a 2-hour meeting feel like 2 minutes, and you\'ve never met a PowerPoint presentation you couldn\'t make longer. Your calendar is booked solid until 2026.'
+      },
+      { 
+        id: 'synergy-specialist', 
+        name: 'Synergy Specialist', 
+        emoji: '🤝', 
+        description: 'You create synergy like it\'s going out of style! Every conversation is a "collaborative opportunity"!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the master of corporate buzzwords. You can turn "let\'s work together" into a 20-minute speech about synergy, collaboration, and leveraging our collective intelligence. Your LinkedIn is a masterpiece of corporate speak.'
+      },
+      { 
+        id: 'process-perfectionist', 
+        name: 'Process Perfectionist', 
+        emoji: '⚙️', 
+        description: 'You have a process for everything, including how to create processes! Your spreadsheets have spreadsheets!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'ve created so many processes that you need a process to manage your processes. Your Excel skills are legendary, and you can create a pivot table that would make accountants weep with joy. You\'ve never met a problem that couldn\'t be solved with a flowchart.'
+      },
+      { 
+        id: 'innovation-champion', 
+        name: 'Innovation Champion', 
+        emoji: '💡', 
+        description: 'You innovate so hard, you\'re basically a human lightbulb! Every idea is "disruptive" and "game-changing"!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the corporate equivalent of a startup founder, but with a salary and benefits. You\'ve never met a problem that couldn\'t be solved with "innovative thinking" and "outside-the-box solutions." Your whiteboard is a work of art.'
+      },
+      { 
+        id: 'email-warrior', 
+        name: 'Email Warrior', 
+        emoji: '📧', 
+        description: 'You battle through 500 emails daily like a corporate gladiator! Your inbox is your battlefield!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'ve mastered the art of corporate email warfare. You can reply to 50 emails in the time it takes others to write one. Your signature is longer than most people\'s emails, and you\'ve never met a "reply all" you couldn\'t handle.'
+      }
+    ]
+  },
+  {
+    id: 'office-politics',
+    title: 'Which Office Politics Player Are You?',
+    description: 'Navigate the corporate jungle like a pro!',
+    emoji: '🕴️',
+    category: 'lifestyle',
+    tags: ['office', 'politics', 'corporate', 'personality'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'dark',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal office strategy is:
+        { questionId: 'q1', answerValue: 'coffee-chat', results: { 'coffee-diplomat': 5, 'lunch-networker': 3 } },
+        { questionId: 'q1', answerValue: 'email-cc', results: { 'cc-master': 5, 'coffee-diplomat': 2 } },
+        { questionId: 'q1', answerValue: 'meeting-presence', results: { 'meeting-dominator': 5, 'lunch-networker': 3 } },
+        { questionId: 'q1', answerValue: 'lunch-networking', results: { 'lunch-networker': 5, 'coffee-diplomat': 2 } },
+        
+        // Question 2: Your favorite office move is:
+        { questionId: 'q2', answerValue: 'credit-steal', results: { 'credit-thief': 5, 'meeting-dominator': 3 } },
+        { questionId: 'q2', answerValue: 'blame-shift', results: { 'blame-master': 5, 'cc-master': 3 } },
+        { questionId: 'q2', answerValue: 'gossip-spread', results: { 'gossip-queen': 5, 'lunch-networker': 2 } },
+        { questionId: 'q2', answerValue: 'alliance-build', results: { 'alliance-builder': 5, 'coffee-diplomat': 3 } },
+        
+        // Question 3: Your ideal office weapon is:
+        { questionId: 'q3', answerValue: 'passive-aggressive', results: { 'passive-aggressive-pro': 5, 'cc-master': 3 } },
+        { questionId: 'q3', answerValue: 'meeting-interruption', results: { 'meeting-dominator': 5, 'credit-thief': 2 } },
+        { questionId: 'q3', answerValue: 'email-bomb', results: { 'cc-master': 5, 'blame-master': 2 } },
+        { questionId: 'q3', answerValue: 'social-manipulation', results: { 'gossip-queen': 5, 'alliance-builder': 3 } }
+      ],
+      defaultResult: 'coffee-diplomat'
+    },
+    createdAt: new Date('2024-10-15'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 2000,
+      completions: 1600,
+      shares: 380,
+      avgRating: 4.8,
+      trendingScore: 92
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal office strategy is:',
+        options: [
+          { id: 'a1', text: 'Coffee chat with the boss', value: 'coffee-chat' },
+          { id: 'a2', text: 'CC everyone on important emails', value: 'email-cc' },
+          { id: 'a3', text: 'Dominate every meeting', value: 'meeting-presence' },
+          { id: 'a4', text: 'Lunch networking sessions', value: 'lunch-networking' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your favorite office move is:',
+        options: [
+          { id: 'b1', text: 'Taking credit for others\' work', value: 'credit-steal' },
+          { id: 'b2', text: 'Shifting blame to colleagues', value: 'blame-shift' },
+          { id: 'b3', text: 'Spreading office gossip', value: 'gossip-spread' },
+          { id: 'b4', text: 'Building strategic alliances', value: 'alliance-build' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your ideal office weapon is:',
+        options: [
+          { id: 'c1', text: 'Passive-aggressive emails', value: 'passive-aggressive' },
+          { id: 'c2', text: 'Meeting interruptions', value: 'meeting-interruption' },
+          { id: 'c3', text: 'Email bombing campaigns', value: 'email-bomb' },
+          { id: 'c4', text: 'Social manipulation', value: 'social-manipulation' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'coffee-diplomat', 
+        name: 'Coffee Diplomat', 
+        emoji: '☕', 
+        description: 'You solve office conflicts over coffee! Your diplomatic skills are legendary in the break room!', 
+        color: 'bg-brown-500',
+        personalizedMessage: 'You\'re the office equivalent of a UN diplomat. You can resolve any conflict with a well-timed coffee invitation and a sympathetic ear. Your break room conversations are more productive than most board meetings.'
+      },
+      { 
+        id: 'cc-master', 
+        name: 'CC Master', 
+        emoji: '📧', 
+        description: 'You CC everyone on everything! Your email game is so strong, people fear your "reply all"!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'ve mastered the art of the CC. You can make any email look important by adding the right people to the thread. Your "reply all" game is so strong, people have started creating email filters just for you.'
+      },
+      { 
+        id: 'meeting-dominator', 
+        name: 'Meeting Dominator', 
+        emoji: '🎯', 
+        description: 'You own every meeting! Your PowerPoint skills are so good, people forget what the meeting was about!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a chess grandmaster. You can turn any discussion into a 2-hour presentation about your latest project. Your PowerPoint skills are so advanced, you could probably animate a spreadsheet.'
+      },
+      { 
+        id: 'lunch-networker', 
+        name: 'Lunch Networker', 
+        emoji: '🍽️', 
+        description: 'You network over every meal! Your lunch calendar is more booked than a celebrity chef\'s restaurant!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'ve turned lunch into an art form. You can network over a sandwich like it\'s a high-stakes business deal. Your lunch calendar is so packed, you\'ve started scheduling breakfast meetings and dinner follow-ups.'
+      },
+      { 
+        id: 'gossip-queen', 
+        name: 'Gossip Queen', 
+        emoji: '👑', 
+        description: 'You know everything about everyone! Your office intel is more valuable than the company\'s trade secrets!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re the office equivalent of a CIA operative. You know who\'s dating whom, who\'s getting promoted, and who\'s about to quit before they even know it. Your information network is more efficient than the company\'s internal communication system.'
+      },
+      { 
+        id: 'credit-thief', 
+        name: 'Credit Thief', 
+        emoji: '🎭', 
+        description: 'You\'re a master of taking credit! Your ability to claim others\' work as your own is legendary!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'ve perfected the art of the credit grab. You can turn any team effort into your personal victory, and your ability to phrase things just right makes it seem like you did all the work. Your colleagues are both impressed and slightly terrified of your skills.'
+      },
+      { 
+        id: 'blame-master', 
+        name: 'Blame Master', 
+        emoji: '🎯', 
+        description: 'You\'re the office scapegoat specialist! Your blame-shifting skills are unmatched!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the office equivalent of a professional deflector. You can turn any crisis into someone else\'s problem with just a few well-chosen words. Your ability to redirect blame is so advanced, you could probably blame the weather for a missed deadline.'
+      },
+      { 
+        id: 'alliance-builder', 
+        name: 'Alliance Builder', 
+        emoji: '🤝', 
+        description: 'You\'re the master of office alliances! Your networking and relationship-building skills are legendary!', 
+        color: 'bg-indigo-500',
+        personalizedMessage: 'You\'re the office equivalent of a political strategist. You can build alliances that would make Game of Thrones characters jealous. Your ability to bring people together for common goals is so advanced, you could probably get cats to collaborate on a project.'
+      },
+      { 
+        id: 'passive-aggressive-pro', 
+        name: 'Passive-Aggressive Pro', 
+        emoji: '😏', 
+        description: 'You\'re the master of subtle office warfare! Your passive-aggressive skills are legendary!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the office equivalent of a ninja. You can deliver the most cutting remarks with a smile, and your ability to make people feel guilty without saying anything directly is unmatched. Your passive-aggressive game is so strong, people start apologizing before you even finish your sentence.'
+      }
+    ]
+  },
+  {
+    id: 'meeting-culture',
+    title: 'Which Meeting Culture Are You?',
+    description: 'Discover your meeting personality!',
+    emoji: '📅',
+    category: 'lifestyle',
+    tags: ['meetings', 'corporate', 'culture', 'personality'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'default',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal meeting duration is:
+        { questionId: 'q1', answerValue: '15-min', results: { 'efficiency-expert': 5, 'time-master': 3 } },
+        { questionId: 'q1', answerValue: '1-hour', results: { 'meeting-marathoner': 5, 'efficiency-expert': 2 } },
+        { questionId: 'q1', answerValue: 'all-day', results: { 'meeting-marathoner': 5, 'time-master': 2 } },
+        { questionId: 'q1', answerValue: 'flexible', results: { 'time-master': 5, 'efficiency-expert': 3 } },
+        
+        // Question 2: Your favorite meeting tool is:
+        { questionId: 'q2', answerValue: 'powerpoint', results: { 'slide-master': 5, 'meeting-marathoner': 3 } },
+        { questionId: 'q2', answerValue: 'whiteboard', results: { 'whiteboard-wizard': 5, 'time-master': 2 } },
+        { questionId: 'q2', answerValue: 'zoom', results: { 'zoom-commander': 5, 'efficiency-expert': 3 } },
+        { questionId: 'q2', answerValue: 'sticky-notes', results: { 'sticky-note-sage': 5, 'whiteboard-wizard': 2 } },
+        
+        // Question 3: Your ideal meeting outcome is:
+        { questionId: 'q3', answerValue: 'action-items', results: { 'efficiency-expert': 5, 'time-master': 3 } },
+        { questionId: 'q3', answerValue: 'follow-up', results: { 'meeting-marathoner': 5, 'slide-master': 3 } },
+        { questionId: 'q3', answerValue: 'consensus', results: { 'consensus-builder': 5, 'whiteboard-wizard': 2 } },
+        { questionId: 'q3', answerValue: 'next-meeting', results: { 'meeting-marathoner': 5, 'zoom-commander': 2 } }
+      ],
+      defaultResult: 'efficiency-expert'
+    },
+    createdAt: new Date('2024-10-15'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 1600,
+      completions: 1280,
+      shares: 280,
+      avgRating: 4.5,
+      trendingScore: 82
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal meeting duration is:',
+        options: [
+          { id: 'a1', text: '15 minutes (get in, get out)', value: '15-min' },
+          { id: 'a2', text: '1 hour (proper discussion)', value: '1-hour' },
+          { id: 'a3', text: 'All day (deep dive)', value: 'all-day' },
+          { id: 'a4', text: 'Flexible (depends on the topic)', value: 'flexible' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your favorite meeting tool is:',
+        options: [
+          { id: 'b1', text: 'PowerPoint presentations', value: 'powerpoint' },
+          { id: 'b2', text: 'Whiteboard brainstorming', value: 'whiteboard' },
+          { id: 'b3', text: 'Zoom video calls', value: 'zoom' },
+          { id: 'b4', text: 'Sticky notes everywhere', value: 'sticky-notes' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your ideal meeting outcome is:',
+        options: [
+          { id: 'c1', text: 'Clear action items', value: 'action-items' },
+          { id: 'c2', text: 'Follow-up meeting scheduled', value: 'follow-up' },
+          { id: 'c3', text: 'Team consensus reached', value: 'consensus' },
+          { id: 'c4', text: 'Next meeting planned', value: 'next-meeting' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'efficiency-expert', 
+        name: 'Efficiency Expert', 
+        emoji: '⚡', 
+        description: 'You can solve world hunger in a 15-minute standup! Your meetings are legendary for their brevity!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a Formula 1 pit crew. You can extract more value from a 15-minute meeting than most people get from a 2-hour session. Your action items are so clear, they practically execute themselves.'
+      },
+      { 
+        id: 'meeting-marathoner', 
+        name: 'Meeting Marathoner', 
+        emoji: '🏃‍♂️', 
+        description: 'You can turn a 5-minute chat into a 3-hour deep dive! Your endurance is unmatched!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the meeting equivalent of an ultramarathon runner. You can discuss the same topic for hours without breaking a sweat. Your meetings are so thorough, they could be used as training materials for new employees.'
+      },
+      { 
+        id: 'slide-master', 
+        name: 'Slide Master', 
+        emoji: '📊', 
+        description: 'Your PowerPoint skills are so good, you could animate a spreadsheet! Every slide tells a story!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a Hollywood director. You can turn the most boring data into a cinematic experience. Your PowerPoint presentations are so engaging, people actually look forward to your meetings.'
+      },
+      { 
+        id: 'whiteboard-wizard', 
+        name: 'Whiteboard Wizard', 
+        emoji: '🧙‍♂️', 
+        description: 'You can turn any whiteboard into a masterpiece! Your diagrams are works of art!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a Renaissance artist. You can visualize complex concepts with a few strokes of a marker. Your whiteboard skills are so advanced, you could probably draw a flowchart that would make architects jealous.'
+      },
+      { 
+        id: 'zoom-commander', 
+        name: 'Zoom Commander', 
+        emoji: '📹', 
+        description: 'You rule the virtual meeting space! Your screen sharing skills are legendary!', 
+        color: 'bg-cyan-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a tech wizard. You can troubleshoot any technical issue while maintaining perfect eye contact with the camera. Your virtual meeting skills are so advanced, you could probably host a conference call from a coffee shop.'
+      },
+      { 
+        id: 'time-master', 
+        name: 'Time Master', 
+        emoji: '⏰', 
+        description: 'You\'re the master of meeting timing! Your ability to manage time is legendary!', 
+        color: 'bg-indigo-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a Swiss watch. You can time meetings to the second and always know exactly when to wrap things up. Your time management skills are so precise, you could probably schedule a meeting with a stopwatch.'
+      },
+      { 
+        id: 'sticky-note-sage', 
+        name: 'Sticky Note Sage', 
+        emoji: '📝', 
+        description: 'You\'re the master of sticky note organization! Your note-taking skills are legendary!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a librarian. You can organize information on sticky notes like it\'s a work of art, and your ability to capture every important detail is unmatched. Your sticky note skills are so advanced, you could probably organize a hurricane.'
+      },
+      { 
+        id: 'consensus-builder', 
+        name: 'Consensus Builder', 
+        emoji: '🤝', 
+        description: 'You\'re the master of building consensus! Your facilitation skills are legendary!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a diplomat. You can get everyone to agree on anything, even if they started with completely opposite views. Your consensus-building skills are so advanced, you could probably get cats to agree on a dinner menu.'
+      }
+    ]
+  },
+  {
+    id: 'workplace-personality',
+    title: 'Which Workplace Personality Are You?',
+    description: 'Discover your office alter ego!',
+    emoji: '💼',
+    category: 'lifestyle',
+    tags: ['workplace', 'personality', 'office', 'culture'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal workspace is:
+        { questionId: 'q1', answerValue: 'open-office', results: { 'social-butterfly': 5, 'collaboration-king': 3 } },
+        { questionId: 'q1', answerValue: 'private-office', results: { 'hermit-genius': 5, 'focus-master': 3 } },
+        { questionId: 'q1', answerValue: 'coffee-shop', results: { 'digital-nomad': 5, 'social-butterfly': 2 } },
+        { questionId: 'q1', answerValue: 'home-office', results: { 'work-life-balancer': 5, 'hermit-genius': 2 } },
+        
+        // Question 2: Your ideal work style is:
+        { questionId: 'q2', answerValue: 'collaborative', results: { 'collaboration-king': 5, 'social-butterfly': 3 } },
+        { questionId: 'q2', answerValue: 'independent', results: { 'hermit-genius': 5, 'focus-master': 3 } },
+        { questionId: 'q2', answerValue: 'flexible', results: { 'work-life-balancer': 5, 'digital-nomad': 3 } },
+        { questionId: 'q2', answerValue: 'structured', results: { 'process-perfectionist': 5, 'focus-master': 2 } },
+        
+        // Question 3: Your ideal workday ends with:
+        { questionId: 'q3', answerValue: 'team-drinks', results: { 'social-butterfly': 5, 'collaboration-king': 3 } },
+        { questionId: 'q3', answerValue: 'quiet-reflection', results: { 'hermit-genius': 5, 'focus-master': 3 } },
+        { questionId: 'q3', answerValue: 'workout-session', results: { 'work-life-balancer': 5, 'digital-nomad': 2 } },
+        { questionId: 'q3', answerValue: 'planning-tomorrow', results: { 'process-perfectionist': 5, 'focus-master': 2 } }
+      ],
+      defaultResult: 'social-butterfly'
+    },
+    createdAt: new Date('2024-10-15'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 2200,
+      completions: 1760,
+      shares: 420,
+      avgRating: 4.7,
+      trendingScore: 90
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal workspace is:',
+        options: [
+          { id: 'a1', text: 'Open office with lots of people', value: 'open-office' },
+          { id: 'a2', text: 'Private office with a door', value: 'private-office' },
+          { id: 'a3', text: 'Coffee shop with ambient noise', value: 'coffee-shop' },
+          { id: 'a4', text: 'Home office with perfect setup', value: 'home-office' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your ideal work style is:',
+        options: [
+          { id: 'b1', text: 'Collaborative and team-focused', value: 'collaborative' },
+          { id: 'b2', text: 'Independent and self-directed', value: 'independent' },
+          { id: 'b3', text: 'Flexible and adaptable', value: 'flexible' },
+          { id: 'b4', text: 'Structured and organized', value: 'structured' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your ideal workday ends with:',
+        options: [
+          { id: 'c1', text: 'Team drinks and socializing', value: 'team-drinks' },
+          { id: 'c2', text: 'Quiet reflection and planning', value: 'quiet-reflection' },
+          { id: 'c3', text: 'Workout session and self-care', value: 'workout-session' },
+          { id: 'c4', text: 'Planning tomorrow\'s tasks', value: 'planning-tomorrow' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'social-butterfly', 
+        name: 'Social Butterfly', 
+        emoji: '🦋', 
+        description: 'You know everyone in the office! Your networking skills are legendary, and you\'re the life of every meeting!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re the office equivalent of a social media influencer. You can turn any elevator ride into a networking opportunity, and your coffee break conversations are more productive than most board meetings. You\'ve never met a stranger, only friends you haven\'t made yet.'
+      },
+      { 
+        id: 'hermit-genius', 
+        name: 'Hermit Genius', 
+        emoji: '🧙‍♂️', 
+        description: 'You work in mysterious ways! Your productivity is legendary, and you emerge from your cave with solutions!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the office equivalent of a wizard in a tower. You can solve problems that would stump entire teams, and you do it all from the comfort of your headphones. Your colleagues are convinced you have magical powers, and they\'re probably right.'
+      },
+      { 
+        id: 'collaboration-king', 
+        name: 'Collaboration King', 
+        emoji: '👑', 
+        description: 'You make teamwork look easy! Your facilitation skills are unmatched, and you\'re the glue that holds teams together!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the office equivalent of a conductor leading an orchestra. You can make any group of people work together harmoniously, and your team-building skills are so advanced, you could probably get cats to collaborate on a project.'
+      },
+      { 
+        id: 'work-life-balancer', 
+        name: 'Work-Life Balancer', 
+        emoji: '⚖️', 
+        description: 'You\'ve mastered the art of balance! Your boundaries are legendary, and you\'re the poster child for healthy work habits!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the office equivalent of a zen master. You can maintain perfect work-life balance while still being incredibly productive. Your colleagues are in awe of your ability to leave work at work and live life to the fullest.'
+      },
+      { 
+        id: 'process-perfectionist', 
+        name: 'Process Perfectionist', 
+        emoji: '⚙️', 
+        description: 'You have a system for everything! Your organizational skills are legendary, and you could probably organize a hurricane!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the office equivalent of a Swiss watchmaker. You can create processes so efficient, they practically run themselves. Your organizational skills are so advanced, you could probably organize a tornado and make it more efficient.'
+      },
+      { 
+        id: 'focus-master', 
+        name: 'Focus Master', 
+        emoji: '🎯', 
+        description: 'You\'re the master of deep focus! Your concentration skills are legendary, and you can tune out any distraction!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the office equivalent of a meditation guru. You can focus on a single task for hours without breaking concentration, and your ability to tune out distractions is unmatched. Your focus skills are so advanced, you could probably work in a circus and still get work done.'
+      }
+    ]
+  },
+  {
+    id: 'debugging-style',
+    title: 'What\'s Your Debugging Style?',
+    description: 'Discover your unique approach to solving bugs!',
+    emoji: '🐛',
+    category: 'personality',
+    tags: ['debugging', 'programming', 'bugs', 'developer'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'dark',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: When you encounter a bug, you:
+        { questionId: 'q1', answerValue: 'console-log', results: { 'console-logger': 5, 'stack-overflow-hunter': 3 } },
+        { questionId: 'q1', answerValue: 'google-search', results: { 'stack-overflow-hunter': 5, 'rubber-duck': 2 } },
+        { questionId: 'q1', answerValue: 'talk-out-loud', results: { 'rubber-duck': 5, 'console-logger': 2 } },
+        { questionId: 'q1', answerValue: 'rewrite-everything', results: { 'nuclear-option': 5, 'console-logger': 1 } },
+        
+        // Question 2: Your favorite debugging tool is:
+        { questionId: 'q2', answerValue: 'debugger', results: { 'methodical-debugger': 5, 'stack-overflow-hunter': 2 } },
+        { questionId: 'q2', answerValue: 'stack-overflow', results: { 'stack-overflow-hunter': 5, 'rubber-duck': 2 } },
+        { questionId: 'q2', answerValue: 'rubber-duck', results: { 'rubber-duck': 5, 'methodical-debugger': 2 } },
+        { questionId: 'q2', answerValue: 'delete-code', results: { 'nuclear-option': 5, 'console-logger': 1 } },
+        
+        // Question 3: When debugging fails, you:
+        { questionId: 'q3', answerValue: 'add-more-logs', results: { 'console-logger': 5, 'methodical-debugger': 2 } },
+        { questionId: 'q3', answerValue: 'search-again', results: { 'stack-overflow-hunter': 5, 'rubber-duck': 2 } },
+        { questionId: 'q3', answerValue: 'explain-to-duck', results: { 'rubber-duck': 5, 'methodical-debugger': 2 } },
+        { questionId: 'q3', answerValue: 'start-over', results: { 'nuclear-option': 5, 'console-logger': 1 } }
+      ],
+      defaultResult: 'console-logger'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 1500,
+      completions: 1200,
+      shares: 250,
+      avgRating: 4.6,
+      trendingScore: 85
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'When you encounter a bug, you:',
+        options: [
+          { id: 'a1', text: 'Add console.log() everywhere', value: 'console-log' },
+          { id: 'a2', text: 'Google the error message', value: 'google-search' },
+          { id: 'a3', text: 'Talk to your rubber duck', value: 'talk-out-loud' },
+          { id: 'a4', text: 'Rewrite the entire function', value: 'rewrite-everything' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your favorite debugging tool is:',
+        options: [
+          { id: 'b1', text: 'Browser debugger', value: 'debugger' },
+          { id: 'b2', text: 'Stack Overflow', value: 'stack-overflow' },
+          { id: 'b3', text: 'Rubber duck', value: 'rubber-duck' },
+          { id: 'b4', text: 'Delete button', value: 'delete-code' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'When debugging fails, you:',
+        options: [
+          { id: 'c1', text: 'Add more console.logs', value: 'add-more-logs' },
+          { id: 'c2', text: 'Search for more solutions', value: 'search-again' },
+          { id: 'c3', text: 'Explain the problem to your duck', value: 'explain-to-duck' },
+          { id: 'c4', text: 'Start the project from scratch', value: 'start-over' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'console-logger', 
+        name: 'Console Logger', 
+        emoji: '📝', 
+        description: 'You debug with the power of console.log! Your code is a masterpiece of logging statements!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the debugging equivalent of a detective with a magnifying glass. You can solve any mystery by adding enough console.logs, and your code looks like a diary of your debugging journey. You\'ve never met a variable you couldn\'t log.'
+      },
+      { 
+        id: 'stack-overflow-hunter', 
+        name: 'Stack Overflow Hunter', 
+        emoji: '🔍', 
+        description: 'You\'re the master of copy-paste debugging! Your Google-fu is legendary!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the debugging equivalent of a treasure hunter. You can find the perfect solution on Stack Overflow faster than most people can type "error". Your browser history is 90% Stack Overflow, and you\'ve never met a problem that couldn\'t be solved with the right search query.'
+      },
+      { 
+        id: 'rubber-duck', 
+        name: 'Rubber Duck', 
+        emoji: '🦆', 
+        description: 'You solve problems by talking to inanimate objects! Your rubber duck is your best debugging partner!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the debugging equivalent of a therapist. You can solve any problem by explaining it to your rubber duck, and your colleagues are convinced you have magical powers. Your rubber duck has heard more debugging stories than most people have heard in their lifetime.'
+      },
+      { 
+        id: 'methodical-debugger', 
+        name: 'Methodical Debugger', 
+        emoji: '🔬', 
+        description: 'You debug with scientific precision! Your systematic approach is unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the debugging equivalent of a scientist. You can solve any problem by breaking it down into smaller pieces, and your debugging process is so systematic, it could be published in a research paper. You\'ve never met a bug that couldn\'t be solved with the right methodology.'
+      },
+      { 
+        id: 'nuclear-option', 
+        name: 'Nuclear Option', 
+        emoji: '💥', 
+        description: 'You solve problems by deleting everything and starting over! Your "fix" is always the nuclear option!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the debugging equivalent of a demolition expert. You can solve any problem by deleting the entire codebase and starting fresh, and your approach is so extreme, it makes other developers question their life choices. You\'ve never met a bug that couldn\'t be solved with a complete rewrite.'
+      }
+    ]
+  },
+  {
+    id: 'git-commit-style',
+    title: 'What\'s Your Git Commit Style?',
+    description: 'Discover your unique approach to version control!',
+    emoji: '📝',
+    category: 'personality',
+    tags: ['git', 'version-control', 'commits', 'developer'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'minimal',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your typical commit message is:
+        { questionId: 'q1', answerValue: 'fix-typo', results: { 'fix-master': 5, 'emoji-committer': 2 } },
+        { questionId: 'q1', answerValue: 'wip', results: { 'wip-king': 5, 'fix-master': 1 } },
+        { questionId: 'q1', answerValue: 'emoji-commit', results: { 'emoji-committer': 5, 'wip-king': 2 } },
+        { questionId: 'q1', answerValue: 'novel-commit', results: { 'novel-writer': 5, 'emoji-committer': 2 } },
+        
+        // Question 2: You commit when:
+        { questionId: 'q2', answerValue: 'every-change', results: { 'commit-addict': 5, 'fix-master': 2 } },
+        { questionId: 'q2', answerValue: 'feature-done', results: { 'feature-completer': 5, 'commit-addict': 2 } },
+        { questionId: 'q2', answerValue: 'end-of-day', results: { 'daily-committer': 5, 'feature-completer': 2 } },
+        { questionId: 'q2', answerValue: 'never', results: { 'commit-phobic': 5, 'daily-committer': 1 } },
+        
+        // Question 3: Your commit frequency is:
+        { questionId: 'q3', answerValue: 'every-minute', results: { 'commit-addict': 5, 'wip-king': 2 } },
+        { questionId: 'q3', answerValue: 'when-working', results: { 'feature-completer': 5, 'daily-committer': 2 } },
+        { questionId: 'q3', answerValue: 'end-of-day', results: { 'daily-committer': 5, 'feature-completer': 2 } },
+        { questionId: 'q3', answerValue: 'what-is-commit', results: { 'commit-phobic': 5, 'daily-committer': 1 } }
+      ],
+      defaultResult: 'fix-master'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 1800,
+      completions: 1450,
+      shares: 320,
+      avgRating: 4.7,
+      trendingScore: 88
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your typical commit message is:',
+        options: [
+          { id: 'a1', text: 'fix typo', value: 'fix-typo' },
+          { id: 'a2', text: 'wip', value: 'wip' },
+          { id: 'a3', text: '✨ Add amazing feature', value: 'emoji-commit' },
+          { id: 'a4', text: 'A comprehensive refactoring of the entire system...', value: 'novel-commit' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'You commit when:',
+        options: [
+          { id: 'b1', text: 'Every single change', value: 'every-change' },
+          { id: 'b2', text: 'Feature is complete', value: 'feature-done' },
+          { id: 'b3', text: 'End of the day', value: 'end-of-day' },
+          { id: 'b4', text: 'What is commit?', value: 'never' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your commit frequency is:',
+        options: [
+          { id: 'c1', text: 'Every minute', value: 'every-minute' },
+          { id: 'c2', text: 'When I finish something', value: 'when-working' },
+          { id: 'c3', text: 'End of each day', value: 'end-of-day' },
+          { id: 'c4', text: 'What is commit?', value: 'what-is-commit' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'fix-master', 
+        name: 'Fix Master', 
+        emoji: '🔧', 
+        description: 'You\'re the master of "fix typo" commits! Your commit history is a masterpiece of fixes!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the commit equivalent of a handyman. You can fix any typo, and your commit history looks like a repair log. You\'ve never met a typo you couldn\'t fix, and your colleagues are convinced you have a sixth sense for spotting errors.'
+      },
+      { 
+        id: 'wip-king', 
+        name: 'WIP King', 
+        emoji: '👑', 
+        description: 'You\'re the king of "wip" commits! Your work-in-progress game is legendary!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the commit equivalent of a work-in-progress specialist. You can turn any incomplete feature into a WIP commit, and your commit history looks like a construction site. You\'ve never met a feature you couldn\'t mark as WIP, and your colleagues are convinced you\'re always in the middle of something.'
+      },
+      { 
+        id: 'emoji-committer', 
+        name: 'Emoji Committer', 
+        emoji: '🎨', 
+        description: 'You make commits beautiful with emojis! Your commit messages are works of art!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re the commit equivalent of an artist. You can turn any change into a beautiful emoji-filled commit message, and your commit history looks like a rainbow. You\'ve never met a commit that couldn\'t be improved with the right emoji, and your colleagues are convinced you have a PhD in emoji studies.'
+      },
+      { 
+        id: 'commit-addict', 
+        name: 'Commit Addict', 
+        emoji: '💉', 
+        description: 'You commit every single change! Your commit frequency is unmatched!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the commit equivalent of a caffeine addict. You can commit every single change, and your commit history looks like a heartbeat monitor. You\'ve never met a change that couldn\'t be committed, and your colleagues are convinced you have a commit button permanently pressed.'
+      },
+      { 
+        id: 'novel-writer', 
+        name: 'Novel Writer', 
+        emoji: '📚', 
+        description: 'You write commit messages like novels! Your documentation skills are legendary!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the commit equivalent of a novelist. You can turn any change into a comprehensive commit message, and your commit history looks like a library. You\'ve never met a change that couldn\'t be documented in detail, and your colleagues are convinced you\'re writing the next great American novel in your commit messages.'
+      },
+      { 
+        id: 'commit-phobic', 
+        name: 'Commit Phobic', 
+        emoji: '😱', 
+        description: 'You\'re terrified of commits! Your fear of version control is legendary!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the commit equivalent of someone who\'s afraid of the dark. You can avoid commits like the plague, and your commit history looks like a ghost town. You\'ve never met a change that couldn\'t be avoided, and your colleagues are convinced you\'re living in a parallel universe where version control doesn\'t exist.'
+      }
+    ]
+  },
+  {
+    id: 'code-review-style',
+    title: 'What\'s Your Code Review Style?',
+    description: 'Discover your unique approach to reviewing code!',
+    emoji: '👀',
+    category: 'personality',
+    tags: ['code-review', 'programming', 'teamwork', 'developer'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'default',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your typical code review comment is:
+        { questionId: 'q1', answerValue: 'nitpick', results: { 'nitpicker': 5, 'perfectionist': 3 } },
+        { questionId: 'q1', answerValue: 'approve', results: { 'approver': 5, 'nitpicker': 1 } },
+        { questionId: 'q1', answerValue: 'suggest', results: { 'suggester': 5, 'approver': 2 } },
+        { questionId: 'q1', answerValue: 'rewrite', results: { 'rewriter': 5, 'suggester': 2 } },
+        
+        // Question 2: You review code by:
+        { questionId: 'q2', answerValue: 'line-by-line', results: { 'perfectionist': 5, 'nitpicker': 3 } },
+        { questionId: 'q2', answerValue: 'quick-scan', results: { 'approver': 5, 'perfectionist': 1 } },
+        { questionId: 'q2', answerValue: 'focus-areas', results: { 'suggester': 5, 'approver': 2 } },
+        { questionId: 'q2', answerValue: 'rewrite-everything', results: { 'rewriter': 5, 'suggester': 2 } },
+        
+        // Question 3: Your review frequency is:
+        { questionId: 'q3', answerValue: 'immediately', results: { 'perfectionist': 5, 'nitpicker': 3 } },
+        { questionId: 'q3', answerValue: 'when-asked', results: { 'approver': 5, 'perfectionist': 2 } },
+        { questionId: 'q3', answerValue: 'selectively', results: { 'suggester': 5, 'approver': 2 } },
+        { questionId: 'q3', answerValue: 'never', results: { 'ghost-reviewer': 5, 'approver': 1 } }
+      ],
+      defaultResult: 'approver'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 2000,
+      completions: 1600,
+      shares: 380,
+      avgRating: 4.8,
+      trendingScore: 90
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your typical code review comment is:',
+        options: [
+          { id: 'a1', text: 'Missing semicolon on line 42', value: 'nitpick' },
+          { id: 'a2', text: 'LGTM 👍', value: 'approve' },
+          { id: 'a3', text: 'Consider using a different approach', value: 'suggest' },
+          { id: 'a4', text: 'This should be completely rewritten', value: 'rewrite' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'You review code by:',
+        options: [
+          { id: 'b1', text: 'Line by line analysis', value: 'line-by-line' },
+          { id: 'b2', text: 'Quick scan and approve', value: 'quick-scan' },
+          { id: 'b3', text: 'Focus on key areas', value: 'focus-areas' },
+          { id: 'b4', text: 'Rewrite everything', value: 'rewrite-everything' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your review frequency is:',
+        options: [
+          { id: 'c1', text: 'Immediately when PR is created', value: 'immediately' },
+          { id: 'c2', text: 'When specifically asked', value: 'when-asked' },
+          { id: 'c3', text: 'Only for important changes', value: 'selectively' },
+          { id: 'c4', text: 'What is code review?', value: 'never' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'nitpicker', 
+        name: 'Nitpicker', 
+        emoji: '🔍', 
+        description: 'You find every tiny issue! Your attention to detail is legendary!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the code review equivalent of a forensic scientist. You can find every missing semicolon, every typo, and every formatting issue, and your reviews are so detailed, they could be used as training materials. You\'ve never met a code that couldn\'t be improved with your nitpicking skills.'
+      },
+      { 
+        id: 'approver', 
+        name: 'Approver', 
+        emoji: '✅', 
+        description: 'You approve everything! Your trust in your team is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the code review equivalent of a cheerleader. You can approve any code with enthusiasm, and your reviews are so positive, they make everyone feel good about their work. You\'ve never met a PR that couldn\'t be approved, and your colleagues are convinced you have a permanent thumbs-up emoji.'
+      },
+      { 
+        id: 'suggester', 
+        name: 'Suggester', 
+        emoji: '💡', 
+        description: 'You suggest improvements! Your constructive feedback is legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the code review equivalent of a mentor. You can suggest improvements that make everyone better, and your reviews are so helpful, they could be used as learning materials. You\'ve never met a code that couldn\'t be improved with your suggestions, and your colleagues are convinced you have a PhD in code improvement.'
+      },
+      { 
+        id: 'rewriter', 
+        name: 'Rewriter', 
+        emoji: '🔄', 
+        description: 'You rewrite everything! Your perfectionism is unmatched!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the code review equivalent of a perfectionist. You can rewrite any code to make it perfect, and your reviews are so thorough, they could be used as examples of excellence. You\'ve never met a code that couldn\'t be improved with a complete rewrite, and your colleagues are convinced you have a PhD in code perfection.'
+      },
+      { 
+        id: 'perfectionist', 
+        name: 'Perfectionist', 
+        emoji: '🎯', 
+        description: 'You demand perfection! Your standards are legendary!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the code review equivalent of a quality inspector. You can find every issue and demand perfection, and your reviews are so thorough, they could be used as quality standards. You\'ve never met a code that couldn\'t be improved with your perfectionist approach, and your colleagues are convinced you have a PhD in code quality.'
+      },
+      { 
+        id: 'ghost-reviewer', 
+        name: 'Ghost Reviewer', 
+        emoji: '👻', 
+        description: 'You never review code! Your invisibility is legendary!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the code review equivalent of a ghost. You can avoid reviews like the plague, and your presence is so invisible, your colleagues are convinced you don\'t exist. You\'ve never met a PR that couldn\'t be ignored, and your colleagues are convinced you\'re living in a parallel universe where code reviews don\'t exist.'
+      }
+    ]
+  },
+  {
+    id: 'stack-overflow-user',
+    title: 'What Type of Stack Overflow User Are You?',
+    description: 'Discover your unique approach to the developer\'s best friend!',
+    emoji: '📚',
+    category: 'personality',
+    tags: ['stack-overflow', 'programming', 'community', 'developer'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your typical Stack Overflow question is:
+        { questionId: 'q1', answerValue: 'homework', results: { 'homework-asker': 5, 'duplicate-finder': 2 } },
+        { questionId: 'q1', answerValue: 'duplicate', results: { 'duplicate-finder': 5, 'homework-asker': 2 } },
+        { questionId: 'q1', answerValue: 'expert', results: { 'expert-answerer': 5, 'duplicate-finder': 2 } },
+        { questionId: 'q1', answerValue: 'downvoter', results: { 'downvote-master': 5, 'expert-answerer': 2 } },
+        
+        // Question 2: You use Stack Overflow to:
+        { questionId: 'q2', answerValue: 'copy-paste', results: { 'copy-paster': 5, 'homework-asker': 2 } },
+        { questionId: 'q2', answerValue: 'learn', results: { 'learner': 5, 'copy-paster': 2 } },
+        { questionId: 'q2', answerValue: 'help-others', results: { 'helper': 5, 'learner': 2 } },
+        { questionId: 'q2', answerValue: 'judge', results: { 'judge': 5, 'helper': 2 } },
+        
+        // Question 3: Your Stack Overflow reputation is:
+        { questionId: 'q3', answerValue: 'negative', results: { 'homework-asker': 5, 'duplicate-finder': 2 } },
+        { questionId: 'q3', answerValue: 'low', results: { 'copy-paster': 5, 'homework-asker': 2 } },
+        { questionId: 'q3', answerValue: 'high', results: { 'expert-answerer': 5, 'helper': 2 } },
+        { questionId: 'q3', answerValue: 'legendary', results: { 'stack-overflow-god': 5, 'expert-answerer': 2 } }
+      ],
+      defaultResult: 'copy-paster'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 2200,
+      completions: 1800,
+      shares: 420,
+      avgRating: 4.9,
+      trendingScore: 95
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your typical Stack Overflow question is:',
+        options: [
+          { id: 'a1', text: 'How do I do my homework?', value: 'homework' },
+          { id: 'a2', text: 'This is a duplicate of...', value: 'duplicate' },
+          { id: 'a3', text: 'Here\'s a comprehensive solution', value: 'expert' },
+          { id: 'a4', text: 'This question is terrible', value: 'downvoter' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'You use Stack Overflow to:',
+        options: [
+          { id: 'b1', text: 'Copy and paste code', value: 'copy-paste' },
+          { id: 'b2', text: 'Learn new concepts', value: 'learn' },
+          { id: 'b3', text: 'Help other developers', value: 'help-others' },
+          { id: 'b4', text: 'Judge question quality', value: 'judge' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your Stack Overflow reputation is:',
+        options: [
+          { id: 'c1', text: 'Negative (I ask too many bad questions)', value: 'negative' },
+          { id: 'c2', text: 'Low (I mostly lurk)', value: 'low' },
+          { id: 'c3', text: 'High (I help others regularly)', value: 'high' },
+          { id: 'c4', text: 'Legendary (I\'m a Stack Overflow god)', value: 'legendary' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'homework-asker', 
+        name: 'Homework Asker', 
+        emoji: '📝', 
+        description: 'You ask Stack Overflow to do your homework! Your academic approach is legendary!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the Stack Overflow equivalent of a student who forgot to do their homework. You can turn any assignment into a Stack Overflow question, and your questions are so academic, they could be used as exam questions. You\'ve never met a problem that couldn\'t be solved by asking Stack Overflow to do your work for you.'
+      },
+      { 
+        id: 'duplicate-finder', 
+        name: 'Duplicate Finder', 
+        emoji: '🔍', 
+        description: 'You find duplicates everywhere! Your detective skills are unmatched!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the Stack Overflow equivalent of a detective. You can find duplicates of any question, and your detective skills are so advanced, you could probably find a duplicate of a question that hasn\'t been asked yet. You\'ve never met a question that couldn\'t be marked as a duplicate, and your colleagues are convinced you have a PhD in duplicate detection.'
+      },
+      { 
+        id: 'copy-paster', 
+        name: 'Copy Paster', 
+        emoji: '📋', 
+        description: 'You copy and paste everything! Your efficiency is legendary!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the Stack Overflow equivalent of a copy machine. You can copy and paste any solution, and your efficiency is so high, you could probably copy-paste your way to a working application. You\'ve never met a problem that couldn\'t be solved with the right copy-paste, and your colleagues are convinced you have a PhD in copy-paste engineering.'
+      },
+      { 
+        id: 'expert-answerer', 
+        name: 'Expert Answerer', 
+        emoji: '🧠', 
+        description: 'You provide expert answers! Your knowledge is legendary!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the Stack Overflow equivalent of a professor. You can answer any question with expertise, and your knowledge is so vast, you could probably answer questions about programming languages that don\'t exist yet. You\'ve never met a problem that couldn\'t be solved with your expertise, and your colleagues are convinced you have a PhD in everything.'
+      },
+      { 
+        id: 'downvote-master', 
+        name: 'Downvote Master', 
+        emoji: '⬇️', 
+        description: 'You downvote everything! Your critical eye is unmatched!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the Stack Overflow equivalent of a critic. You can downvote any answer with precision, and your critical eye is so sharp, you could probably downvote a perfect solution. You\'ve never met an answer that couldn\'t be improved with your downvotes, and your colleagues are convinced you have a PhD in criticism.'
+      },
+      { 
+        id: 'stack-overflow-god', 
+        name: 'Stack Overflow God', 
+        emoji: '👑', 
+        description: 'You\'re a Stack Overflow legend! Your reputation is unmatched!', 
+        color: 'bg-gold-500',
+        personalizedMessage: 'You\'re the Stack Overflow equivalent of a deity. You can answer any question with god-like knowledge, and your reputation is so high, you could probably answer questions about the meaning of life. You\'ve never met a problem that couldn\'t be solved with your divine knowledge, and your colleagues are convinced you\'re the reincarnation of the first programmer.'
+      }
+    ]
+  },
+  {
+    id: 'meeting-aversion',
+    title: 'What\'s Your Meeting Aversion Level?',
+    description: 'Discover your unique relationship with meetings!',
+    emoji: '😴',
+    category: 'personality',
+    tags: ['meetings', 'productivity', 'developer', 'workplace'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'dark',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: When you see a meeting invite, you:
+        { questionId: 'q1', answerValue: 'decline', results: { 'meeting-hater': 5, 'meeting-avoider': 3 } },
+        { questionId: 'q1', answerValue: 'ignore', results: { 'meeting-avoider': 5, 'meeting-hater': 2 } },
+        { questionId: 'q1', answerValue: 'attend', results: { 'meeting-attendee': 5, 'meeting-avoider': 2 } },
+        { questionId: 'q1', answerValue: 'excited', results: { 'meeting-lover': 5, 'meeting-attendee': 2 } },
+        
+        // Question 2: Your ideal meeting duration is:
+        { questionId: 'q2', answerValue: 'zero', results: { 'meeting-hater': 5, 'meeting-avoider': 3 } },
+        { questionId: 'q2', answerValue: '5-minutes', results: { 'meeting-avoider': 5, 'meeting-hater': 2 } },
+        { questionId: 'q2', answerValue: '30-minutes', results: { 'meeting-attendee': 5, 'meeting-avoider': 2 } },
+        { questionId: 'q2', answerValue: 'all-day', results: { 'meeting-lover': 5, 'meeting-attendee': 2 } },
+        
+        // Question 3: Your meeting participation style is:
+        { questionId: 'q3', answerValue: 'silent', results: { 'meeting-hater': 5, 'meeting-avoider': 3 } },
+        { questionId: 'q3', answerValue: 'minimal', results: { 'meeting-avoider': 5, 'meeting-hater': 2 } },
+        { questionId: 'q3', answerValue: 'engaged', results: { 'meeting-attendee': 5, 'meeting-avoider': 2 } },
+        { questionId: 'q3', answerValue: 'dominant', results: { 'meeting-lover': 5, 'meeting-attendee': 2 } }
+      ],
+      defaultResult: 'meeting-avoider'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 2500,
+      completions: 2000,
+      shares: 500,
+      avgRating: 4.8,
+      trendingScore: 92
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'When you see a meeting invite, you:',
+        options: [
+          { id: 'a1', text: 'Decline immediately', value: 'decline' },
+          { id: 'a2', text: 'Ignore it completely', value: 'ignore' },
+          { id: 'a3', text: 'Attend reluctantly', value: 'attend' },
+          { id: 'a4', text: 'Get excited about it', value: 'excited' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your ideal meeting duration is:',
+        options: [
+          { id: 'b1', text: 'Zero minutes', value: 'zero' },
+          { id: 'b2', text: '5 minutes max', value: '5-minutes' },
+          { id: 'b3', text: '30 minutes', value: '30-minutes' },
+          { id: 'b4', text: 'All day long', value: 'all-day' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your meeting participation style is:',
+        options: [
+          { id: 'c1', text: 'Silent observer', value: 'silent' },
+          { id: 'c2', text: 'Minimal participation', value: 'minimal' },
+          { id: 'c3', text: 'Engaged contributor', value: 'engaged' },
+          { id: 'c4', text: 'Dominant speaker', value: 'dominant' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'meeting-hater', 
+        name: 'Meeting Hater', 
+        emoji: '😡', 
+        description: 'You despise meetings with every fiber of your being! Your hatred is legendary!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a hermit. You can avoid meetings like the plague, and your hatred for them is so intense, you could probably start a revolution against them. You\'ve never met a meeting that couldn\'t be avoided, and your colleagues are convinced you have a PhD in meeting avoidance.'
+      },
+      { 
+        id: 'meeting-avoider', 
+        name: 'Meeting Avoider', 
+        emoji: '🙈', 
+        description: 'You avoid meetings like the plague! Your evasion skills are unmatched!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a ninja. You can avoid meetings with stealth, and your evasion skills are so advanced, you could probably avoid a meeting that\'s happening in your own calendar. You\'ve never met a meeting that couldn\'t be evaded, and your colleagues are convinced you have a PhD in meeting evasion.'
+      },
+      { 
+        id: 'meeting-attendee', 
+        name: 'Meeting Attendee', 
+        emoji: '👥', 
+        description: 'You attend meetings when necessary! Your attendance is reliable!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a responsible adult. You can attend meetings when needed, and your attendance is so reliable, you could probably attend a meeting in your sleep. You\'ve never met a meeting that couldn\'t be attended, and your colleagues are convinced you have a PhD in meeting attendance.'
+      },
+      { 
+        id: 'meeting-lover', 
+        name: 'Meeting Lover', 
+        emoji: '💕', 
+        description: 'You love meetings! Your enthusiasm is legendary!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re the meeting equivalent of a social butterfly. You can love any meeting, and your enthusiasm is so infectious, you could probably make a meeting about watching paint dry exciting. You\'ve never met a meeting that couldn\'t be loved, and your colleagues are convinced you have a PhD in meeting enthusiasm.'
+      }
+    ]
   }
 ];
 
@@ -1723,4 +3044,111 @@ export function getQuizDefaultTheme(quizId: string): string {
 export function getQuizDefaultCustomization(quizId: string): Partial<QuizCustomization> {
   const quiz = getQuizById(quizId);
   return quiz?.defaultCustomization || {};
+}
+
+// Dynamic routing utilities
+export function getAllQuizIds(): string[] {
+  return quizzes.map(quiz => quiz.id);
+}
+
+export function getQuizSlugs(): string[] {
+  return quizzes.map(quiz => quiz.id);
+}
+
+export function isValidQuizId(id: string): boolean {
+  return quizzes.some(quiz => quiz.id === id);
+}
+
+export function getQuizMetadata(quizId: string) {
+  const quiz = getQuizById(quizId);
+  if (!quiz) return null;
+  
+  return {
+    title: quiz.title,
+    titleHindi: quiz.titleHindi,
+    description: quiz.description,
+    descriptionHindi: quiz.descriptionHindi,
+    emoji: quiz.emoji,
+    category: quiz.category,
+    tags: quiz.tags,
+    isViral: quiz.isViral,
+    isFeatured: quiz.isFeatured,
+    metadata: quiz.metadata
+  };
+}
+
+export function getQuizForSEO(quizId: string) {
+  const quiz = getQuizById(quizId);
+  if (!quiz) return null;
+  
+  return {
+    title: quiz.title,
+    description: quiz.description,
+    keywords: quiz.tags?.join(', ') || '',
+    emoji: quiz.emoji,
+    category: quiz.category,
+    isViral: quiz.isViral,
+    isFeatured: quiz.isFeatured
+  };
+}
+
+// Quiz recommendation system
+export function getRecommendedQuizzes(currentQuizId: string, limit: number = 3): Quiz[] {
+  const currentQuiz = getQuizById(currentQuizId);
+  if (!currentQuiz || !currentQuiz.tags) {
+    // Fallback: return featured and viral quizzes
+    return quizzes
+      .filter(quiz => quiz.id !== currentQuizId)
+      .filter(quiz => quiz.isFeatured || quiz.isViral)
+      .sort((a, b) => (b.metadata?.trendingScore || 0) - (a.metadata?.trendingScore || 0))
+      .slice(0, limit);
+  }
+
+  // Calculate similarity score based on tags
+  const quizScores = quizzes
+    .filter(quiz => quiz.id !== currentQuizId)
+    .map(quiz => {
+      const currentTags = currentQuiz.tags || [];
+      const quizTags = quiz.tags || [];
+      
+      // Calculate tag overlap
+      const commonTags = currentTags.filter(tag => quizTags.includes(tag));
+      const similarityScore = commonTags.length / Math.max(currentTags.length, quizTags.length);
+      
+      // Bonus for same category
+      const categoryBonus = currentQuiz.category === quiz.category ? 0.2 : 0;
+      
+      // Bonus for viral/featured quizzes
+      const viralBonus = quiz.isViral ? 0.1 : 0;
+      const featuredBonus = quiz.isFeatured ? 0.15 : 0;
+      
+      const totalScore = similarityScore + categoryBonus + viralBonus + featuredBonus;
+      
+      return {
+        quiz,
+        score: totalScore
+      };
+    })
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit);
+
+  return quizScores.map(item => item.quiz);
+}
+
+export function getQuizRecommendations(currentQuizId: string, limit: number = 3) {
+  const recommendedQuizzes = getRecommendedQuizzes(currentQuizId, limit);
+  
+  return recommendedQuizzes.map(quiz => ({
+    id: quiz.id,
+    title: quiz.title,
+    titleHindi: quiz.titleHindi,
+    description: quiz.description,
+    descriptionHindi: quiz.descriptionHindi,
+    emoji: quiz.emoji,
+    category: quiz.category,
+    tags: quiz.tags,
+    isViral: quiz.isViral,
+    isFeatured: quiz.isFeatured,
+    metadata: quiz.metadata
+  }));
 }

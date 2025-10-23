@@ -8,6 +8,7 @@ import QuizNavigation from './QuizNavigation';
 import UserInfoForm from './UserInfoForm';
 import LanguageToggle, { LanguageProvider, useLanguage } from './LanguageToggle';
 import { ThemeProvider, useTheme } from '../theme/ThemeProvider';
+import QuizShareButton from './QuizShareButton';
 import { motion } from 'framer-motion';
 
 interface QuizResultWithAI extends QuizResult {
@@ -113,7 +114,14 @@ function QuizPageContent({ quizId }: QuizPageProps) {
       }}
     >
       <QuizNavigation />
-      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10">
+      <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 flex flex-col gap-2">
+        <QuizShareButton 
+          quizId={quizId}
+          quizTitle={language === 'hi' && quiz.titleHindi ? quiz.titleHindi : quiz.title}
+          quizEmoji={quiz.emoji}
+          quizDescription={language === 'hi' && quiz.descriptionHindi ? quiz.descriptionHindi : quiz.description}
+          result={result?.name}
+        />
         <LanguageToggle />
       </div>
       {/* Quiz Content */}
