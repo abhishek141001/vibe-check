@@ -13,6 +13,16 @@ interface UserInfo {
   age: number;
 }
 
+interface ForceColors {
+  text: string;
+  textSecondary: string;
+  primary: string;
+  secondary: string;
+  background: string;
+  surface: string;
+  error: string;
+}
+
 interface UserInfoFormProps {
   quizTitle: string;
   quizEmoji: string;
@@ -21,13 +31,17 @@ interface UserInfoFormProps {
     enablePersonalization: boolean;
     personalizationFields: ('name' | 'age')[];
   };
+  forceColors?: ForceColors;
 }
 
-export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customization }: UserInfoFormProps) {
+export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customization, forceColors }: UserInfoFormProps) {
   const [name, setName] = useState('');
   const [age, setAge] = useState('');
   const [errors, setErrors] = useState<{ name?: string; age?: string }>({});
   const { currentTheme } = useTheme();
+
+  // Color palette (allows override)
+  const palette = forceColors || currentTheme.colors;
 
   // Default personalization settings
   const defaultCustomization = {
@@ -73,21 +87,12 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!isPersonalizationEnabled) {
-      // Skip personalization, go directly to quiz
-      onComplete({
-        name: '',
-        age: 0
-      });
+      onComplete({ name: '', age: 0 });
       return;
     }
-    
     if (validateForm()) {
-      onComplete({
-        name: name.trim(),
-        age: shouldShowAge ? parseInt(age) : 0
-      });
+      onComplete({ name: name.trim(), age: shouldShowAge ? parseInt(age) : 0 });
     }
   };
 
@@ -134,9 +139,8 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
           transition={{ delay: 0.3 }}
           className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6"
           style={{ 
-            color: currentTheme.colors.text,
-            fontFamily: currentTheme.fonts.heading,
-            textShadow: `0 4px 8px ${currentTheme.colors.primary}30`
+            color: palette.text,
+            textShadow: `0 4px 8px ${palette.primary}30`
           }}
         >
           {quizTitle}
@@ -146,10 +150,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
           className="text-lg sm:text-xl md:text-2xl mb-2"
-          style={{ 
-            color: currentTheme.colors.textSecondary,
-            fontFamily: currentTheme.fonts.body
-          }}
+          style={{ color: palette.textSecondary }}
         >
           🎮 Ready to discover your personality?
         </motion.p>
@@ -158,10 +159,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
           className="text-base sm:text-lg md:text-xl"
-          style={{ 
-            color: currentTheme.colors.textSecondary,
-            fontFamily: currentTheme.fonts.body
-          }}
+          style={{ color: palette.textSecondary }}
         >
           Tell us a bit about yourself to get personalized results!
         </motion.p>
@@ -190,10 +188,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
             <Label 
               htmlFor="name" 
               className="text-lg sm:text-xl md:text-2xl font-bold"
-              style={{ 
-                color: currentTheme.colors.text,
-                fontFamily: currentTheme.fonts.heading
-              }}
+              style={{ color: palette.text }}
             >
               What's your name, champion? *
             </Label>
@@ -205,7 +200,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
           >
             <User 
               className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5" 
-              style={{ color: currentTheme.colors.primary }}
+              style={{ color: palette.primary }}
             />
             <Input
               id="name"
@@ -215,14 +210,13 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
               placeholder="Enter your name"
               className={`pl-12 py-4 text-lg w-full ${errors.name ? 'border-red-500' : ''}`}
               style={{
-                backgroundColor: `${currentTheme.colors.background}90`,
-                borderColor: errors.name ? currentTheme.colors.error : currentTheme.colors.primary,
-                color: currentTheme.colors.text,
+                backgroundColor: `${palette.background}90`,
+                borderColor: errors.name ? palette.error : palette.primary,
+                color: palette.text,
                 borderRadius: '1rem',
-                fontFamily: currentTheme.fonts.body,
                 borderWidth: '2px',
                 backdropFilter: 'blur(10px)',
-                boxShadow: `0 8px 25px ${currentTheme.colors.primary}20`
+                boxShadow: `0 8px 25px ${palette.primary}20`
               }}
             />
           </motion.div>
@@ -231,7 +225,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               className="text-sm mt-2 flex items-center gap-2"
-              style={{ color: currentTheme.colors.error }}
+              style={{ color: palette.error }}
             >
               <span className="text-lg">⚠️</span> {errors.name}
             </motion.p>
@@ -254,10 +248,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
               <Label 
                 htmlFor="age" 
                 className="text-lg sm:text-xl md:text-2xl font-bold"
-                style={{ 
-                  color: currentTheme.colors.text,
-                  fontFamily: currentTheme.fonts.heading
-                }}
+                style={{ color: palette.text }}
               >
                 How old are you, legend? *
               </Label>
@@ -269,7 +260,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
             >
               <Calendar 
                 className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5" 
-                style={{ color: currentTheme.colors.primary }}
+                style={{ color: palette.primary }}
               />
               <Input
                 id="age"
@@ -281,14 +272,14 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
                 max="120"
                 className={`pl-12 py-4 text-lg w-full ${errors.age ? 'border-red-500' : ''}`}
                 style={{
-                  backgroundColor: `${currentTheme.colors.background}90`,
-                  borderColor: errors.age ? currentTheme.colors.error : currentTheme.colors.primary,
-                  color: currentTheme.colors.text,
+                  backgroundColor: `${palette.background}90`,
+                  borderColor: errors.age ? palette.error : palette.primary,
+                  color: palette.text,
                   borderRadius: '1rem',
                   fontFamily: currentTheme.fonts.body,
                   borderWidth: '2px',
                   backdropFilter: 'blur(10px)',
-                  boxShadow: `0 8px 25px ${currentTheme.colors.primary}20`
+                  boxShadow: `0 8px 25px ${palette.primary}20`
                 }}
               />
             </motion.div>
@@ -297,7 +288,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
                 initial={{ opacity: 0, y: -10 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="text-sm mt-2 flex items-center gap-2"
-                style={{ color: currentTheme.colors.error }}
+                style={{ color: palette.error }}
               >
                 <span className="text-lg">⚠️</span> {errors.age}
               </motion.p>
@@ -318,11 +309,11 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
             className="w-full text-white font-bold py-5 px-8 text-xl relative overflow-hidden"
             style={{
               backgroundColor: 'transparent',
-              backgroundImage: `linear-gradient(135deg, ${currentTheme.colors.primary}, ${currentTheme.colors.secondary})`,
+              backgroundImage: `linear-gradient(135deg, ${palette.primary}, ${palette.secondary})`,
               borderRadius: '1.5rem',
               fontFamily: currentTheme.fonts.body,
               border: 'none',
-              boxShadow: `0 15px 40px ${currentTheme.colors.primary}40`,
+              boxShadow: `0 15px 40px ${palette.primary}40`,
               transition: `all ${currentTheme.animations.duration} ${currentTheme.animations.easing}`
             }}
           >
@@ -355,10 +346,7 @@ export default function UserInfoForm({ quizTitle, quizEmoji, onComplete, customi
       >
         <p 
           className="text-sm flex items-center gap-2 text-center"
-          style={{ 
-            color: currentTheme.colors.textSecondary,
-            fontFamily: currentTheme.fonts.body
-          }}
+          style={{ color: palette.textSecondary }}
         >
           <span className="text-lg">🔒</span>
           <span>Your information is safe and will only be used to personalize your quiz results. We don't store or share your personal data.</span>
