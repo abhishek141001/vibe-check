@@ -26,6 +26,7 @@ interface QuizPageProps {
 
 function QuizPageContent({ quizId }: QuizPageProps) {
   const [quiz, setQuiz] = useState(getQuizWithCustomization(quizId));
+  const [isFetchingQuiz, setIsFetchingQuiz] = useState(true);
   const [showUserInfo, setShowUserInfo] = useState(true);
   const [showResult, setShowResult] = useState(false);
   const [result, setResult] = useState<QuizResultWithAI | null>(null);
@@ -50,6 +51,8 @@ function QuizPageContent({ quizId }: QuizPageProps) {
         }
       } catch {
         // ignore network errors; fallback already set
+      } finally {
+        if (!cancelled) setIsFetchingQuiz(false);
       }
     })();
     return () => { cancelled = true; };
@@ -132,6 +135,26 @@ function QuizPageContent({ quizId }: QuizPageProps) {
       }}
     >
       <QuizNavigation />
+      {/* Initial quiz loading overlay */}
+      {isFetchingQuiz && (
+        <div className="fixed inset-0 bg-black bg-opacity-30 flex items-center justify-center z-40">
+          <div 
+            className="p-6 rounded-lg text-center"
+            style={{
+              backgroundColor: currentTheme.colors.surface,
+              color: currentTheme.colors.text,
+              borderRadius: currentTheme.layout.borderRadius,
+              boxShadow: currentTheme.layout.shadows
+            }}
+          >
+            <div 
+              className="animate-spin rounded-full h-8 w-8 border-b-2 mx-auto mb-4"
+              style={{ borderColor: currentTheme.colors.primary }}
+            ></div>
+            <p>Loading quiz...</p>
+          </div>
+        </div>
+      )}
       <div className="absolute top-2 right-2 sm:top-4 sm:right-4 z-10 flex flex-col gap-2">
         <QuizShareButton 
           quizId={quizId}

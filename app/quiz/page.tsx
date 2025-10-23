@@ -14,6 +14,8 @@ function QuizHomeContent() {
   const [activeTab, setActiveTab] = useState('all');
   const [filteredQuizzes, setFilteredQuizzes] = useState<any[]>([]);
   const [featuredQuiz, setFeaturedQuiz] = useState<any | null>(null);
+  const [loadingList, setLoadingList] = useState(true);
+  const [loadingFeatured, setLoadingFeatured] = useState(true);
   const { currentTheme } = useTheme();
 
   const tabs = [
@@ -27,13 +29,14 @@ function QuizHomeContent() {
   useEffect(() => {
     (async () => {
       try {
-        const res = await fetch('/api/quiz?featured=true');
+        const res = await fetch('/api/quiz?featured=true', { next: { revalidate: 60 } } as any);
         if (!res.ok) return;
         const data = await res.json();
         if (Array.isArray(data?.quizzes) && data.quizzes.length > 0) {
           setFeaturedQuiz(data.quizzes[0]);
         }
       } catch {}
+      finally { setLoadingFeatured(false); }
     })();
   }, []);
 
@@ -41,17 +44,17 @@ function QuizHomeContent() {
   useEffect(() => {
     (async () => {
       try {
+        setLoadingList(true);
         let url = '/api/quiz';
         if (activeTab === 'trending') url = '/api/quiz?trending=true';
         else if (activeTab === 'viral') url = '/api/quiz?viral=true';
         else if (activeTab === 'featured') url = '/api/quiz?featured=true';
-        const res = await fetch(url);
+        const res = await fetch(url, { next: { revalidate: 60 } } as any);
         if (!res.ok) return setFilteredQuizzes([]);
         const data = await res.json();
         setFilteredQuizzes(Array.isArray(data?.quizzes) ? data.quizzes : []);
-      } catch {
-        setFilteredQuizzes([]);
-      }
+      } catch { setFilteredQuizzes([]); }
+      finally { setLoadingList(false); }
     })();
   }, [activeTab]);
 
@@ -91,7 +94,20 @@ function QuizHomeContent() {
         </motion.div>
 
         {/* Featured Quiz - Dynamic (from DB) */}
-        {featuredQuiz && (
+        {loadingFeatured ? (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="mb-8 sm:mb-12"
+          >
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 text-center max-w-4xl mx-auto shadow-2xl border border-gray-100">
+              <div className="animate-pulse h-8 w-20 bg-gray-200 rounded mx-auto mb-4"></div>
+              <div className="animate-pulse h-6 w-64 bg-gray-200 rounded mx-auto mb-3"></div>
+              <div className="animate-pulse h-4 w-72 bg-gray-200 rounded mx-auto"></div>
+            </div>
+          </motion.div>
+        ) : featuredQuiz && (
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
@@ -152,7 +168,16 @@ function QuizHomeContent() {
 
         {/* Quiz Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 max-w-6xl mx-auto">
-          {filteredQuizzes.map((quiz, index) => (
+          {loadingList ? (
+            Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="p-4 sm:p-6 bg-white rounded-lg shadow-lg border border-gray-100">
+                <div className="animate-pulse h-8 w-12 bg-gray-200 rounded mb-3"></div>
+                <div className="animate-pulse h-5 w-40 bg-gray-200 rounded mb-2"></div>
+                <div className="animate-pulse h-4 w-56 bg-gray-200 rounded mb-4"></div>
+                <div className="animate-pulse h-4 w-32 bg-gray-200 rounded"></div>
+              </div>
+            ))
+          ) : filteredQuizzes.map((quiz, index) => (
             <motion.div
               key={quiz.id}
               initial={{ opacity: 0, y: 20 }}

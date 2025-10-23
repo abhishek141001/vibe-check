@@ -2,15 +2,56 @@
 
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { quizzesWithMetadata } from '@/lib/quiz-data';
+// DB-backed admin: fetch quizzes via API
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Star, Flame, TrendingUp, Eye, Share, ThumbsUp, Plus, Code } from 'lucide-react';
 import Link from 'next/link';
 
 export default function AdminDashboard() {
-  const [quizData, setQuizData] = useState(quizzesWithMetadata);
-  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [quizData, setQuizData] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState<string | null>(null);
+  const loadQuizzes = async () => {
+    setLoading(true);
+    try {
+      const res = await fetch('/api/quiz', { cache: 'no-store' });
+      const data = await res.json();
+      if (Array.isArray(data?.quizzes)) setQuizData(data.quizzes);
+    } catch (e) {
+      console.error('Failed to load quizzes', e);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    loadQuizzes();
+  }, []);
+
+  const updateMetrics = async (quizId: string, patch: Record<string, number>) => {
+    try {
+      setUpdating(quizId);
+      await fetch('/api/quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ action: 'update_metrics', quizId, data: patch })
+      });
+      setQuizData(prev => prev.map(q => q.id === quizId ? { ...q, metadata: { ...q.metadata, ...patch } } : q));
+    } catch (e) {
+      console.error('Failed to update metrics', e);
+    } finally {
+      setUpdating(null);
+    }
+  };
+
+  const recalcTrending = (q: any) => {
+    const views = q.metadata?.views || 0;
+    const completions = q.metadata?.completions || 0;
+    const shares = q.metadata?.shares || 0;
+    const score = Math.max(0, Math.min(100, Math.round(views * 0.1 + completions * 0.4 + shares * 1.2)));
+    return score;
+  };
 
   const toggleFeatured = async (quizId: string) => {
     try {
@@ -84,6 +125,12 @@ export default function AdminDashboard() {
           </div>
         </div>
 
+        {/* Refresh + Stats Overview */}
+        <div className="flex items-center justify-between mb-3">
+          <div></div>
+          <Button variant="outline" onClick={loadQuizzes} className="text-xs">Refresh</Button>
+        </div>
+        
         {/* Stats Overview */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 mb-6 sm:mb-8">
           <Card className="p-4 sm:p-6">
@@ -137,7 +184,14 @@ export default function AdminDashboard() {
 
         {/* Quiz Management */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
-          {quizData.map((quiz, index) => (
+          {loading ? (
+            Array.from({ length: 6 }).map((_, i) => (
+              <div key={i} className="p-4 sm:p-6 bg-white rounded-xl border border-gray-100">
+                <div className="animate-pulse h-6 w-48 bg-gray-200 rounded mb-2"></div>
+                <div className="animate-pulse h-4 w-64 bg-gray-200 rounded"></div>
+              </div>
+            ))
+          ) : quizData.map((quiz, index) => (
             <motion.div
               key={quiz.id}
               initial={{ opacity: 0, y: 20 }}
@@ -184,24 +238,32 @@ export default function AdminDashboard() {
                   <div>
                     <p className="text-sm sm:text-lg font-semibold">{quiz.metadata?.views || 0}</p>
                     <p className="text-xs text-gray-600">Views</p>
+                    <Button size="sm" variant="outline" className="mt-1 h-7 text-xs" disabled={updating===quiz.id}
+                      onClick={() => updateMetrics(quiz.id, { views: (quiz.metadata?.views || 0) + 1 })}>+1</Button>
                   </div>
                   <div>
                     <p className="text-sm sm:text-lg font-semibold">{quiz.metadata?.completions || 0}</p>
                     <p className="text-xs text-gray-600">Completions</p>
+                    <Button size="sm" variant="outline" className="mt-1 h-7 text-xs" disabled={updating===quiz.id}
+                      onClick={() => updateMetrics(quiz.id, { completions: (quiz.metadata?.completions || 0) + 1 })}>+1</Button>
                   </div>
                   <div>
                     <p className="text-sm sm:text-lg font-semibold">{quiz.metadata?.shares || 0}</p>
                     <p className="text-xs text-gray-600">Shares</p>
+                    <Button size="sm" variant="outline" className="mt-1 h-7 text-xs" disabled={updating===quiz.id}
+                      onClick={() => updateMetrics(quiz.id, { shares: (quiz.metadata?.shares || 0) + 1 })}>+1</Button>
                   </div>
                   <div>
                     <p className="text-sm sm:text-lg font-semibold">{quiz.metadata?.trendingScore || 0}</p>
                     <p className="text-xs text-gray-600">Trending</p>
+                    <Button size="sm" className="mt-1 h-7 text-xs" disabled={updating===quiz.id}
+                      onClick={() => updateMetrics(quiz.id, { trendingScore: recalcTrending(quiz) })}>Recalc</Button>
                   </div>
                 </div>
 
                 {/* Tags */}
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {(quiz.tags || []).map(tag => (
+                  {(quiz.tags || []).map((tag: string) => (
                     <span key={tag} className="bg-gray-100 text-gray-600 text-xs px-2 py-1 rounded-full">
                       {tag}
                     </span>
