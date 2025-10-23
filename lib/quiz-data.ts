@@ -2688,6 +2688,966 @@ export const quizzes: Quiz[] = [
         personalizedMessage: 'You\'re the meeting equivalent of a social butterfly. You can love any meeting, and your enthusiasm is so infectious, you could probably make a meeting about watching paint dry exciting. You\'ve never met a meeting that couldn\'t be loved, and your colleagues are convinced you have a PhD in meeting enthusiasm.'
       }
     ]
+  },
+  {
+    id: 'chai-break-style',
+    title: 'What\'s Your Chai Break Style?',
+    description: 'Discover your unique approach to the most important break of the day!',
+    emoji: '☕',
+    category: 'personality',
+    tags: ['chai', 'break', 'indian', 'workplace', 'culture'],
+    isViral: true,
+    isFeatured: true,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ideal chai break duration is:
+        { questionId: 'q1', answerValue: '5-minutes', results: { 'quick-chai': 5, 'chai-master': 2 } },
+        { questionId: 'q1', answerValue: '15-minutes', results: { 'chai-master': 5, 'chai-philosopher': 3 } },
+        { questionId: 'q1', answerValue: '30-minutes', results: { 'chai-philosopher': 5, 'chai-legend': 3 } },
+        { questionId: 'q1', answerValue: 'all-day', results: { 'chai-legend': 5, 'chai-master': 2 } },
+        
+        // Question 2: Your chai preference is:
+        { questionId: 'q2', answerValue: 'masala-chai', results: { 'chai-master': 5, 'chai-philosopher': 3 } },
+        { questionId: 'q2', answerValue: 'ginger-chai', results: { 'chai-philosopher': 5, 'chai-legend': 3 } },
+        { questionId: 'q2', answerValue: 'cardamom-chai', results: { 'chai-legend': 5, 'chai-master': 2 } },
+        { questionId: 'q2', answerValue: 'any-chai', results: { 'quick-chai': 5, 'chai-master': 3 } },
+        
+        // Question 3: During chai break, you:
+        { questionId: 'q3', answerValue: 'gossip', results: { 'chai-philosopher': 5, 'chai-legend': 3 } },
+        { questionId: 'q3', answerValue: 'work', results: { 'quick-chai': 5, 'chai-master': 2 } },
+        { questionId: 'q3', answerValue: 'philosophize', results: { 'chai-legend': 5, 'chai-philosopher': 3 } },
+        { questionId: 'q3', answerValue: 'sleep', results: { 'chai-legend': 5, 'chai-philosopher': 2 } }
+      ],
+      defaultResult: 'chai-master'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 3000,
+      completions: 2500,
+      shares: 600,
+      avgRating: 4.9,
+      trendingScore: 95
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ideal chai break duration is:',
+        options: [
+          { id: 'a1', text: '5 minutes (quick sip)', value: '5-minutes' },
+          { id: 'a2', text: '15 minutes (proper break)', value: '15-minutes' },
+          { id: 'a3', text: '30 minutes (philosophical session)', value: '30-minutes' },
+          { id: 'a4', text: 'All day (chai marathon)', value: 'all-day' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your chai preference is:',
+        options: [
+          { id: 'b1', text: 'Masala chai (spiced)', value: 'masala-chai' },
+          { id: 'b2', text: 'Ginger chai (strong)', value: 'ginger-chai' },
+          { id: 'b3', text: 'Cardamom chai (aromatic)', value: 'cardamom-chai' },
+          { id: 'b4', text: 'Any chai (I\'m not picky)', value: 'any-chai' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'During chai break, you:',
+        options: [
+          { id: 'c1', text: 'Gossip with colleagues', value: 'gossip' },
+          { id: 'c2', text: 'Continue working', value: 'work' },
+          { id: 'c3', text: 'Philosophize about life', value: 'philosophize' },
+          { id: 'c4', text: 'Take a power nap', value: 'sleep' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'quick-chai', 
+        name: 'Quick Chai', 
+        emoji: '⚡', 
+        description: 'You\'re the speed demon of chai breaks! Your efficiency is legendary!', 
+        color: 'bg-yellow-500',
+        personalizedMessage: 'You\'re the chai equivalent of a Formula 1 driver. You can finish a cup of chai faster than most people can say "chai", and your break efficiency is so high, you could probably have 10 chai breaks in the time others have one. You\'ve never met a chai that couldn\'t be consumed in record time.'
+      },
+      { 
+        id: 'chai-master', 
+        name: 'Chai Master', 
+        emoji: '👑', 
+        description: 'You\'re the master of chai breaks! Your chai game is unmatched!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the chai equivalent of a sommelier. You can distinguish between different chai blends by smell alone, and your chai knowledge is so vast, you could probably write a thesis on the perfect chai temperature. You\'ve never met a chai that couldn\'t be improved with your expertise.'
+      },
+      { 
+        id: 'chai-philosopher', 
+        name: 'Chai Philosopher', 
+        emoji: '🧘', 
+        description: 'You turn chai breaks into philosophical sessions! Your wisdom is legendary!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the chai equivalent of a guru. You can solve any problem over a cup of chai, and your philosophical insights are so deep, you could probably write a book about the meaning of life based on your chai break conversations. You\'ve never met a chai that couldn\'t inspire profound thoughts.'
+      },
+      { 
+        id: 'chai-legend', 
+        name: 'Chai Legend', 
+        emoji: '🏆', 
+        description: 'You\'re the legend of chai breaks! Your chai skills are mythical!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the chai equivalent of a mythical creature. You can make chai breaks last for hours, and your chai stories are so legendary, they\'ve become part of office folklore. You\'ve never met a chai that couldn\'t be turned into an epic adventure, and your colleagues are convinced you have magical chai powers.'
+      }
+    ]
+  },
+  {
+    id: 'standup-meeting-style',
+    title: 'What\'s Your Standup Meeting Style?',
+    description: 'Discover your unique approach to the daily standup ritual!',
+    emoji: '🤸',
+    category: 'personality',
+    tags: ['standup', 'meetings', 'agile', 'developer', 'workplace'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'minimal',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your standup contribution is:
+        { questionId: 'q1', answerValue: 'detailed', results: { 'standup-storyteller': 5, 'standup-master': 3 } },
+        { questionId: 'q1', answerValue: 'brief', results: { 'standup-master': 5, 'standup-ninja': 3 } },
+        { questionId: 'q1', answerValue: 'silent', results: { 'standup-ninja': 5, 'standup-ghost': 3 } },
+        { questionId: 'q1', answerValue: 'dominant', results: { 'standup-dictator': 5, 'standup-storyteller': 2 } },
+        
+        // Question 2: You prepare for standup by:
+        { questionId: 'q2', answerValue: 'detailed-prep', results: { 'standup-master': 5, 'standup-storyteller': 3 } },
+        { questionId: 'q2', answerValue: 'quick-notes', results: { 'standup-ninja': 5, 'standup-master': 3 } },
+        { questionId: 'q2', answerValue: 'wing-it', results: { 'standup-ghost': 5, 'standup-ninja': 3 } },
+        { questionId: 'q2', answerValue: 'rehearse', results: { 'standup-dictator': 5, 'standup-storyteller': 3 } },
+        
+        // Question 3: Your standup timing is:
+        { questionId: 'q3', answerValue: 'always-on-time', results: { 'standup-master': 5, 'standup-ninja': 3 } },
+        { questionId: 'q3', answerValue: 'usually-late', results: { 'standup-ghost': 5, 'standup-ninja': 3 } },
+        { questionId: 'q3', answerValue: 'fashionably-late', results: { 'standup-storyteller': 5, 'standup-dictator': 3 } },
+        { questionId: 'q3', answerValue: 'never-show', results: { 'standup-ghost': 5, 'standup-ninja': 2 } }
+      ],
+      defaultResult: 'standup-master'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 2800,
+      completions: 2200,
+      shares: 450,
+      avgRating: 4.7,
+      trendingScore: 88
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your standup contribution is:',
+        options: [
+          { id: 'a1', text: 'Detailed story of everything', value: 'detailed' },
+          { id: 'a2', text: 'Brief and to the point', value: 'brief' },
+          { id: 'a3', text: 'Silent observer', value: 'silent' },
+          { id: 'a4', text: 'Dominant speaker', value: 'dominant' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'You prepare for standup by:',
+        options: [
+          { id: 'b1', text: 'Detailed preparation', value: 'detailed-prep' },
+          { id: 'b2', text: 'Quick mental notes', value: 'quick-notes' },
+          { id: 'b3', text: 'Winging it completely', value: 'wing-it' },
+          { id: 'b4', text: 'Rehearsing your speech', value: 'rehearse' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your standup timing is:',
+        options: [
+          { id: 'c1', text: 'Always on time', value: 'always-on-time' },
+          { id: 'c2', text: 'Usually 5 minutes late', value: 'usually-late' },
+          { id: 'c3', text: 'Fashionably late', value: 'fashionably-late' },
+          { id: 'c4', text: 'Never show up', value: 'never-show' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'standup-storyteller', 
+        name: 'Standup Storyteller', 
+        emoji: '📚', 
+        description: 'You turn standups into epic storytelling sessions! Your narrative skills are legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the standup equivalent of a bard. You can turn any simple task into an epic tale, and your standup contributions are so detailed, they could be published as short stories. You\'ve never met a standup that couldn\'t be improved with your storytelling skills.'
+      },
+      { 
+        id: 'standup-master', 
+        name: 'Standup Master', 
+        emoji: '🎯', 
+        description: 'You\'re the master of efficient standups! Your time management is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the standup equivalent of a Swiss watch. You can deliver your updates with precision timing, and your standup efficiency is so high, you could probably run a standup in your sleep. You\'ve never met a standup that couldn\'t be completed in record time.'
+      },
+      { 
+        id: 'standup-ninja', 
+        name: 'Standup Ninja', 
+        emoji: '🥷', 
+        description: 'You appear and disappear from standups like a ninja! Your stealth is legendary!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the standup equivalent of a shadow. You can participate in standups without anyone noticing, and your stealth skills are so advanced, you could probably attend a standup while being in a different time zone. You\'ve never met a standup that couldn\'t be ninja\'d through.'
+      },
+      { 
+        id: 'standup-ghost', 
+        name: 'Standup Ghost', 
+        emoji: '👻', 
+        description: 'You\'re the ghost of standups! Your invisibility is unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the standup equivalent of a phantom. You can avoid standups like the plague, and your invisibility skills are so advanced, your colleagues are convinced you don\'t exist. You\'ve never met a standup that couldn\'t be ghosted, and your presence is so ethereal, people question if you were ever there.'
+      },
+      { 
+        id: 'standup-dictator', 
+        name: 'Standup Dictator', 
+        emoji: '👑', 
+        description: 'You rule standups with an iron fist! Your dominance is legendary!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the standup equivalent of a monarch. You can control any standup with your commanding presence, and your leadership skills are so advanced, you could probably run a standup for the entire company. You\'ve never met a standup that couldn\'t be dominated with your royal authority.'
+      }
+    ]
+  },
+  {
+    id: 'lunch-break-style',
+    title: 'What\'s Your Lunch Break Style?',
+    description: 'Discover your unique approach to the most important meal of the day!',
+    emoji: '🍽️',
+    category: 'personality',
+    tags: ['lunch', 'break', 'food', 'workplace', 'culture'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'default',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your lunch break duration is:
+        { questionId: 'q1', answerValue: '15-minutes', results: { 'lunch-warrior': 5, 'lunch-master': 2 } },
+        { questionId: 'q1', answerValue: '30-minutes', results: { 'lunch-master': 5, 'lunch-philosopher': 3 } },
+        { questionId: 'q1', answerValue: '1-hour', results: { 'lunch-philosopher': 5, 'lunch-legend': 3 } },
+        { questionId: 'q1', answerValue: 'all-day', results: { 'lunch-legend': 5, 'lunch-philosopher': 2 } },
+        
+        // Question 2: Your lunch preference is:
+        { questionId: 'q2', answerValue: 'home-cooked', results: { 'lunch-master': 5, 'lunch-philosopher': 3 } },
+        { questionId: 'q2', answerValue: 'office-cafeteria', results: { 'lunch-warrior': 5, 'lunch-master': 2 } },
+        { questionId: 'q2', answerValue: 'restaurant', results: { 'lunch-philosopher': 5, 'lunch-legend': 3 } },
+        { questionId: 'q2', answerValue: 'skip-lunch', results: { 'lunch-ghost': 5, 'lunch-warrior': 2 } },
+        
+        // Question 3: During lunch, you:
+        { questionId: 'q3', answerValue: 'eat-quickly', results: { 'lunch-warrior': 5, 'lunch-master': 2 } },
+        { questionId: 'q3', answerValue: 'socialize', results: { 'lunch-philosopher': 5, 'lunch-legend': 3 } },
+        { questionId: 'q3', answerValue: 'work', results: { 'lunch-ghost': 5, 'lunch-warrior': 3 } },
+        { questionId: 'q3', answerValue: 'nap', results: { 'lunch-legend': 5, 'lunch-philosopher': 2 } }
+      ],
+      defaultResult: 'lunch-master'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 3200,
+      completions: 2600,
+      shares: 520,
+      avgRating: 4.8,
+      trendingScore: 92
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your lunch break duration is:',
+        options: [
+          { id: 'a1', text: '15 minutes (quick bite)', value: '15-minutes' },
+          { id: 'a2', text: '30 minutes (proper meal)', value: '30-minutes' },
+          { id: 'a3', text: '1 hour (leisurely lunch)', value: '1-hour' },
+          { id: 'a4', text: 'All day (lunch marathon)', value: 'all-day' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your lunch preference is:',
+        options: [
+          { id: 'b1', text: 'Home-cooked food', value: 'home-cooked' },
+          { id: 'b2', text: 'Office cafeteria', value: 'office-cafeteria' },
+          { id: 'b3', text: 'Restaurant dining', value: 'restaurant' },
+          { id: 'b4', text: 'Skip lunch entirely', value: 'skip-lunch' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'During lunch, you:',
+        options: [
+          { id: 'c1', text: 'Eat quickly and get back to work', value: 'eat-quickly' },
+          { id: 'c2', text: 'Socialize with colleagues', value: 'socialize' },
+          { id: 'c3', text: 'Continue working while eating', value: 'work' },
+          { id: 'c4', text: 'Take a power nap', value: 'nap' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'lunch-warrior', 
+        name: 'Lunch Warrior', 
+        emoji: '⚔️', 
+        description: 'You conquer lunch breaks with military precision! Your efficiency is legendary!', 
+        color: 'bg-red-500',
+        personalizedMessage: 'You\'re the lunch equivalent of a Spartan warrior. You can finish a meal faster than most people can say "lunch", and your break efficiency is so high, you could probably have 5 lunch breaks in the time others have one. You\'ve never met a meal that couldn\'t be conquered in record time.'
+      },
+      { 
+        id: 'lunch-master', 
+        name: 'Lunch Master', 
+        emoji: '👑', 
+        description: 'You\'re the master of lunch breaks! Your meal game is unmatched!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the lunch equivalent of a chef. You can appreciate every flavor and texture, and your lunch knowledge is so vast, you could probably write a food blog about office lunches. You\'ve never met a meal that couldn\'t be improved with your culinary expertise.'
+      },
+      { 
+        id: 'lunch-philosopher', 
+        name: 'Lunch Philosopher', 
+        emoji: '🧘', 
+        description: 'You turn lunch breaks into philosophical sessions! Your wisdom is legendary!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the lunch equivalent of a guru. You can solve any problem over a meal, and your lunch conversations are so deep, you could probably write a book about the meaning of life based on your lunch break discussions. You\'ve never met a meal that couldn\'t inspire profound thoughts.'
+      },
+      { 
+        id: 'lunch-legend', 
+        name: 'Lunch Legend', 
+        emoji: '🏆', 
+        description: 'You\'re the legend of lunch breaks! Your meal skills are mythical!', 
+        color: 'bg-gold-500',
+        personalizedMessage: 'You\'re the lunch equivalent of a mythical creature. You can make lunch breaks last for hours, and your lunch stories are so legendary, they\'ve become part of office folklore. You\'ve never met a meal that couldn\'t be turned into an epic adventure.'
+      },
+      { 
+        id: 'lunch-ghost', 
+        name: 'Lunch Ghost', 
+        emoji: '👻', 
+        description: 'You\'re the ghost of lunch breaks! Your invisibility is unmatched!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the lunch equivalent of a phantom. You can avoid lunch breaks like the plague, and your invisibility skills are so advanced, your colleagues are convinced you don\'t eat. You\'ve never met a meal that couldn\'t be ghosted, and your presence is so ethereal, people question if you were ever hungry.'
+      }
+    ]
+  },
+  {
+    id: 'slack-emoji-style',
+    title: 'What\'s Your Slack Emoji Style?',
+    description: 'Discover your unique approach to workplace communication!',
+    emoji: '💬',
+    category: 'personality',
+    tags: ['slack', 'emoji', 'communication', 'workplace', 'developer'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your typical Slack message is:
+        { questionId: 'q1', answerValue: 'emoji-heavy', results: { 'emoji-master': 5, 'emoji-legend': 3 } },
+        { questionId: 'q1', answerValue: 'professional', results: { 'slack-professional': 5, 'emoji-master': 2 } },
+        { questionId: 'q1', answerValue: 'minimal', results: { 'slack-minimalist': 5, 'slack-professional': 3 } },
+        { questionId: 'q1', answerValue: 'silent', results: { 'slack-ghost': 5, 'slack-minimalist': 2 } },
+        
+        // Question 2: Your favorite emoji is:
+        { questionId: 'q2', answerValue: 'thumbs-up', results: { 'slack-professional': 5, 'emoji-master': 2 } },
+        { questionId: 'q2', answerValue: 'fire', results: { 'emoji-master': 5, 'emoji-legend': 3 } },
+        { questionId: 'q2', answerValue: 'thinking', results: { 'slack-minimalist': 5, 'slack-professional': 3 } },
+        { questionId: 'q2', answerValue: 'none', results: { 'slack-ghost': 5, 'slack-minimalist': 2 } },
+        
+        // Question 3: Your Slack status is:
+        { questionId: 'q3', answerValue: 'always-online', results: { 'slack-professional': 5, 'emoji-master': 3 } },
+        { questionId: 'q3', answerValue: 'away', results: { 'slack-minimalist': 5, 'slack-professional': 3 } },
+        { questionId: 'q3', answerValue: 'do-not-disturb', results: { 'slack-ghost': 5, 'slack-minimalist': 3 } },
+        { questionId: 'q3', answerValue: 'custom-status', results: { 'emoji-legend': 5, 'emoji-master': 3 } }
+      ],
+      defaultResult: 'slack-professional'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 3500,
+      completions: 2800,
+      shares: 650,
+      avgRating: 4.9,
+      trendingScore: 96
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your typical Slack message is:',
+        options: [
+          { id: 'a1', text: '🔥💯🚀 (emoji heavy)', value: 'emoji-heavy' },
+          { id: 'a2', text: 'Professional and clear', value: 'professional' },
+          { id: 'a3', text: 'Minimal and to the point', value: 'minimal' },
+          { id: 'a4', text: 'Silent observer', value: 'silent' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your favorite emoji is:',
+        options: [
+          { id: 'b1', text: '👍 (thumbs up)', value: 'thumbs-up' },
+          { id: 'b2', text: '🔥 (fire)', value: 'fire' },
+          { id: 'b3', text: '🤔 (thinking)', value: 'thinking' },
+          { id: 'b4', text: 'None (I don\'t use emojis)', value: 'none' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your Slack status is:',
+        options: [
+          { id: 'c1', text: 'Always online', value: 'always-online' },
+          { id: 'c2', text: 'Away (but really here)', value: 'away' },
+          { id: 'c3', text: 'Do not disturb', value: 'do-not-disturb' },
+          { id: 'c4', text: 'Custom status with emojis', value: 'custom-status' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'emoji-master', 
+        name: 'Emoji Master', 
+        emoji: '🎭', 
+        description: 'You communicate entirely in emojis! Your visual language is legendary!', 
+        color: 'bg-pink-500',
+        personalizedMessage: 'You\'re the Slack equivalent of a hieroglyphic expert. You can express any emotion with just emojis, and your visual communication skills are so advanced, you could probably write a novel using only emojis. You\'ve never met a message that couldn\'t be improved with the right emoji combination.'
+      },
+      { 
+        id: 'slack-professional', 
+        name: 'Slack Professional', 
+        emoji: '👔', 
+        description: 'You maintain professional communication! Your clarity is unmatched!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the Slack equivalent of a corporate executive. You can communicate with perfect clarity, and your professional skills are so advanced, you could probably write a business proposal in Slack. You\'ve never met a message that couldn\'t be improved with your professional touch.'
+      },
+      { 
+        id: 'slack-minimalist', 
+        name: 'Slack Minimalist', 
+        emoji: '⚡', 
+        description: 'You keep it short and sweet! Your efficiency is legendary!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the Slack equivalent of a haiku master. You can express complex ideas in minimal words, and your communication efficiency is so high, you could probably run a company through Slack messages. You\'ve never met a message that couldn\'t be shortened without losing meaning.'
+      },
+      { 
+        id: 'emoji-legend', 
+        name: 'Emoji Legend', 
+        emoji: '🏆', 
+        description: 'You\'re the legend of emoji communication! Your creativity is mythical!', 
+        color: 'bg-gold-500',
+        personalizedMessage: 'You\'re the Slack equivalent of a digital artist. You can create entire stories with emojis, and your creative skills are so advanced, you could probably win an emoji Oscar. You\'ve never met a message that couldn\'t be turned into an emoji masterpiece.'
+      },
+      { 
+        id: 'slack-ghost', 
+        name: 'Slack Ghost', 
+        emoji: '👻', 
+        description: 'You\'re the ghost of Slack! Your invisibility is unmatched!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the Slack equivalent of a phantom. You can avoid Slack like the plague, and your invisibility skills are so advanced, your colleagues are convinced you don\'t exist. You\'ve never met a Slack message that couldn\'t be ghosted, and your presence is so ethereal, people question if you were ever online.'
+      }
+    ]
+  },
+  {
+    id: 'work-from-home-style',
+    title: 'What\'s Your Work From Home Style?',
+    description: 'Discover your unique approach to remote work!',
+    emoji: '🏠',
+    category: 'personality',
+    tags: ['wfh', 'remote', 'work', 'home', 'productivity'],
+    isViral: true,
+    isFeatured: true,
+    defaultLanguage: 'en',
+    defaultTheme: 'minimal',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your WFH setup is:
+        { questionId: 'q1', answerValue: 'dedicated-office', results: { 'wfh-professional': 5, 'wfh-master': 3 } },
+        { questionId: 'q1', answerValue: 'kitchen-table', results: { 'wfh-master': 5, 'wfh-ninja': 3 } },
+        { questionId: 'q1', answerValue: 'bed', results: { 'wfh-ninja': 5, 'wfh-legend': 3 } },
+        { questionId: 'q1', answerValue: 'anywhere', results: { 'wfh-legend': 5, 'wfh-ninja': 2 } },
+        
+        // Question 2: Your WFH attire is:
+        { questionId: 'q2', answerValue: 'business-casual', results: { 'wfh-professional': 5, 'wfh-master': 3 } },
+        { questionId: 'q2', answerValue: 'pajamas', results: { 'wfh-ninja': 5, 'wfh-legend': 3 } },
+        { questionId: 'q2', answerValue: 'shirt-only', results: { 'wfh-master': 5, 'wfh-ninja': 3 } },
+        { questionId: 'q2', answerValue: 'birthday-suit', results: { 'wfh-legend': 5, 'wfh-ninja': 2 } },
+        
+        // Question 3: Your WFH productivity is:
+        { questionId: 'q3', answerValue: 'highly-productive', results: { 'wfh-professional': 5, 'wfh-master': 3 } },
+        { questionId: 'q3', answerValue: 'moderately-productive', results: { 'wfh-master': 5, 'wfh-ninja': 3 } },
+        { questionId: 'q3', answerValue: 'barely-productive', results: { 'wfh-ninja': 5, 'wfh-legend': 3 } },
+        { questionId: 'q3', answerValue: 'not-productive', results: { 'wfh-legend': 5, 'wfh-ninja': 2 } }
+      ],
+      defaultResult: 'wfh-master'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 4000,
+      completions: 3200,
+      shares: 750,
+      avgRating: 4.9,
+      trendingScore: 98
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your WFH setup is:',
+        options: [
+          { id: 'a1', text: 'Dedicated home office', value: 'dedicated-office' },
+          { id: 'a2', text: 'Kitchen table', value: 'kitchen-table' },
+          { id: 'a3', text: 'Bed (laptop on lap)', value: 'bed' },
+          { id: 'a4', text: 'Anywhere with WiFi', value: 'anywhere' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your WFH attire is:',
+        options: [
+          { id: 'b1', text: 'Business casual', value: 'business-casual' },
+          { id: 'b2', text: 'Pajamas all day', value: 'pajamas' },
+          { id: 'b3', text: 'Shirt only (bottom optional)', value: 'shirt-only' },
+          { id: 'b4', text: 'Birthday suit', value: 'birthday-suit' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your WFH productivity is:',
+        options: [
+          { id: 'c1', text: 'Highly productive', value: 'highly-productive' },
+          { id: 'c2', text: 'Moderately productive', value: 'moderately-productive' },
+          { id: 'c3', text: 'Barely productive', value: 'barely-productive' },
+          { id: 'c4', text: 'Not productive at all', value: 'not-productive' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'wfh-professional', 
+        name: 'WFH Professional', 
+        emoji: '👔', 
+        description: 'You maintain office-level professionalism at home! Your discipline is legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the WFH equivalent of a corporate executive. You can maintain perfect professionalism even in your pajamas, and your self-discipline is so advanced, you could probably run a Fortune 500 company from your living room. You\'ve never met a workday that couldn\'t be conquered with your professional approach.'
+      },
+      { 
+        id: 'wfh-master', 
+        name: 'WFH Master', 
+        emoji: '🏆', 
+        description: 'You\'re the master of remote work! Your adaptability is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the WFH equivalent of a Swiss Army knife. You can work from anywhere with anything, and your adaptability skills are so advanced, you could probably work from a desert island with just a coconut and a laptop. You\'ve never met a work environment that couldn\'t be mastered with your flexibility.'
+      },
+      { 
+        id: 'wfh-ninja', 
+        name: 'WFH Ninja', 
+        emoji: '🥷', 
+        description: 'You work in stealth mode! Your invisibility is legendary!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the WFH equivalent of a shadow. You can work without anyone knowing, and your stealth skills are so advanced, you could probably work from a crowded coffee shop without anyone noticing. You\'ve never met a work situation that couldn\'t be ninja\'d through.'
+      },
+      { 
+        id: 'wfh-legend', 
+        name: 'WFH Legend', 
+        emoji: '🏆', 
+        description: 'You\'re the legend of remote work! Your skills are mythical!', 
+        color: 'bg-gold-500',
+        personalizedMessage: 'You\'re the WFH equivalent of a mythical creature. You can work from anywhere in any condition, and your remote work skills are so legendary, they\'ve become part of office folklore. You\'ve never met a work challenge that couldn\'t be turned into an epic adventure from the comfort of your home.'
+      }
+    ]
+  },
+  {
+    id: 'zoom-meeting-style',
+    title: 'What\'s Your Zoom Meeting Style?',
+    description: 'Discover your unique approach to virtual meetings!',
+    emoji: '📹',
+    category: 'personality',
+    tags: ['zoom', 'meetings', 'virtual', 'video', 'workplace'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'dark',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your camera status is:
+        { questionId: 'q1', answerValue: 'always-on', results: { 'zoom-professional': 5, 'zoom-master': 3 } },
+        { questionId: 'q1', answerValue: 'sometimes-on', results: { 'zoom-master': 5, 'zoom-ninja': 3 } },
+        { questionId: 'q1', answerValue: 'rarely-on', results: { 'zoom-ninja': 5, 'zoom-ghost': 3 } },
+        { questionId: 'q1', answerValue: 'never-on', results: { 'zoom-ghost': 5, 'zoom-ninja': 2 } },
+        
+        // Question 2: Your background is:
+        { questionId: 'q2', answerValue: 'professional', results: { 'zoom-professional': 5, 'zoom-master': 3 } },
+        { questionId: 'q2', answerValue: 'virtual', results: { 'zoom-master': 5, 'zoom-ninja': 3 } },
+        { questionId: 'q2', answerValue: 'messy-room', results: { 'zoom-ninja': 5, 'zoom-ghost': 3 } },
+        { questionId: 'q2', answerValue: 'no-background', results: { 'zoom-ghost': 5, 'zoom-ninja': 2 } },
+        
+        // Question 3: Your participation style is:
+        { questionId: 'q3', answerValue: 'active-speaker', results: { 'zoom-professional': 5, 'zoom-master': 3 } },
+        { questionId: 'q3', answerValue: 'occasional-comments', results: { 'zoom-master': 5, 'zoom-ninja': 3 } },
+        { questionId: 'q3', answerValue: 'silent-observer', results: { 'zoom-ninja': 5, 'zoom-ghost': 3 } },
+        { questionId: 'q3', answerValue: 'muted-always', results: { 'zoom-ghost': 5, 'zoom-ninja': 2 } }
+      ],
+      defaultResult: 'zoom-master'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 3800,
+      completions: 3000,
+      shares: 680,
+      avgRating: 4.8,
+      trendingScore: 94
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your camera status is:',
+        options: [
+          { id: 'a1', text: 'Always on', value: 'always-on' },
+          { id: 'a2', text: 'Sometimes on', value: 'sometimes-on' },
+          { id: 'a3', text: 'Rarely on', value: 'rarely-on' },
+          { id: 'a4', text: 'Never on', value: 'never-on' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your background is:',
+        options: [
+          { id: 'b1', text: 'Professional setup', value: 'professional' },
+          { id: 'b2', text: 'Virtual background', value: 'virtual' },
+          { id: 'b3', text: 'Messy room', value: 'messy-room' },
+          { id: 'b4', text: 'No background (camera off)', value: 'no-background' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your participation style is:',
+        options: [
+          { id: 'c1', text: 'Active speaker', value: 'active-speaker' },
+          { id: 'c2', text: 'Occasional comments', value: 'occasional-comments' },
+          { id: 'c3', text: 'Silent observer', value: 'silent-observer' },
+          { id: 'c4', text: 'Always muted', value: 'muted-always' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'zoom-professional', 
+        name: 'Zoom Professional', 
+        emoji: '👔', 
+        description: 'You maintain perfect professionalism in virtual meetings! Your setup is legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the Zoom equivalent of a news anchor. You can maintain perfect professionalism even in your pajamas, and your virtual meeting skills are so advanced, you could probably host a TED talk from your living room. You\'ve never met a Zoom meeting that couldn\'t be conquered with your professional approach.'
+      },
+      { 
+        id: 'zoom-master', 
+        name: 'Zoom Master', 
+        emoji: '🎯', 
+        description: 'You\'re the master of virtual meetings! Your adaptability is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the Zoom equivalent of a Swiss Army knife. You can adapt to any virtual meeting situation, and your flexibility skills are so advanced, you could probably run a meeting from a moving car. You\'ve never met a Zoom challenge that couldn\'t be mastered with your adaptability.'
+      },
+      { 
+        id: 'zoom-ninja', 
+        name: 'Zoom Ninja', 
+        emoji: '🥷', 
+        description: 'You participate in stealth mode! Your invisibility is legendary!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the Zoom equivalent of a shadow. You can participate in meetings without anyone noticing, and your stealth skills are so advanced, you could probably attend a meeting while sleeping. You\'ve never met a Zoom situation that couldn\'t be ninja\'d through.'
+      },
+      { 
+        id: 'zoom-ghost', 
+        name: 'Zoom Ghost', 
+        emoji: '👻', 
+        description: 'You\'re the ghost of virtual meetings! Your invisibility is unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the Zoom equivalent of a phantom. You can avoid Zoom meetings like the plague, and your invisibility skills are so advanced, your colleagues are convinced you don\'t exist. You\'ve never met a Zoom meeting that couldn\'t be ghosted, and your presence is so ethereal, people question if you were ever there.'
+      }
+    ]
+  },
+  {
+    id: 'jira-ticket-style',
+    title: 'What\'s Your Jira Ticket Style?',
+    description: 'Discover your unique approach to project management!',
+    emoji: '🎫',
+    category: 'personality',
+    tags: ['jira', 'tickets', 'project-management', 'developer', 'workplace'],
+    isViral: true,
+    isFeatured: false,
+    defaultLanguage: 'en',
+    defaultTheme: 'default',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your ticket descriptions are:
+        { questionId: 'q1', answerValue: 'detailed', results: { 'jira-professional': 5, 'jira-master': 3 } },
+        { questionId: 'q1', answerValue: 'brief', results: { 'jira-master': 5, 'jira-ninja': 3 } },
+        { questionId: 'q1', answerValue: 'minimal', results: { 'jira-ninja': 5, 'jira-ghost': 3 } },
+        { questionId: 'q1', answerValue: 'none', results: { 'jira-ghost': 5, 'jira-ninja': 2 } },
+        
+        // Question 2: Your ticket priority is:
+        { questionId: 'q2', answerValue: 'high', results: { 'jira-professional': 5, 'jira-master': 3 } },
+        { questionId: 'q2', answerValue: 'medium', results: { 'jira-master': 5, 'jira-ninja': 3 } },
+        { questionId: 'q2', answerValue: 'low', results: { 'jira-ninja': 5, 'jira-ghost': 3 } },
+        { questionId: 'q2', answerValue: 'none', results: { 'jira-ghost': 5, 'jira-ninja': 2 } },
+        
+        // Question 3: Your ticket completion rate is:
+        { questionId: 'q3', answerValue: 'always-complete', results: { 'jira-professional': 5, 'jira-master': 3 } },
+        { questionId: 'q3', answerValue: 'mostly-complete', results: { 'jira-master': 5, 'jira-ninja': 3 } },
+        { questionId: 'q3', answerValue: 'rarely-complete', results: { 'jira-ninja': 5, 'jira-ghost': 3 } },
+        { questionId: 'q3', answerValue: 'never-complete', results: { 'jira-ghost': 5, 'jira-ninja': 2 } }
+      ],
+      defaultResult: 'jira-master'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 4200,
+      completions: 3400,
+      shares: 800,
+      avgRating: 4.9,
+      trendingScore: 97
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your ticket descriptions are:',
+        options: [
+          { id: 'a1', text: 'Detailed and comprehensive', value: 'detailed' },
+          { id: 'a2', text: 'Brief and to the point', value: 'brief' },
+          { id: 'a3', text: 'Minimal (just the title)', value: 'minimal' },
+          { id: 'a4', text: 'None (empty tickets)', value: 'none' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your ticket priority is:',
+        options: [
+          { id: 'b1', text: 'Always high priority', value: 'high' },
+          { id: 'b2', text: 'Medium priority', value: 'medium' },
+          { id: 'b3', text: 'Low priority', value: 'low' },
+          { id: 'b4', text: 'No priority set', value: 'none' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'Your ticket completion rate is:',
+        options: [
+          { id: 'c1', text: 'Always complete on time', value: 'always-complete' },
+          { id: 'c2', text: 'Mostly complete', value: 'mostly-complete' },
+          { id: 'c3', text: 'Rarely complete', value: 'rarely-complete' },
+          { id: 'c4', text: 'Never complete', value: 'never-complete' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'jira-professional', 
+        name: 'Jira Professional', 
+        emoji: '👔', 
+        description: 'You maintain perfect ticket hygiene! Your project management is legendary!', 
+        color: 'bg-blue-500',
+        personalizedMessage: 'You\'re the Jira equivalent of a project management guru. You can create tickets so detailed, they could be used as training materials, and your organizational skills are so advanced, you could probably run a Fortune 500 company through Jira tickets. You\'ve never met a project that couldn\'t be conquered with your professional approach.'
+      },
+      { 
+        id: 'jira-master', 
+        name: 'Jira Master', 
+        emoji: '🎯', 
+        description: 'You\'re the master of ticket management! Your efficiency is unmatched!', 
+        color: 'bg-green-500',
+        personalizedMessage: 'You\'re the Jira equivalent of a Swiss Army knife. You can manage any project with perfect efficiency, and your ticket skills are so advanced, you could probably run a startup through Jira tickets. You\'ve never met a project that couldn\'t be mastered with your efficiency.'
+      },
+      { 
+        id: 'jira-ninja', 
+        name: 'Jira Ninja', 
+        emoji: '🥷', 
+        description: 'You manage tickets in stealth mode! Your invisibility is legendary!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the Jira equivalent of a shadow. You can manage projects without anyone noticing, and your stealth skills are so advanced, you could probably run a project while sleeping. You\'ve never met a Jira ticket that couldn\'t be ninja\'d through.'
+      },
+      { 
+        id: 'jira-ghost', 
+        name: 'Jira Ghost', 
+        emoji: '👻', 
+        description: 'You\'re the ghost of ticket management! Your invisibility is unmatched!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the Jira equivalent of a phantom. You can avoid Jira tickets like the plague, and your invisibility skills are so advanced, your colleagues are convinced you don\'t work. You\'ve never met a Jira ticket that couldn\'t be ghosted, and your presence is so ethereal, people question if you were ever assigned any work.'
+      }
+    ]
+  },
+  {
+    id: 'coffee-break-style',
+    title: 'What\'s Your Coffee Break Style?',
+    description: 'Discover your unique approach to the most important break of the day!',
+    emoji: '☕',
+    category: 'personality',
+    tags: ['coffee', 'break', 'workplace', 'culture', 'productivity'],
+    isViral: true,
+    isFeatured: true,
+    defaultLanguage: 'en',
+    defaultTheme: 'vibrant',
+    defaultCustomization: {
+      enablePersonalization: true,
+      personalizationFields: ['name'],
+      showProgress: true,
+      showShareButtons: true,
+      allowRetake: true
+    },
+    scoringConfig: {
+      rules: [
+        // Question 1: Your coffee break frequency is:
+        { questionId: 'q1', answerValue: 'every-hour', results: { 'coffee-addict': 5, 'coffee-master': 3 } },
+        { questionId: 'q1', answerValue: 'few-times', results: { 'coffee-master': 5, 'coffee-philosopher': 3 } },
+        { questionId: 'q1', answerValue: 'once', results: { 'coffee-philosopher': 5, 'coffee-legend': 3 } },
+        { questionId: 'q1', answerValue: 'never', results: { 'coffee-ghost': 5, 'coffee-philosopher': 2 } },
+        
+        // Question 2: Your coffee preference is:
+        { questionId: 'q2', answerValue: 'espresso', results: { 'coffee-master': 5, 'coffee-addict': 3 } },
+        { questionId: 'q2', answerValue: 'latte', results: { 'coffee-philosopher': 5, 'coffee-master': 3 } },
+        { questionId: 'q2', answerValue: 'americano', results: { 'coffee-legend': 5, 'coffee-philosopher': 3 } },
+        { questionId: 'q2', answerValue: 'no-coffee', results: { 'coffee-ghost': 5, 'coffee-philosopher': 2 } },
+        
+        // Question 3: During coffee break, you:
+        { questionId: 'q3', answerValue: 'work', results: { 'coffee-addict': 5, 'coffee-master': 3 } },
+        { questionId: 'q3', answerValue: 'socialize', results: { 'coffee-philosopher': 5, 'coffee-legend': 3 } },
+        { questionId: 'q3', answerValue: 'relax', results: { 'coffee-legend': 5, 'coffee-philosopher': 3 } },
+        { questionId: 'q3', answerValue: 'skip', results: { 'coffee-ghost': 5, 'coffee-philosopher': 2 } }
+      ],
+      defaultResult: 'coffee-master'
+    },
+    createdAt: new Date('2024-10-20'),
+    updatedAt: new Date(),
+    metadata: {
+      views: 4500,
+      completions: 3600,
+      shares: 900,
+      avgRating: 4.9,
+      trendingScore: 99
+    },
+    questions: [
+      {
+        id: 'q1',
+        question: 'Your coffee break frequency is:',
+        options: [
+          { id: 'a1', text: 'Every hour', value: 'every-hour' },
+          { id: 'a2', text: 'A few times a day', value: 'few-times' },
+          { id: 'a3', text: 'Once a day', value: 'once' },
+          { id: 'a4', text: 'Never', value: 'never' }
+        ]
+      },
+      {
+        id: 'q2',
+        question: 'Your coffee preference is:',
+        options: [
+          { id: 'b1', text: 'Espresso (strong)', value: 'espresso' },
+          { id: 'b2', text: 'Latte (milky)', value: 'latte' },
+          { id: 'b3', text: 'Americano (black)', value: 'americano' },
+          { id: 'b4', text: 'No coffee', value: 'no-coffee' }
+        ]
+      },
+      {
+        id: 'q3',
+        question: 'During coffee break, you:',
+        options: [
+          { id: 'c1', text: 'Continue working', value: 'work' },
+          { id: 'c2', text: 'Socialize with colleagues', value: 'socialize' },
+          { id: 'c3', text: 'Relax and recharge', value: 'relax' },
+          { id: 'c4', text: 'Skip coffee breaks', value: 'skip' }
+        ]
+      }
+    ],
+    results: [
+      { 
+        id: 'coffee-addict', 
+        name: 'Coffee Addict', 
+        emoji: '💉', 
+        description: 'You\'re addicted to coffee breaks! Your caffeine dependency is legendary!', 
+        color: 'bg-brown-500',
+        personalizedMessage: 'You\'re the coffee equivalent of a caffeine vampire. You can\'t function without your regular coffee fix, and your addiction is so advanced, you could probably run a coffee shop from your desk. You\'ve never met a workday that couldn\'t be improved with more coffee breaks.'
+      },
+      { 
+        id: 'coffee-master', 
+        name: 'Coffee Master', 
+        emoji: '👑', 
+        description: 'You\'re the master of coffee breaks! Your timing is unmatched!', 
+        color: 'bg-orange-500',
+        personalizedMessage: 'You\'re the coffee equivalent of a sommelier. You can time your coffee breaks to perfection, and your coffee knowledge is so vast, you could probably write a thesis on the perfect coffee temperature. You\'ve never met a coffee break that couldn\'t be mastered with your expertise.'
+      },
+      { 
+        id: 'coffee-philosopher', 
+        name: 'Coffee Philosopher', 
+        emoji: '🧘', 
+        description: 'You turn coffee breaks into philosophical sessions! Your wisdom is legendary!', 
+        color: 'bg-purple-500',
+        personalizedMessage: 'You\'re the coffee equivalent of a guru. You can solve any problem over a cup of coffee, and your coffee break conversations are so deep, you could probably write a book about the meaning of life based on your coffee break discussions. You\'ve never met a coffee that couldn\'t inspire profound thoughts.'
+      },
+      { 
+        id: 'coffee-legend', 
+        name: 'Coffee Legend', 
+        emoji: '🏆', 
+        description: 'You\'re the legend of coffee breaks! Your skills are mythical!', 
+        color: 'bg-gold-500',
+        personalizedMessage: 'You\'re the coffee equivalent of a mythical creature. You can make coffee breaks last for hours, and your coffee stories are so legendary, they\'ve become part of office folklore. You\'ve never met a coffee that couldn\'t be turned into an epic adventure.'
+      },
+      { 
+        id: 'coffee-ghost', 
+        name: 'Coffee Ghost', 
+        emoji: '👻', 
+        description: 'You\'re the ghost of coffee breaks! Your invisibility is unmatched!', 
+        color: 'bg-gray-500',
+        personalizedMessage: 'You\'re the coffee equivalent of a phantom. You can avoid coffee breaks like the plague, and your invisibility skills are so advanced, your colleagues are convinced you don\'t drink coffee. You\'ve never met a coffee break that couldn\'t be ghosted, and your presence is so ethereal, people question if you were ever caffeinated.'
+      }
+    ]
   }
 ];
 
