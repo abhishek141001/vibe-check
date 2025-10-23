@@ -1,0 +1,98 @@
+{
+  "id": "mystic-fork",
+  "title": "Mystic Fork",
+  "titleHindi": "रहस्यमयी दोराहा",
+  "description": "A short interactive tale where each choice reshapes your fate.",
+  "descriptionHindi": "एक छोटी इंटरएक्टिव कहानी जहाँ हर चुनाव आपकी किस्मत बदलता है।",
+  "emoji": "🧭",
+  "startNodeId": "n1",
+  "maxSlides": 7,
+  "customization": {
+    "themeId": "default",
+    "defaultLanguage": "en",
+    "backgroundImage": "/globe.svg"
+  },
+  "tags": ["adventure", "interactive"],
+  "isViral": false,
+  "isFeatured": false,
+  "nodes": [
+    {
+      "id": "n1",
+      "text": "At a forest fork, a silver path gleams while a shadowed trail beckons.",
+      "textHindi": "जंगल के दोराहे पर, एक चांदी-सा रास्ता चमकता है और दूसरा साया बुलाता है।",
+      "image": "/window.svg",
+      "choices": [
+        { "id": "c1", "text": "Take the silver path", "textHindi": "चांदी वाला रास्ता", "nextId": "n2" },
+        { "id": "c2", "text": "Enter the shadowed trail", "textHindi": "साये वाला रास्ता", "nextId": "n3" }
+      ]
+    },
+    {
+      "id": "n2",
+      "text": "Moonlight reveals carved runes pointing to a hidden glade.",
+      "textHindi": "चांदनी में नक्काशीदार रून्स एक गुप्त उपवन की ओर इशारा करते हैं।",
+      "image": "/next.svg",
+      "choices": [
+        { "id": "c3", "text": "Follow the runes", "textHindi": "रून्स का पीछा करें", "nextId": "end1" },
+        { "id": "c4", "text": "Ignore and keep walking", "textHindi": "नज़रअंदाज़ करें और आगे बढ़ें", "nextId": "n4" }
+      ]
+    },
+    {
+      "id": "n3",
+      "text": "A whisper offers guidance; a warm lantern glows to the east.",
+      "textHindi": "एक फुसफुसाहट मार्गदर्शन देती है; पूरब में एक लालटेन गरमजोशी से चमकती है।",
+      "image": "/vercel.svg",
+      "choices": [
+        { "id": "c5", "text": "Follow the whisper", "textHindi": "फुसफुसाहट का पीछा करें", "nextId": "n4" },
+        { "id": "c6", "text": "Head to the lantern", "textHindi": "लालटेन की ओर जाएं", "nextId": "end2" }
+      ]
+    },
+    {
+      "id": "n4",
+      "text": "You reach a river singing your name. A narrow bridge sways.",
+      "textHindi": "आप एक नदी तक पहुँचते हैं जो आपका नाम गाती है। एक संकरा पुल हिलता है।",
+      "choices": [
+        { "id": "c7", "text": "Cross the bridge", "textHindi": "पुल पार करें", "nextId": "end2" },
+        { "id": "c8", "text": "Walk along the bank", "textHindi": "किनारे-किनारे चलें", "nextId": "end3" }
+      ]
+    },
+    {
+      "id": "end1",
+      "text": "The glade welcomes you home—you’ve found what you were missing.",
+      "textHindi": "उपवन आपका स्वागत करता है—आपने वह पा लिया जो खोया था।",
+      "choices": [
+        { "id": "e1", "text": "Play again" },
+        { "id": "e2", "text": "Play again" }
+      ],
+      "ending": true,
+      "endingTitle": "Home Found",
+      "endingTitleHindi": "घर मिला",
+      "endingEmoji": "🏡"
+    },
+    {
+      "id": "end2",
+      "text": "The lantern leads to an old friend—the forest was guiding you all along.",
+      "textHindi": "लालटेन आपको एक पुराने दोस्त तक ले जाती है—जंगल हमेशा से आपका मार्गदर्शक था।",
+      "choices": [
+        { "id": "e3", "text": "Play again" },
+        { "id": "e4", "text": "Play again" }
+      ],
+      "ending": true,
+      "endingTitle": "Guided Light",
+      "endingTitleHindi": "मार्गदर्शक रोशनी",
+      "endingEmoji": "🕯️"
+    },
+    {
+      "id": "end3",
+      "text": "At sunrise, a boat arrives and carries you beyond old horizons.",
+      "textHindi": "सूर्योदय पर, एक नाव आती है और आपको पुराने क्षितिजों के पार ले जाती है।",
+      "choices": [
+        { "id": "e5", "text": "Play again" },
+        { "id": "e6", "text": "Play again" }
+      ],
+      "ending": true,
+      "endingTitle": "New Horizons",
+      "endingTitleHindi": "नए क्षितिज",
+      "endingEmoji": "⛵"
+    }
+  ]
+}
