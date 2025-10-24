@@ -17,6 +17,11 @@ function QuizHomeContent() {
   const [loadingList, setLoadingList] = useState(true);
   const [loadingFeatured, setLoadingFeatured] = useState(true);
   const { currentTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const tabs = [
     { id: 'all', label: 'All Quizzes', icon: Sparkles },
@@ -61,19 +66,21 @@ function QuizHomeContent() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-cyan-50">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
-        {/* Theme Indicator */}
-        <div className="absolute top-4 right-4 z-10">
-          <div 
-            className="px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm"
-            style={{
-              backgroundColor: currentTheme.colors.surface,
-              color: currentTheme.colors.text,
-              border: `1px solid ${currentTheme.colors.border}`
-            }}
-          >
-            Theme: {currentTheme.name}
+        {/* Theme Indicator (render after mount to avoid hydration mismatch) */}
+        {mounted && (
+          <div className="absolute top-4 right-4 z-10">
+            <div 
+              className="px-3 py-1 rounded-full text-xs font-medium backdrop-blur-sm"
+              style={{
+                backgroundColor: currentTheme.colors.surface,
+                color: currentTheme.colors.text,
+                border: `1px solid ${currentTheme.colors.border}`
+              }}
+            >
+              Theme: {currentTheme.name}
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Hero Section */}
         <motion.div

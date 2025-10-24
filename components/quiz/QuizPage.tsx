@@ -38,6 +38,20 @@ function QuizPageContent({ quizId }: QuizPageProps) {
   const { currentTheme, customization, useThemeClasses, setTheme } = useTheme();
   const themeClasses = useThemeClasses();
 
+  // Load user info from localStorage for session persistence
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('quiz-user-info');
+      if (raw) {
+        const parsed = JSON.parse(raw) as UserInfo;
+        if (parsed && parsed.name) {
+          setUserInfo(parsed);
+          setShowUserInfo(false);
+        }
+      }
+    } catch {}
+  }, []);
+
   // Fetch quiz from API (DB-first), then enrich with customization defaults
   useEffect(() => {
     let cancelled = false;
@@ -69,6 +83,7 @@ function QuizPageContent({ quizId }: QuizPageProps) {
   const handleUserInfoComplete = (userInfo: UserInfo) => {
     setUserInfo(userInfo);
     setShowUserInfo(false);
+    try { localStorage.setItem('quiz-user-info', JSON.stringify(userInfo)); } catch {}
   };
 
   const handleQuizComplete = async (answers: Record<string, string>) => {

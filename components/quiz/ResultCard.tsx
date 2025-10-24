@@ -363,6 +363,7 @@ export default function ResultCard({ result, quizId, onRetake, aiDescription, us
           height={windowSize.height}
           recycle={false}
           numberOfPieces={200}
+          style={{ pointerEvents: 'none' }}
         />
       )}
 

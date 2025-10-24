@@ -2,7 +2,7 @@ import { notFound } from 'next/navigation';
 import { getQuizById, getQuizForSEO } from '@/lib/quiz-data';
 import connectDB from '@/lib/mongodb';
 import QuizModel from '@/lib/models/Quiz';
-import QuizPage from '@/components/quiz/QuizPage';
+import QuizScroller from '@/components/quiz/QuizScroller';
 
 interface QuizPageProps {
   params: Promise<{
@@ -18,7 +18,7 @@ export default async function DynamicQuizPage({ params }: QuizPageProps) {
   const existsInDb = await QuizModel.exists({ id });
   if (!existsInDb && !getQuizById(id)) notFound();
   
-  return <QuizPage quizId={id} />;
+  return <QuizScroller initialQuizId={id} />;
 }
 
 // Generate static params for all quizzes at build time
